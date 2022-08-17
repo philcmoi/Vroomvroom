@@ -47,7 +47,7 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Signin Template · Bootstrap</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.2/examples/sign-in/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -71,7 +71,7 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
   <body class="text-center">
 
   <form class="form-signin" action="traitement.php" method="post" >
-<!--   <img class="mb-4" src="/docs/4.2/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+  <img class="mb-4" src="docs/4.2/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
   <h1 for="inputEmail" class="sr-only"></h1>
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Entrer votre email" autofocus>
