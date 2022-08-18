@@ -35,7 +35,8 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
 }
 
 
-?>
+?>  
+
 
 <!doctype html>
 <html lang="en">
@@ -110,7 +111,7 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
 
     
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
     
@@ -128,8 +129,7 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
 <!--       <label for="floatingPassword">Password</label> -->
     </div>
 </br>
-
-         <?php 
+<?php 
 
   if (isset($_GET['error'])) {$error=htmlspecialchars($_GET['error']);
 
@@ -156,14 +156,15 @@ switch ($error) {
   ;}
 ?>
       
-    </div>
+  
     <button class="w-100 btn btn-lg btn-primary" type="submit">S'identifier</button>
     </br>
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" value="remember-me"> Remember me
+        <input type="checkbox" name="rememberme" > Se souvenir de moi
       </label>
-      </br>   
+      </br> 
+    </div>  
     <a href="enregistrement.php" title="S enregistrer" target="_blank" rel="noopener noreferrer">S enregistrer</a>
 
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
