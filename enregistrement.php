@@ -82,19 +82,19 @@
 
     <div class="form-floating">
   <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" required autofocus>
-      <label for="floatingInput">Email address</label>
+<!--       <label for="floatingInput">Email address</label> -->
     </div>
     <div class="form-floating">
   <input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="pseudo" required>
-      <label for="floatingPassword">pseudo</label>
+<!--       <label for="floatingPassword">pseudo</label> -->
     </div>
     <div class="form-floating">
   <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" required>
-      <label for="floatingPassword">Password</label>
+<!--       <label for="floatingPassword">Password</label> -->
     </div>
     <div class="form-floating">
   <input type="password" name="password2" id="floatingPassword2" class="form-control" placeholder="Password" required>
-      <label for="floatingPassword">Password</label>
+<!--       <label for="floatingPassword">Password</label> -->
     </div>
     </br>
 <button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>

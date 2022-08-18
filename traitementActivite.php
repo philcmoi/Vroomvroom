@@ -8,8 +8,8 @@ $lieuarrive = htmlentities($_POST['lieuarrive']);
 $participation = htmlentities($_POST['participation']);
 $datedepart = $_POST['datedepart'];
 $datearrive = $_POST['datearrive'];
-$idtrajet = '0';
-$idmembre = '0';
+// $idtrajet = '0';
+// $idmembre = '0';
 
 
 // $conducteur = 'Moi';
@@ -28,8 +28,8 @@ $idmembre = '0';
  
 //     $sql = "INSERT INTO orders (order_number, conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive,idtrajet, idmembre)
 // VALUES ('',?,?,?,?,?,?,?,?)";
-      $sql = "INSERT INTO orders (order_number, conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive,idtrajet, idmembre)
-VALUES (:order_number,:conducteur,:lieudepart,:lieuarrive,:participation,:datedepart,:datearrive,:idtrajet,:idmembre)";
+      $sql = "INSERT INTO orders (order_number, conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive)
+VALUES (:order_number,:conducteur,:lieudepart,:lieuarrive,:participation,:datedepart,:datearrive)";
       
       
     $req = $PDO->prepare($sql);
@@ -49,11 +49,7 @@ VALUES (:order_number,:conducteur,:lieudepart,:lieuarrive,:participation,:datede
         
         "datedepart" => $datedepart,
         
-        "datearrive" => $datearrive,
-        
-        "idtrajet" => NULL,
-        
-        "idmembre" => NULL
+        "datearrive" => $datearrive
         
     ));
     
