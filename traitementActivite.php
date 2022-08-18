@@ -51,9 +51,9 @@ VALUES (:order_number,:conducteur,:lieudepart,:lieuarrive,:participation,:datede
         
         "datearrive" => $datearrive,
         
-        "idtrajet" => $idtrajet,
+        "idtrajet" => NULL,
         
-        "idmembre" => $idmembre
+        "idmembre" => NULL
         
     ));
     
