@@ -8,8 +8,8 @@ $lieuarrive = htmlentities($_POST['lieuarrive']);
 $participation = htmlentities($_POST['participation']);
 $datedepart = $_POST['datedepart'];
 $datearrive = $_POST['datearrive'];
-$idtrajet = '0';
-$idmembre = '0';
+// $idtrajet = '0';
+// $idmembre = '0';
 
 
 // $conducteur = 'Moi';
@@ -51,9 +51,9 @@ VALUES (:order_number,:conducteur,:lieudepart,:lieuarrive,:participation,:datede
         
         "datearrive" => $datearrive,
         
-        "idtrajet" => $idtrajet,
+        "idtrajet" => NULL,
         
-        "idmembre" => $idmembre
+        "idmembre" => NULL
         
     ));
     
