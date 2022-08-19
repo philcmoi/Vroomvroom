@@ -28,8 +28,8 @@ $datearrive = $_POST['datearrive'];
  
 //     $sql = "INSERT INTO orders (order_number, conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive,idtrajet, idmembre)
 // VALUES ('',?,?,?,?,?,?,?,?)";
-      $sql = "INSERT INTO orders (order_number, conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive)
-VALUES (:order_number,:conducteur,:lieudepart,:lieuarrive,:participation,:datedepart,:datearrive)";
+      $sql = "INSERT INTO orders (conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive)
+VALUES (:conducteur,:lieudepart,:lieuarrive,:participation,:datedepart,:datearrive)";
       
       
     $req = $PDO->prepare($sql);
@@ -37,7 +37,7 @@ VALUES (:order_number,:conducteur,:lieudepart,:lieuarrive,:participation,:datede
 
     $req->execute(array(
         
-        "order_number" => $order_number,
+//         "order_number" => $order_number,
         
         "conducteur" => $conducteur,
         
