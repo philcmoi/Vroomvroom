@@ -9,7 +9,7 @@ $password = htmlspecialchars( $_POST['password']);
         
     
     $_SESSION['password'] = $password;
-    $_SESSION['logged'] = 'connecte';
+    $_SESSION['logged'] = ' bienvenue';
             
     $mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
 
@@ -43,10 +43,10 @@ $password = htmlspecialchars( $_POST['password']);
   {
       $pass = $data['password'];
       $token = $data['token'];
-      
+      var_dump($pass);
       if (password_verify($password , $pass)) {
       $_SESSION['email'] = $email;
-        
+      $_SESSION['logged']='bienvenue';
              {
                  if (isset($_POST["rememberme"]))
                 {
@@ -65,7 +65,7 @@ $password = htmlspecialchars( $_POST['password']);
             mysqli_close($mysqli);
             
             $result->close();
-             header('Location: bienvenue.php') ;
+             header('Location: indexdate.php') ;
       } else {header('Location: index.php?error=1');};
   }
 

@@ -1,19 +1,9 @@
  <?php
-session_start();
 // include database connection file
 include('db_config.php');
  
 $query = "SELECT * FROM orders ORDER BY order_number desc";
 $result = mysqli_query($con, $query);
-
-// $test = $_SESSION['logged'];
-
-var_dump($_SESSION['logged']);
-
-if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "bienvenue" || $_SESSION['logged'] == "connecte"))
-{} else {header('Location: index.php');}
-
-// session_destroy();
 ?>
  
 <html>
@@ -114,17 +104,6 @@ if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "bienvenue" || $_SESS
       <div class="col-md-2">
         <input type="button" name="add" id="btn_add" value="Add" class="btn btn-primary" />
       </div>
-<?php 
-// if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
-// {
-    echo '
-<form action="deconnecter.php" method="post">
-<input type="submit" value="deconnexion" class="btn btn-primary"/>
-</form>
-'
-    
-// ;}
-?>
       <div id="resultat"></div>
     </div>
     </br>
@@ -240,10 +219,23 @@ var days_Diff = time_diff / (1000 * 3600 * 24);
 	   if (days_Diff < 0) {alert("dates invalide");}
 	   	  else {
 
+// 	   		alert("date1 " + date1);
+// 	   		alert("date2 " + date2);
+// 	   		alert("from_date " + from_date);
+// 	   		alert("to_date  " + to_date);  
+//       	$.ajax({
+//       		  method: "POST",
+//               url: "action.php",
+//               data: { debutActivite: date1, finActivite: date2 },
+//               success: function (data) {
+//                 $('#purchase_order').html(data);
+//               }
+//             });
+
 	   		$.post('action.php',
 	   			    {
-	   			datedepart: from_date,
-	   			datearrive: to_date
+	   			debutActivite: from_date,
+	   			finActivite: to_date
 	   			    }, function(data) {
 	   			        $('#purchase_order').html(data);
 	   			});
@@ -273,15 +265,15 @@ $("table tr").on("click",function () {
 
 // 	alert ("$(this).find('td:first').html()  "+identifiant);
 	
-// 	alert(identifiant);
+	alert(identifiant);
 
 	var clickedCell=$(event.target);
 
-//     alert("clickedCell "+clickedCell.text());
+    alert("clickedCell "+clickedCell.text());
 
 		
  	var compar = clickedCell.text();
-//  	alert(compar+ ' ok');
+ 	alert(compar+ ' ok');
 
  	if(compar == 'Effacer' &&  identifiant != null){
 	if (confirm('Voulez vous effacer la ligne choisie')) {
@@ -294,7 +286,7 @@ $.post('SupprimerActivite.php', {
 
         if (data == "Success") {           
             $("#resultat").html(" ! <p>Vous allez etre rediriger sur la liste des activite</p>");
-            setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 0);
+            setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
         	
             } 
         else {
@@ -315,9 +307,9 @@ $.post('SupprimerActivite.php', {
 	 		if (identifiant != null) {
  		if (confirm('Voulez vous modifier les donnee de la ligne choisie')) {
  	 		localStorage.setItem("cleef",identifiant);
-//  	 		alert("identifiant "+identifiant);
+ 	 		alert("identifiant "+identifiant);
  	 		verif = localStorage.getItem("cleef");
-//  	 		alert("verif "+ verif);
+ 	 		alert("verif "+ verif);
  		    window.location.href = 'Update.php';}
 
 //  	$.post('Update.php', {

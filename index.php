@@ -9,7 +9,7 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     
     $email = htmlspecialchars($_COOKIE["email"]);
     
-    $sql = "SELECT email, password, token FROM membre WHERE email = '".$email."' and token = '".$token."' ";
+    $sql = "SELECT idmembre, email, password, token FROM membre WHERE email = '".$email."' and token = '".$token."' ";
     
     if (!$result = $mysqli->query($sql)) {
         
@@ -25,16 +25,17 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     { $pass = $data['password'];
     
     $_SESSION['logged']='bienvenue';
-    
+    var_dump($_SESSION['logged']).
+    $_SESSION['idmembre']= $data['idmembre'];
     mysqli_close($mysqli);
     
     $result->close();
-    header('Location: bienvenue.php');
+    header('Location: indexdate.php');
     }
     else {header('Location: index.php?error=1');}
 }
 
-
+// session_destroy();
 ?>  
 
 
@@ -154,6 +155,10 @@ switch ($error) {
               }
 
   ;}
+  else {echo "vous avez ete deconnecte";
+  header('Location: deconnecter.php');
+  }
+
 ?>
       
   

@@ -21,12 +21,14 @@
 
 setcookie("email",$email, time() -365*24*3600*2,'/','localhost',false,true);
 setcookie("token",$token, time() -365*24*3600*2,'/','localhost',false,true);
+$_SESSION['logged'] = NULL;
 
+// Détruit toutes les variables de session
+$_SESSION = array();
 
-
-
+session_destroy();
 // Finalement, on détruit la session.
 //session_destroy();
 header("Location: index.php?error=3");
-
+// session_destroy();
  ?>
