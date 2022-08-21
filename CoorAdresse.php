@@ -91,116 +91,105 @@
 		var arrive;
 		function initMap() {
 			
-			// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
-			map = new google.maps.Map(document.getElementById("map"), {
-				// Nous plaçons le centre de la carte avec les coordonnées ci-dessus
-				center: new google.maps.LatLng(lat, lon), 
-				// Nous définissons le zoom par défaut
-				zoom: 11, 
-				// Nous définissons le type de carte (ici carte routière)
-				mapTypeId: google.maps.MapTypeId.ROADMAP, 
-				// Nous activons les options de contrôle de la carte (plan, satellite...)
-				mapTypeControl: true,
-				// Nous désactivons la roulette de souris
-//					scrollwheel: false, 
-				mapTypeControlOptions: {
-					// Cette option sert à définir comment les options se placent
-					style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR 
-				},
-				// Activation des options de navigation dans la carte (zoom...)
-				navigationControl: true, 
-				navigationControlOptions: {
-					// Comment ces options doivent-elles s'afficher
-					style: google.maps.NavigationControlStyle.ZOOM_PAN 
-				}
+		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
+		map = new google.maps.Map(document.getElementById("map"), {
+		// Nous plaçons le centre de la carte avec les coordonnées ci-dessus
+		center: new google.maps.LatLng(lat, lon), 
+		// Nous définissons le zoom par défaut
+		zoom: 11, 
+		// Nous définissons le type de carte (ici carte routière)
+		mapTypeId: google.maps.MapTypeId.ROADMAP, 
+		// Nous activons les options de contrôle de la carte (plan, satellite...)
+		mapTypeControl: true,
+		// Nous désactivons la roulette de souris
+//		scrollwheel: false, 
+		mapTypeControlOptions: {
+		// Cette option sert à définir comment les options se placent
+		style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR 
+		},
+		// Activation des options de navigation dans la carte (zoom...)
+		navigationControl: true, 
+		navigationControlOptions: {
+		// Comment ces options doivent-elles s'afficher
+		style: google.maps.NavigationControlStyle.ZOOM_PAN 
+		}
 			});
 			
 
-				google.maps.event.addListener(map, 'click', function (event) {
+		google.maps.event.addListener(map, 'click', function (event) {
 					
-				if (nbrevent < 2)
-				{
-			    marqueur = new google.maps.Marker({
-				map: map,
-				draggable : true,
-				position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
-												  });
+		if (nbrevent < 2)
+		{
+		marqueur = new google.maps.Marker({
+		map: map,
+		draggable : true,
+		position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
+		});
 
-			    markersArray.push(marqueur);
-				coor = event.latLng;
-				console.log("lat = " + event.latLng.lat());
-			   	console.log("long = " + event.latLng.lng());
-			   	
-			   	lat = event.latLng.lat();
-			   	lng = event.latLng.lng();
-			   	
-			   	infoWindow = new google.maps.InfoWindow({
-			      });
-				
-				inverseCoord(marqueur , coor, infoWindow );
-				nbrevent = nbrevent + 1;
-				}
-			});
+		markersArray.push(marqueur);
+		coor = event.latLng;
+		console.log("lat = " + event.latLng.lat());
+		console.log("long = " + event.latLng.lng());
+		
+		lat = event.latLng.lat();
+		lng = event.latLng.lng();
+		 	
+		infoWindow = new google.maps.InfoWindow({ });
+		inverseCoord(marqueur , coor, infoWindow );
+		nbrevent = nbrevent + 1;
+		}
+		});
 
 				
-				function inverseCoord(marker,latlng,infowindow) {
-					geocoder = new google.maps.Geocoder();
-					geocoder.geocode({'latLng': latlng}, function(results, status) {
-					/* Si le géocodage inversé a réussi */
-					if (status == google.maps.GeocoderStatus.OK) {
-					if (results[1]) {
-					map.setZoom(11);
-					/* Affichage de l'infowindow sur le marker avec l'adresse récupérée */
-					infowindow.setContent(results[1].formatted_address);
-					infowindow.open(map, marker);
-					google.maps.event.addListener(marker,'click', infoCallback(infowindow, marker));
-
-					google.maps.event.addListener(marker, 'dragend', function(event) {
-				        //message d'alerte affichant la nouvelle position du marqueur
+		function inverseCoord(marker,latlng,infowindow) {
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+		/* Si le géocodage inversé a réussi */
+		if (status == google.maps.GeocoderStatus.OK) {
+		if (results[1]) {
+		map.setZoom(11);
+		/* Affichage de l'infowindow sur le marker avec l'adresse récupérée */
+		infowindow.setContent(results[4].formatted_address);
+		infowindow.open(map, marker);
+		google.maps.event.addListener(marker,'click', infoCallback(infowindow, marker));
+		google.maps.event.addListener(marker, 'dragend', function(event) {
+        //message d'alerte affichant la nouvelle position du marqueur
 // 				    alert("La nouvelle coordonnÃ©e du marqueur est : "+event.latLng);
-				    latlng = event.latLng;
-				    inverseCoord(marker,latlng,infowindow)
-
-
-
-				        
-				    });
+	    latlng = event.latLng;
+	    inverseCoord(marker,latlng,infowindow)
+	    });
 				    
-					}
-					} else {
-					alert("Le geocodage a echoue pour la raion suivante : " + status);
-					}
-					})
-					}
+		}
+		} else {
+		alert("Le geocodage a echoue pour la raion suivante : " + status);
+				}
+		})
+		}
 
-// 				google.maps.event.addListener(marker, 'dragend', function(event) {
-// 			        //message d'alerte affichant la nouvelle position du marqueur
-// 			        alert("La nouvelle coordonnÃ©e du marqueur est : "+event.latLng);
-// 			    });
 				
-				function clearOverlays() {
-  					for (var i = 0; i < markersArray.length; i++ ) {
-						this.markersArray[i].setMap(null);
-					}
-				markersArray = [];
-					markersArray.length = 0;
-											  }
-			
-			$('#delete').click(function () {
-					 clearOverlays()
-					 nbrevent = 0;
+		function clearOverlays() {
+		for (var i = 0; i < markersArray.length; i++ ) {
+		this.markersArray[i].setMap(null);
+				}
+		markersArray = [];
+		markersArray.length = 0;
+			  }
+		
+		$('#delete').click(function () {
+		 clearOverlays()
+		 nbrevent = 0;
 				})
 
 				
 				
 	function infoCallback(infowindow, maker) {
-		return function() { infowindow.open(map, maker); };
+	return function() { infowindow.open(map, maker); };
 											  }
 	
 	function calcRoute()  {
 	
-		directionsService = null;
-		directionsRenderer = null;
+	directionsService = null;
+	directionsRenderer = null;
 	depart = new google.maps.LatLng(markersArray[0].getPosition());
 	arrive = new google.maps.LatLng(markersArray[1].getPosition());
 	
@@ -254,12 +243,7 @@
 			effacerItineraire();
 		});
 		
-		marqueur.setDraggable(true);
 
-	    google.maps.event.addListener(marqueur, 'dragend', function(event) {
-	        //message d'alerte affichant la nouvelle position du marqueur
-	        alert("La nouvelle coordonnée du marqueur est : "+event.latLng);
-	    });
 		
 }			
 /* fin du code javascript */
@@ -289,9 +273,9 @@
       <div class="col-md-2">
         <input type="button" name="caculitineraire" id="caculitineraire" value="caculitineraire" class="btn btn-primary" />
       </div>
-<!--       <div class="col-md-2"> -->
-<!--         <input type="button" name="enregistreritineraire" id="enregistreritineraire" value="enregistreritineraire" class="btn btn-primary" /> -->
-<!--       </div> -->
+      <div class="col-md-2">
+        <input type="button" name="enregistreritineraire" id="enregistreritineraire" value="enregistrer l itineraire" class="btn btn-primary" />
+      </div>
       <div class="col-md-2">
         <input type="button" name="effaceritineraire" id="effaceritineraire" value="Effacer l itineraire" class="btn btn-primary" />
       </div>
