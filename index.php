@@ -119,15 +119,15 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
 <main class="form-signin w-100 m-auto">
   <form class="form-signin" action="traitement.php" method="post" >
     <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal">SVP Identifiez vous</h1>
 
     <div class="form-floating">
   <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" required autofocus>
-      <label for="floatingInput">Email address</label>
+      <label for="floatingInput">Addresse Email </label>
     </div>
     <div class="form-floating">
   <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" required>
-      <label for="floatingPassword">Password</label>
+      <label for="floatingPassword">Mot De Passe</label>
     </div>
 </br>
 <?php 

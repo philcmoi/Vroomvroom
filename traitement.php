@@ -67,10 +67,14 @@ $password = htmlspecialchars( $_POST['password']);
             
             $result->close();
              header('Location: indexdate.php') ;
-          } 
+      } //$mail
+          
+      elseif (password_verify($password , $pass) && $mail!='lhpp.philippe@gmail.com')
+      {$_SESSION['logged']='visiteur';header('Location: CoorAdresse.php');}
+      
           else {
           header('Location: index.php?error=1');};
-  }
+  } //$data
 
 
   

@@ -10,7 +10,7 @@ $result = mysqli_query($con, $query);
 
 var_dump($_SESSION['logged']);
 
-if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
+if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "visiteur" ))
 {} else {header('Location: index.php');}
 
 // session_destroy();
