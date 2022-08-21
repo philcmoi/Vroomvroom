@@ -8,8 +8,8 @@ $password = htmlspecialchars( $_POST['password']);
   
         
     
-    $_SESSION['password'] = $password;
-    $_SESSION['logged'] = ' bienvenue';
+//     $_SESSION['password'] = $password;
+//     $_SESSION['logged'] = ' admin';
             
     $mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
 
@@ -43,10 +43,11 @@ $password = htmlspecialchars( $_POST['password']);
   {
       $pass = $data['password'];
       $token = $data['token'];
+      $mail = $data['email'];
       var_dump($pass);
-      if (password_verify($password , $pass)) {
-      $_SESSION['email'] = $email;
-      $_SESSION['logged']='bienvenue';
+      if (password_verify($password , $pass) && $mail=='lhpp.philippe@gmail.com' ) {
+//       $_SESSION['email'] = $email;
+      $_SESSION['logged']='admin';
              {
                  if (isset($_POST["rememberme"]))
                 {
@@ -66,9 +67,11 @@ $password = htmlspecialchars( $_POST['password']);
             
             $result->close();
              header('Location: indexdate.php') ;
-      } else {header('Location: index.php?error=1');};
+          } 
+          else {
+          header('Location: index.php?error=1');};
   }
 
-     
+
   
 ?>    

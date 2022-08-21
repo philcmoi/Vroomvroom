@@ -1,9 +1,9 @@
 <?php
-
+session_start();
 // Initialisation de la session.
 // Si vous utilisez un autre nom
 // session_name("autrenom")
-//session_start();
+
 
 // Détruit toutes les variables de session
 //$_SESSION = array();
@@ -21,7 +21,7 @@
 
 setcookie("email",$email, time() -365*24*3600*2,'/','localhost',false,true);
 setcookie("token",$token, time() -365*24*3600*2,'/','localhost',false,true);
-$_SESSION['logged'] = NULL;
+// $_SESSION['logged'] = NULL;
 
 // Détruit toutes les variables de session
 $_SESSION = array();

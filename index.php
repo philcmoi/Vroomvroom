@@ -24,8 +24,8 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     if ($data = mysqli_fetch_array($result))
     { $pass = $data['password'];
     
-    $_SESSION['logged']='bienvenue';
-    var_dump($_SESSION['logged']).
+//     $_SESSION['logged']='bienvenue';
+//     var_dump($_SESSION['logged']).
     $_SESSION['idmembre']= $data['idmembre'];
     mysqli_close($mysqli);
     
@@ -122,12 +122,12 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-  <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" autofocus>
-<!--       <label for="floatingInput">Email address</label> -->
+  <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" required autofocus>
+      <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-  <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" >
-<!--       <label for="floatingPassword">Password</label> -->
+  <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" required>
+      <label for="floatingPassword">Password</label>
     </div>
 </br>
 <?php 

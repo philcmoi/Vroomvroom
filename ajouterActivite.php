@@ -1,4 +1,4 @@
- <?php
+<?php
 session_start();
 // include database connection file
 include('db_config.php');
@@ -10,8 +10,9 @@ $result = mysqli_query($con, $query);
 
 var_dump($_SESSION['logged']);
 
-if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "bienvenue" || $_SESSION['logged'] == "connecte"))
+if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
 {} else {header('Location: index.php');}
+
 // session_destroy();
 ?>
  
