@@ -22,17 +22,20 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     }
     
     if ($data = mysqli_fetch_array($result))
-    { $pass = $data['password'];
-    
+    { 
+     $pass = $data['password'];
+     $_SESSION['idmembre']= $data['idmembre'];
+     $_SESSION['email'] = $data['email'];
+     $_SESSION['password'] = $data['password'];
 //     $_SESSION['logged']='bienvenue';
 //     var_dump($_SESSION['logged']).
-    $_SESSION['idmembre']= $data['idmembre'];
-    mysqli_close($mysqli);
+     
+     mysqli_close($mysqli);
     
-    $result->close();
-    header('Location: indexdate.php');
-    }
-    else {header('Location: index.php?error=1');}
+     $result->close();
+     header('Location: indexdate.php');
+     }
+     else {header('Location: index.php?error=1');}
 }
 
 // session_destroy();

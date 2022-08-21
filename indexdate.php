@@ -1,4 +1,4 @@
- <?php
+<?php
 session_start();
 // include database connection file
 include('db_config.php');
@@ -221,21 +221,6 @@ var time_diff = date2.getTime()-date1.getTime();
 var days_Diff = time_diff / (1000 * 3600 * 24);
 
  alert("days_Diff "+ days_Diff);
-
-// var tempDate = date1;
-// var formattedDate = [ tempDate.getMonth() + 1,tempDate.getDate(),tempDate.getFullYear() ].join('/');
-
-// date1 = formattedDate;
-// date1 = new Date(date1);
-
-// var tempDate = date2;
-// var formattedDate = [ tempDate.getMonth() + 1,tempDate.getDate(),tempDate.getFullYear() ].join('/');
-
-// date2 = formattedDate;
-// date2 = new Date(date2);
-
-
-
 
 	   if (days_Diff < 0) {alert("dates invalide");}
 	   	  else {
