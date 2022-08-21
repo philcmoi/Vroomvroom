@@ -154,12 +154,29 @@
 					infowindow.setContent(results[1].formatted_address);
 					infowindow.open(map, marker);
 					google.maps.event.addListener(marker,'click', infoCallback(infowindow, marker));
+
+					google.maps.event.addListener(marker, 'dragend', function(event) {
+				        //message d'alerte affichant la nouvelle position du marqueur
+// 				    alert("La nouvelle coordonnée du marqueur est : "+event.latLng);
+				    latlng = event.latLng;
+				    inverseCoord(marker,latlng,infowindow)
+
+
+
+				        
+				    });
+				    
 					}
 					} else {
 					alert("Le geocodage a echoue pour la raion suivante : " + status);
 					}
 					})
 					}
+
+// 				google.maps.event.addListener(marker, 'dragend', function(event) {
+// 			        //message d'alerte affichant la nouvelle position du marqueur
+// 			        alert("La nouvelle coordonnée du marqueur est : "+event.latLng);
+// 			    });
 				
 				function clearOverlays() {
   					for (var i = 0; i < markersArray.length; i++ ) {
