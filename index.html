@@ -93,22 +93,21 @@
 					
 					function inverseCoord(marker,latlng,infowindow) {
 						geocoder = new google.maps.Geocoder();
-						   geocoder.geocode({'latLng': latlng}, function(results, status) {
-						    /* Si le géocodage inversé a réussi */
-						    if (status == google.maps.GeocoderStatus.OK) {
-						     if (results[1]) {
-						      map.setZoom(11);
-						      /* Affichage de l'infowindow sur le marker avec l'adresse récupérée */
-						      infowindow.setContent(results[1].formatted_address);
-						      infowindow.open(map, marker);
-							  google.maps.event.addListener(marker,'click', infoCallback(infowindow, marker));
-							      
-						     }
-						    } else {
-						     alert("Le geocodage a echoue pour la raion suivante : " + status);
-						    		}
-				     })
-					}
+						geocoder.geocode({'latLng': latlng}, function(results, status) {
+						/* Si le géocodage inversé a réussi */
+						if (status == google.maps.GeocoderStatus.OK) {
+						if (results[1]) {
+						map.setZoom(11);
+						/* Affichage de l'infowindow sur le marker avec l'adresse récupérée */
+						infowindow.setContent(results[1].formatted_address);
+						infowindow.open(map, marker);
+						google.maps.event.addListener(marker,'click', infoCallback(infowindow, marker));
+						}
+						} else {
+						alert("Le geocodage a echoue pour la raion suivante : " + status);
+						}
+						})
+						}
 					
 					function clearOverlays() {
 	  					for (var i = 0; i < markersArray.length; i++ ) {
