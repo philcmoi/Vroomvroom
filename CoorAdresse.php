@@ -89,6 +89,7 @@
 		var directionsRenderer = [];
 		var depart;
 		var arrive;
+		var ville = [];
 		function initMap() {
 			
 		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -146,8 +147,28 @@
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
 		/* Si le géocodage inversé a réussi */
 		if (status == google.maps.GeocoderStatus.OK) {
-		if (results[1]) {
+		if (results[2]) {
 		map.setZoom(11);
+
+		var elt = results[0].address_components;
+        for(i in elt){
+//           if(elt[i].types[0] == 'postal_code')
+// 			  console.log(i);
+//               console.log(elt[i].long_name);
+          if(elt[i].types[0] == 'locality')
+			  console.log(i);
+              console.log(elt[i].long_name);
+          if(elt[i].types[0] == 'administrative_area_level_2')
+			  console.log(i);
+              console.log(elt[i].long_name);
+          if(elt[i].types[0] == 'country')
+			  console.log(i);
+              console.log(elt[i].long_name);
+        }
+
+		ville[nbrevent] = elt[2].long_name;
+		alert(elt[2].long_name);
+		
 		/* Affichage de l'infowindow sur le marker avec l'adresse récupérée */
 		infowindow.setContent(results[4].formatted_address);
 		infowindow.open(map, marker);
