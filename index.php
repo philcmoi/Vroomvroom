@@ -9,7 +9,7 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     
     $email = htmlspecialchars($_COOKIE["email"]);
     
-    $sql = "SELECT idmembre, email, password, token FROM membre WHERE email = '".$email."' and token = '".$token."' ";
+    $sql = "SELECT email, password, token FROM membre WHERE email = '".$email."' ";
     
     if (!$result = $mysqli->query($sql)) {
         
@@ -22,23 +22,19 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     }
     
     if ($data = mysqli_fetch_array($result))
-    { 
-     $pass = $data['password'];
-     $_SESSION['idmembre']= $data['idmembre'];
-     $_SESSION['email'] = $data['email'];
-     $_SESSION['password'] = $data['password'];
-//     $_SESSION['logged']='bienvenue';
-//     var_dump($_SESSION['logged']).
-     
-     mysqli_close($mysqli);
+    { $pass = $data['password'];
     
-     $result->close();
-     header('Location: indexdate.php');
-     }
-     else {header('Location: index.php?error=1');}
+    $_SESSION['logged']='bienvenue';
+    
+    mysqli_close($mysqli);
+    
+    $result->close();
+    header('Location: bienvenue.php');
+    }
+    else {header('Location: index.php?error=1');}
 }
 
-// session_destroy();
+
 ?>  
 
 
@@ -122,15 +118,15 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
 <main class="form-signin w-100 m-auto">
   <form class="form-signin" action="traitement.php" method="post" >
     <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">SVP Identifiez vous</h1>
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-  <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" required autofocus>
-      <label for="floatingInput">Addresse Email </label>
+  <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" autofocus>
+<!--       <label for="floatingInput">Email address</label> -->
     </div>
     <div class="form-floating">
-  <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" required>
-      <label for="floatingPassword">Mot De Passe</label>
+  <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" >
+<!--       <label for="floatingPassword">Password</label> -->
     </div>
 </br>
 <?php 
@@ -158,10 +154,6 @@ switch ($error) {
               }
 
   ;}
-  else {echo "vous avez ete deconnecte";
-  header('Location: deconnecter.php');
-  }
-
 ?>
       
   

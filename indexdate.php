@@ -298,7 +298,7 @@ $.post('SupprimerActivite.php', {
 // 	 		verif = localStorage.getItem("cleef");
 // 	 		alert("verif "+ verif);
 	 		if (identifiant != null) {
- 		if (confirm('Voulez vous modifier les donnee de la ligne choisie')) {
+ 		if (confirm('Voulez vous modifier les donnees de la ligne choisie')) {
  	 		localStorage.setItem("cleef",identifiant);
 //  	 		alert("identifiant "+identifiant);
  	 		verif = localStorage.getItem("cleef");

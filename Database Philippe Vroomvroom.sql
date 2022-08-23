@@ -59,10 +59,9 @@ CREATE TABLE IF NOT EXISTS `membre` (
 --
 
 INSERT INTO `membre` (`idmembre`, `email`, `pseudo`, `token`, `password`) VALUES
-(3, '', '', '1366083736', '$2y$10$tDbDNcfJA2uHOivwToS2T.FIJmzjY4DqVXftSm3D/DTV9qkKajbdq'),
-(4, 'lhpp.philippe@gmail.com', 'phil', '1412598942', '$2y$10$wwYKexq8fvruxrCEW/ARgOB0uStKaJj/W4zJTUZiwMsUKIqSPf.9G'),
-(5, 'wongfeyhong45@gmail.com', 'wfh', '1999020360', '$2y$10$EmCYxGPJB9PSeruaUsAna.vGQOpX8/xWNBHCmHKpaCgCQxA7QfxMW'),
-(6, 'wongfeyhong1@gmail.com', 'ww', '1558004525', '$2y$10$A86PiVixTxzB2bgSDC83eevv3gmhlEfeOXHpYzqKEcdhs7rupU6Q6');
+(1, 'lhpp.philippe@gmail.com', 'phil', '1412598942', '$2y$10$wwYKexq8fvruxrCEW/ARgOB0uStKaJj/W4zJTUZiwMsUKIqSPf.9G'),
+(2, 'wongfeyhong45@gmail.com', 'wfh', '1999020360', '$2y$10$EmCYxGPJB9PSeruaUsAna.vGQOpX8/xWNBHCmHKpaCgCQxA7QfxMW'),
+(3, 'wongfeyhong1@gmail.com', 'ww', '1558004525', '$2y$10$A86PiVixTxzB2bgSDC83eevv3gmhlEfeOXHpYzqKEcdhs7rupU6Q6');
 
 -- --------------------------------------------------------
 

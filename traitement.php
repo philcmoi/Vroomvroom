@@ -8,8 +8,8 @@ $password = htmlspecialchars( $_POST['password']);
   
         
     
-//     $_SESSION['password'] = $password;
-//     $_SESSION['logged'] = ' admin';
+    $_SESSION['password'] = $password;
+    $_SESSION['logged'] = 'connecte';
             
     $mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
 
@@ -42,13 +42,12 @@ $password = htmlspecialchars( $_POST['password']);
   if ($data = mysqli_fetch_array($result))
   {
       $pass = $data['password'];
-      $token = $data['token'];
-      $mail = $data['email'];
-      var_dump($pass);
-      if (password_verify($password , $pass) && $mail=='lhpp.philippe@gmail.com' ) {
+//       $token = $data['token'];
+      
+      if (password_verify($password , $pass)) {
 //       $_SESSION['email'] = $email;
-      $_SESSION['logged']='admin';
-             {
+        
+//              {
                  if (isset($_POST["rememberme"]))
                 {
 
@@ -62,20 +61,21 @@ $password = htmlspecialchars( $_POST['password']);
                 }
           
 
-            }
+//             }
+            if ($email == 'lhpp.philippe@gmail.com') {
             mysqli_close($mysqli);
             
             $result->close();
+            
+            $_SESSION['logged']='admin';
              header('Location: indexdate.php') ;
-      } //$mail
-          
-      elseif (password_verify($password , $pass) && $mail!='lhpp.philippe@gmail.com')
-      {$_SESSION['logged']='visiteur';header('Location: CoorAdresse.php');}
+      } else {
+          $_SESSION['logged']='bienvenue';
+          header('Location: CoorAdresse.php');};
       
-          else {
-          header('Location: index.php?error=1');};
-  } //$data
+      
+  }
 
-
+  }
   
 ?>    

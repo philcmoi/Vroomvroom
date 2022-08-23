@@ -1,6 +1,5 @@
  <?php
 // session_start();
-// include database connection file
 // include('db_config.php');
  
 // $query = "SELECT * FROM orders ORDER BY order_number desc";
@@ -90,6 +89,9 @@
 		var depart;
 		var arrive;
 		var ville = [];
+		var participation;
+
+
 		function initMap() {
 			
 		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -151,23 +153,11 @@
 		map.setZoom(11);
 
 		var elt = results[0].address_components;
-        for(i in elt){
-//           if(elt[i].types[0] == 'postal_code')
-// 			  console.log(i);
-//               console.log(elt[i].long_name);
-          if(elt[i].types[0] == 'locality')
-			  console.log(i);
-              console.log(elt[i].long_name);
-          if(elt[i].types[0] == 'administrative_area_level_2')
-			  console.log(i);
-              console.log(elt[i].long_name);
-          if(elt[i].types[0] == 'country')
-			  console.log(i);
-              console.log(elt[i].long_name);
-        }
+
 
 		ville[nbrevent] = elt[2].long_name;
 		alert(elt[2].long_name);
+		
 		
 		/* Affichage de l'infowindow sur le marker avec l'adresse récupérée */
 		infowindow.setContent(results[4].formatted_address);
@@ -201,6 +191,11 @@
 		 nbrevent = 0;
 				})
 
+		$('#deconnexion').click(function () {
+		 clearOverlays()
+		 nbrevent = 0;
+		 document.location.href = 'deconnecter.php';
+				})
 				
 				
 	function infoCallback(infowindow, maker) {
@@ -264,7 +259,28 @@
 			effacerItineraire();
 		});
 		
+		$('#enregistreritineraire').click(function () {				  
+			participation = $('#participation').val();
+			if (nbrevent == 1) 
+				{
+				var datedepart = $('#from_date').val();
+				var datearrive = $('#to_date').val();
+				var participation = participation;
+				var lieudepart = ville[0]; 
+				var lieuarrive = ville[1];
 
+				$.post('enregistreritineraire.php',
+		   			    {
+					lieudepart: lieudepart,
+					lieuarrive : lieuarrive,
+					participation : participation,
+		   			datedepart: from_date,
+		   			datearrive: to_date
+		   			    }, function(data) {
+		   			        $('#purchase_order').html(data);
+		   			});
+				}
+		});
 		
 }			
 /* fin du code javascript */
@@ -293,6 +309,9 @@
       </div>
       <div class="col-md-2">
         <input type="button" name="caculitineraire" id="caculitineraire" value="caculitineraire" class="btn btn-primary" />
+      </div>
+      <div class="col-md-2">
+        <input type="text" name="participation" id="participation" placeholder="participation demander" class="btn btn-primary" />
       </div>
       <div class="col-md-2">
         <input type="button" name="enregistreritineraire" id="enregistreritineraire" value="enregistrer l itineraire" class="btn btn-primary" />
