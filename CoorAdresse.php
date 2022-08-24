@@ -1,16 +1,16 @@
  <?php
-// session_start();
-// include('db_config.php');
+session_start();
+include('db_config.php');
  
-// $query = "SELECT * FROM orders ORDER BY order_number desc";
-// $result = mysqli_query($con, $query);
+$query = "SELECT * FROM orders ORDER BY order_number desc";
+$result = mysqli_query($con, $query);
 
-// $test = $_SESSION['logged'];
+$test = $_SESSION['logged'];
 
-// var_dump($_SESSION['logged']);
+var_dump($_SESSION['logged']);
 
-// if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "visiteur" ))
-// {} else {header('Location: index.php');}
+if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "bienvenue" ))
+{} else {header('Location: index.php');}
 
 // session_destroy();
 ?>

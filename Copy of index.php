@@ -29,7 +29,9 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     mysqli_close($mysqli);
     
     $result->close();
-    header('Location: bienvenue.php');
+    if ($email=='lhpp.philippe@gmail.com') {header('location:indexdate.php');}
+    else {
+    header('Location: CoorAdresse.php'); }
     }
     else {header('Location: index.php?error=1');}
 }
