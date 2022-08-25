@@ -65,7 +65,11 @@ $password = htmlspecialchars( $_POST['password']);
             mysqli_close($mysqli);
             
             $result->close();
-             header('Location: CoorAdresse.php') ;
+            if ($email == 'lhpp.philippe@gmail.com') {
+                $_SESSION['logged'] = admin;
+                header('Location: indexdate.php');
+            }
+            else { header('Location: CoorAdresse.php');} ;
       } else {header('Location: index.php?error=1');};
   }
 
