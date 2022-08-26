@@ -263,24 +263,29 @@ if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "bienvenue" ))
 			participation = $('#participation').val();
 			if (nbrevent == 1) 
 				{
-				var datedepart = $('#from_date').val();
-				var datearrive = $('#to_date').val();
-				var participation = participation;
 				var lieudepart = ville[0]; 
 				var lieuarrive = ville[1];
 
 				$.post('enregistreritineraire.php',
 		   			    {
 					lieudepart: lieudepart,
-					lieuarrive : lieuarrive,
-					participation : participation,
-		   			datedepart: from_date,
-		   			datearrive: to_date
-		   			    }, function(data) {
-		   			        $('#purchase_order').html(data);
-		   			});
+					lieuarrive : lieuarrive
+		   			    },   
+		   		function(data){
+		   			  	 
+		   		if(data == "Success"){
+		   	// Le membre est connecté. Ajoutons lui un message dans la page HTML.
+		   	    $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+		        setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
+//		        setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
+		   		 }
+
+		     	else  {		
+		   	    $("#resultat").html("<p>Erreur lors de la connexion...</p>");alert(data);
+		   	    	  }
+		   		}
 				}
-		});
+		})
 		
 }			
 /* fin du code javascript */

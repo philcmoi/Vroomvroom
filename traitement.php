@@ -18,7 +18,7 @@ $password = htmlspecialchars( $_POST['password']);
    //On créé la requête
 //    $req="SELECT login, password FROM jeux_video WHERE login =.'.$var.'. AND password =.'.$password.'";
 
-    $sql = "SELECT email, token, password FROM membre WHERE email = '".$email."'";
+    $sql = "SELECT email, idmembre, token, password , pseudo FROM membre WHERE email = '".$email."'";
     
 //     $sql = "SELECT email. token FROM membre WHERE email = '".$email."'";
     /* Requête "Select" retourne un jeu de résultats */
@@ -43,7 +43,8 @@ $password = htmlspecialchars( $_POST['password']);
   {
       $pass = $data['password'];
       $token = $data['token'];
-      
+      $_SESSION['idmembre'] = $data['idmembre'];
+      $_SESSION['pseudo ']= $data['pseudo '];
       if (password_verify($password , $pass)) {
       $_SESSION['email'] = $email;
         
