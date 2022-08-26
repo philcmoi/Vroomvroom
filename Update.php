@@ -1,9 +1,19 @@
- <?php
+<?php
+session_start();
 // include database connection file
 include('db_config.php');
 
 $query = "SELECT * FROM orders ORDER BY order_number desc";
 $result = mysqli_query($con, $query);
+
+// $test = $_SESSION['logged'];
+
+var_dump($_SESSION['logged']);
+
+if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
+{} else {header('Location: index.php');}
+
+// session_destroy();
 ?>
  
 <html>
@@ -104,9 +114,10 @@ $result = mysqli_query($con, $query);
       <input type="text"  id="conducteur" class="form-control" placeholder="Nom du conducteur" required ></br>
 	  <input type="text"  id="lieudepart" class="form-control" placeholder="lieu de depart" required ></br>
 	  <input type="text"  id="lieuarrive" class="form-control" placeholder="lieu  d arrive" required ></br>
-	  <input type="text"  id="participation" class="form-control" placeholder="Entrer la participation propose" required ></br>
-	  <button type="submit" id="envoyer" title="Envoyer">Valider</button>
-      <button type="reset" id="reset" title="reset">Reset</button><br>
+	  <input type="text"  id="participation"  placeholder="Entrer la participation propose" required ></br>
+	  <button type="submit" id="envoyer" class="btn btn-primary" title="Envoyer">Valider</button>
+      <button type="reset" id="reset" class="btn btn-primary" title="reset">Reinitialiser</button>
+	  <button id="deconnexion" class="btn btn-primary" title="deconnexion">deconnexion</button>
      </div>
      <br>
      <div id="resultat"></div>
@@ -182,14 +193,11 @@ else  {
 }
 
 });
-// $('#btn_add').click(function () {
-// 	<form id="coffre" action="#" method="post">
-// 	<input type="email"  id="mail" class="form-control" placeholder="Entrer votre email" required autofocus>
-
-
-//     window.location.href = 'ajouterActivite.php';
+$('#deconnexion').click(function () {
+	
+    window.location.href = 'deconnecter.php';
    
-// });
+});
 
 $("#reset").click(function () {$("#resultat").empty();});
 

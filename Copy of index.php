@@ -27,11 +27,11 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     $_SESSION['logged']='bienvenue';
     
     mysqli_close($mysqli);
-    var_dump($email);
+    
     $result->close();
-    if ($email =='lhpp.philippe@gmail.com') {
-        header('Location: indexdate.php');
-    } else {header('Location: CoorAdresse.php');}
+    if ($email=='lhpp.philippe@gmail.com') {header('location:indexdate.php');}
+    else {
+    header('Location: CoorAdresse.php'); }
     }
     else {header('Location: index.php?error=1');}
 }

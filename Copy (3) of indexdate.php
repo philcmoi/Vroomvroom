@@ -1,19 +1,9 @@
-<?php
-session_start();
+ <?php
 // include database connection file
 include('db_config.php');
  
 $query = "SELECT * FROM orders ORDER BY order_number desc";
 $result = mysqli_query($con, $query);
-
-// $test = $_SESSION['logged'];
-
-// var_dump($_SESSION['logged']);
-
-// if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
-// {} else {header('Location: index.php');}
-
-// session_destroy();
 ?>
  
 <html>
@@ -114,17 +104,6 @@ $result = mysqli_query($con, $query);
       <div class="col-md-2">
         <input type="button" name="add" id="btn_add" value="Add" class="btn btn-primary" />
       </div>
-<?php 
-// if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
-// {
-    echo '
-<form action="deconnecter.php" method="post">
-<input type="submit" value="deconnexion" class="btn btn-primary"/>
-</form>
-'
-    
-// ;}
-?>
       <div id="resultat"></div>
     </div>
     </br>
@@ -222,6 +201,21 @@ var days_Diff = time_diff / (1000 * 3600 * 24);
 
  alert("days_Diff "+ days_Diff);
 
+// var tempDate = date1;
+// var formattedDate = [ tempDate.getMonth() + 1,tempDate.getDate(),tempDate.getFullYear() ].join('/');
+
+// date1 = formattedDate;
+// date1 = new Date(date1);
+
+// var tempDate = date2;
+// var formattedDate = [ tempDate.getMonth() + 1,tempDate.getDate(),tempDate.getFullYear() ].join('/');
+
+// date2 = formattedDate;
+// date2 = new Date(date2);
+
+
+
+
 	   if (days_Diff < 0) {alert("dates invalide");}
 	   	  else {
 
@@ -298,7 +292,7 @@ $.post('SupprimerActivite.php', {
 // 	 		verif = localStorage.getItem("cleef");
 // 	 		alert("verif "+ verif);
 	 		if (identifiant != null) {
- 		if (confirm('Voulez vous modifier les donnees de la ligne choisie')) {
+ 		if (confirm('Voulez vous modifier les donnee de la ligne choisie')) {
  	 		localStorage.setItem("cleef",identifiant);
 //  	 		alert("identifiant "+identifiant);
  	 		verif = localStorage.getItem("cleef");

@@ -1,9 +1,19 @@
- <?php
+<?php
+session_start();
 // include database connection file
 include('db_config.php');
  
 $query = "SELECT * FROM orders ORDER BY order_number desc";
 $result = mysqli_query($con, $query);
+
+// $test = $_SESSION['logged'];
+
+var_dump($_SESSION['logged']);
+
+if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
+{} else {header('Location: index.php');}
+
+// session_destroy();
 ?>
  
 <html>
@@ -105,9 +115,21 @@ $result = mysqli_query($con, $query);
 	  <input type="text"  id="lieudepart" class="form-control" placeholder="lieu de depart" required ></br>
 	  <input type="text"  id="lieuarrive" class="form-control" placeholder="lieu  d arrive" required ></br>
 	  <input type="text"  id="participation" class="form-control" placeholder="Entrer la participation propose" required ></br>
-	  <button type="submit" id="envoyer" title="Envoyer">Valider</button>
-      <button type="reset" id="reset" title="reset">Reset</button><br>
-     </div>
+	  <button type="submit" id="envoyer" title="Envoyer" class="btn btn-primary">Valider</button>
+      <button type="reset" id="reset" title="reset" class="btn btn-primary">Reinitialiser</button></div>
+      <button id="deconnexion" class="btn btn-primary" title="deconnexion">Deconnexion</button>
+      
+     
+     <?php 
+// if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
+// {
+//     echo '
+// <form action="deconnecter.php" method="post">
+// <input type="submit" value="deconnexion" class="btn btn-primary"/>
+// </form>
+// '
+// ;}
+ ?>
      <br>
      <div id="resultat"></div>
    </div>
@@ -201,6 +223,12 @@ else  {
 //     window.location.href = 'ajouterActivite.php';
    
 // });
+$('#deconnexion').click(function () {
+	
+    window.location.href = 'deconnecter.php';
+   
+});
+
 
 $("#reset").click(function () {$("#resultat").empty();});
 
