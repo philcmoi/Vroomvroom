@@ -225,7 +225,7 @@ else  {
 // });
 $('#deconnexion').click(function () {
 	
-    window.location.href = 'deconnecter.php';
+    window.location.href = 'indexdate.php';
    
 });
 
