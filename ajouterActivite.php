@@ -117,7 +117,7 @@ if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
 	  <input type="text"  id="participation" class="form-control" placeholder="Entrer la participation propose" required ></br>
 	  <button type="submit" id="envoyer" title="Envoyer" class="btn btn-primary">Valider</button>
       <button type="reset" id="reset" title="reset" class="btn btn-primary">Reinitialiser</button></div>
-      <button id="deconnexion" class="btn btn-primary" title="deconnexion">Deconnexion</button>
+      <button id="deconnexion" class="btn btn-primary" title="deconnexion">Quiter cette fenatre</button>
       
      
      <?php 
