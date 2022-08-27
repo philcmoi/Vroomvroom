@@ -265,34 +265,21 @@ $result = mysqli_query($con, $query);
 			if (nbrevent == 2) 
 				{console.log('A l interieure de EnregistrerItineraire');
 				console.log('nbrevent = '+nbrevent);
-				var depart = ville[0]; 
-				var arrive = ville[1];
+				var depart = ville[1]; 
+				var arrive = ville[2];
 
-				$.post('EnregistrerItineraire.php',
+				$.post(
+					'EnregistrerItineraire.php',
 		   			{
 					depart: depart,
 					arrive : arrive
 		   			},   
-		   		function(data){
-		   			  	 
-		   		if(data == "Success"){
-		   	// Le membre est connecté. Ajoutons lui un message dans la page HTML.
-		   	    alert('data '+data);
-		   	    console.log('Success');
-		   	    
-		   	    $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-		        setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'CoorAdresse.php'}, 3000);
-//		        setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
-		   		 }
-
-		     	else  {	
-			   	    alert('data '+data);
-		     		console.log('Echec');
-			     		
-		   	    $("#resultat").html("<p>Erreur lors de la connexion...</p>");
-		   	    	  }
-		   		})
-				}
+		   		function(data, status, jqXHR){
+		   		alert("Data: " + data );
+		   		$('#resultat').append("statue : "+status+" data : "+data.responseData);
+		   		}
+				)
+		}
 		})
 		
 }			
@@ -304,8 +291,10 @@ $result = mysqli_query($con, $query);
 				initMap(); 
 			};
 
-			
+
+		
 		</script>
+		
 		<style type="text/css">
 			#map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
 				height:400px;
