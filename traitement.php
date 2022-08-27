@@ -44,6 +44,7 @@ $password = htmlspecialchars( $_POST['password']);
       $pass = $data['password'];
       $token = $data['token'];
       $_SESSION['idmembre'] = $data['idmembre'];
+      var_dump($_SESSION['idmembre']);
       $_SESSION['pseudo ']= $data['pseudo '];
       if (password_verify($password , $pass)) {
       $_SESSION['email'] = $email;
@@ -67,10 +68,12 @@ $password = htmlspecialchars( $_POST['password']);
             
             $result->close();
             if ($email == 'lhpp.philippe@gmail.com') {
-                $_SESSION['logged'] = admin;
+                $_SESSION['logged'] ='admin';
                 header('Location: indexdate.php');
             }
-            else { header('Location: CoorAdresse.php');} ;
+            else {
+                $_SESSION['logged'] ='bienvenue';
+                header('Location: CoorAdresse.php');} ;
       } else {header('Location: index.php?error=1');};
   }
 

@@ -24,14 +24,17 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     if ($data = mysqli_fetch_array($result))
     { $pass = $data['password'];
     
-    $_SESSION['logged']='bienvenue';
+//     $_SESSION['logged']='bienvenue';
     
     mysqli_close($mysqli);
     var_dump($email);
     $result->close();
     if ($email =='lhpp.philippe@gmail.com') {
+        $_SESSION['logged']='admin';
         header('Location: indexdate.php');
-    } else {header('Location: CoorAdresse.php');}
+    } else {
+        $_SESSION['logged']='bienvenue';
+        header('Location: CoorAdresse.php');}
     }
     else {header('Location: index.php?error=1');}
 }

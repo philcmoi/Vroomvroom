@@ -5,12 +5,12 @@ include('db_config.php');
 $query = "SELECT * FROM orders ORDER BY order_number desc";
 $result = mysqli_query($con, $query);
 
-$test = $_SESSION['logged'];
+// $test = $_SESSION['logged'];
 
-var_dump($_SESSION['logged']);
+// var_dump($_SESSION['logged']);
 
-if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "bienvenue" ))
-{} else {header('Location: index.php');}
+// if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "bienvenue" || $_SESSION['logged'] = 'admin' ))
+// {} else {header('Location: index.php');}
 
 // // session_destroy();
 // ?>
@@ -260,30 +260,38 @@ if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "bienvenue" ))
 		});
 		
 		$('#enregistreritineraire').click(function () {				  
-			participation = $('#participation').val();
-			if (nbrevent == 1) 
-				{
-				var lieudepart = ville[0]; 
-				var lieuarrive = ville[1];
+// 			participation = $('#participation').val();
+			    console.log('Avant EnregistrerItineraire nbrevennt = '+nbrevent);
+			if (nbrevent == 2) 
+				{console.log('A l interieure de EnregistrerItineraire');
+				console.log('nbrevent = '+nbrevent);
+				var depart = ville[0]; 
+				var arrive = ville[1];
 
-				$.post('enregistreritineraire.php',
-		   			    {
-					lieudepart: lieudepart,
-					lieuarrive : lieuarrive
-		   			    },   
+				$.post('EnregistrerItineraire.php',
+		   			{
+					depart: depart,
+					arrive : arrive
+		   			},   
 		   		function(data){
 		   			  	 
 		   		if(data == "Success"){
 		   	// Le membre est connecté. Ajoutons lui un message dans la page HTML.
+		   	    alert('data '+data);
+		   	    console.log('Success');
+		   	    
 		   	    $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-		        setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
+		        setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'CoorAdresse.php'}, 3000);
 //		        setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
 		   		 }
 
-		     	else  {		
-		   	    $("#resultat").html("<p>Erreur lors de la connexion...</p>");alert(data);
+		     	else  {	
+			   	    alert('data '+data);
+		     		console.log('Echec');
+			     		
+		   	    $("#resultat").html("<p>Erreur lors de la connexion...</p>");
 		   	    	  }
-		   		}
+		   		})
 				}
 		})
 		
