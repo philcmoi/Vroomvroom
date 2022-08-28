@@ -90,7 +90,7 @@ $result = mysqli_query($con, $query);
 		var arrive;
 		var ville = [];
 		var participation;
-
+		var calcroute = false;
 
 		function initMap() {
 			
@@ -224,6 +224,7 @@ $result = mysqli_query($con, $query);
 		    if (status == 'OK') {
 		      directionsRenderer.setDirections(result);
 		      directionsDisplayArray.push(directionsRenderer);
+		      calcroute = true;
 		      alert("succes");
 		    } else {alert("echec");}
 		  });
@@ -262,7 +263,7 @@ $result = mysqli_query($con, $query);
 		$('#enregistreritineraire').click(function () {				  
 // 			participation = $('#participation').val();
 			    console.log('Avant EnregistrerItineraire nbrevennt = '+nbrevent);
-			if (nbrevent == 2) 
+			if (nbrevent == 2 && calcroute == true) 
 				{console.log('A l interieure de EnregistrerItineraire');
 				console.log('nbrevent = '+nbrevent);
 				var depart = ville[1]; 
@@ -277,6 +278,7 @@ $result = mysqli_query($con, $query);
 		   		function(data, status, jqXHR){
 		   		alert("Data: " + data );
 		   		$('#resultat').append("statue : "+status+" data : "+data.responseData);
+		   		calcroute = false; nbrevent = 0;
 		   		}
 				)
 		}
