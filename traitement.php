@@ -18,7 +18,7 @@ $password = htmlspecialchars( $_POST['password']);
    //On créé la requête
 //    $req="SELECT login, password FROM jeux_video WHERE login =.'.$var.'. AND password =.'.$password.'";
 
-    $sql = "SELECT email, token, password FROM membre WHERE email = '".$email."'";
+    $sql = "SELECT email, idmembre, token, password , pseudo FROM membre WHERE email = '".$email."'";
     
 //     $sql = "SELECT email. token FROM membre WHERE email = '".$email."'";
     /* Requête "Select" retourne un jeu de résultats */
@@ -43,7 +43,9 @@ $password = htmlspecialchars( $_POST['password']);
   {
       $pass = $data['password'];
       $token = $data['token'];
-      
+      $_SESSION['idmembre'] = $data['idmembre'];
+      var_dump($_SESSION['idmembre']);
+      $_SESSION['pseudo ']= $data['pseudo '];
       if (password_verify($password , $pass)) {
       $_SESSION['email'] = $email;
         
@@ -66,10 +68,12 @@ $password = htmlspecialchars( $_POST['password']);
             
             $result->close();
             if ($email == 'lhpp.philippe@gmail.com') {
-                $_SESSION['logged'] = admin;
+                $_SESSION['logged'] ='admin';
                 header('Location: indexdate.php');
             }
-            else { header('Location: CoorAdresse.php');} ;
+            else {
+                $_SESSION['logged'] ='bienvenue';
+                header('Location: CoorAdresse.php');} ;
       } else {header('Location: index.php?error=1');};
   }
 

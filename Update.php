@@ -117,7 +117,7 @@ if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
 	  <input type="text"  id="participation"  placeholder="Entrer la participation propose" required ></br>
 	  <button type="submit" id="envoyer" class="btn btn-primary" title="Envoyer">Valider</button>
       <button type="reset" id="reset" class="btn btn-primary" title="reset">Reinitialiser</button>
-	  <button id="deconnexion" class="btn btn-primary" title="deconnexion">deconnexion</button>
+	  <button id="deconnexion" class="btn btn-primary" title="deconnexion">Quiter cette fenatre</button>
      </div>
      <br>
      <div id="resultat"></div>
@@ -195,7 +195,7 @@ else  {
 });
 $('#deconnexion').click(function () {
 	
-    window.location.href = 'deconnecter.php';
+    window.location.href = 'indexdate.php';
    
 });
 
