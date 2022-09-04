@@ -49,8 +49,8 @@ if(isset($_POST["datedepart"], $_POST["datearrive"])) {
         while($row = mysqli_fetch_array($result))
         { 
 
-            $date1 = date_create($row[5]);
-            $datedepart = date_format($date1, 'd/m/Y H:i');
+        $date1 = date_create($row[5]);
+        $datedepart = date_format($date1, 'd/m/Y H:i');
             
         $date2 = date_create($row[6]);
         $datearrive = date_format($date1, 'd/m/Y H:i');
@@ -68,8 +68,8 @@ if(isset($_POST["datedepart"], $_POST["datearrive"])) {
             <td>'.numfmt_format_currency($fmt, $row["participation"], "EUR")."\n".'</td>
             <td>'.$datedepart.'</td>
             <td>'.$datearrive.'</td>
-            <th width="5%">Effacer</th>
-            <th width="5%">Mise a jour</th>
+            <td width="5%">Effacer</td>
+            <td width="5%">Mise a jour</td>
             </tr>';
         }
     }

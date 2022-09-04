@@ -1,17 +1,17 @@
 <?php
-session_start();
+//session_start();
 // include database connection file
-include('db_config.php');
+//include('db_config.php');
  
-$query = "SELECT * FROM orders ORDER BY order_number desc";
-$result = mysqli_query($con, $query);
+//$query = "SELECT * FROM orders ORDER BY order_number desc";
+//$result = mysqli_query($con, $query);
 
 // $test = $_SESSION['logged'];
 
-var_dump($_SESSION['logged']);
+//var_dump($_SESSION['logged']);
 
-if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
-{} else {header('Location: index.php');}
+//if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
+//{} else {header('Location: index.php');}
 
 // session_destroy();
 ?>

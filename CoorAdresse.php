@@ -224,7 +224,7 @@ $result = mysqli_query($con, $query);
 		    if (status == 'OK') {
 		      directionsRenderer.setDirections(result);
 		      directionsDisplayArray.push(directionsRenderer);
-		      calcroute = true;
+		      calcroute = true;nbrevennt = 0;
 		      alert("succes");
 		    } else {alert("echec");}
 		  });
@@ -276,7 +276,7 @@ $result = mysqli_query($con, $query);
 					arrive : arrive
 		   			},   
 		   		function(data, status, jqXHR){
-		   		alert("Data: " + data );
+// 		   		alert("Data: " + data );
 		   		$('#resultat').append("statue : "+status+" data : "+data.responseData);
 		   		calcroute = false; nbrevent = 0;
 		   		}

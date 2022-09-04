@@ -160,7 +160,7 @@ $("#coffre2").submit(function( event ) {
 	var datearrive = $('#to_date').val();
 
 	
-$.post('ChangerActivite.php', {
+$.post('changerActivite.php', {
 	order_number : order_number,
 	conducteur : conducteur,
 	lieudepart: lieudepart,
