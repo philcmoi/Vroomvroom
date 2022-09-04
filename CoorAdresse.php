@@ -125,7 +125,7 @@ $result = mysqli_query($con, $query);
 		{
 		marqueur = new google.maps.Marker({
 		map: map,
-		draggable : true,
+		draggable : false,
 		position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
 		});
 
@@ -167,12 +167,12 @@ $result = mysqli_query($con, $query);
         //message d'alerte affichant la nouvelle position du marqueur
 // 				    alert("La nouvelle coordonnée du marqueur est : "+event.latLng);
 	    latlng = event.latLng;
-	    inverseCoord(marker,latlng,infowindow)
+	    inverseCoord(marker,latlng,infowindow);
 	    });
 				    
 		}
 		} else {
-		alert("Le geocodage a echoue pour la raion suivante : " + status);
+		alert("Le geocodage a echoue pour la raison suivante : " + status);
 				}
 		})
 		}
