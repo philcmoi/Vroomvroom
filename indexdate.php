@@ -271,7 +271,7 @@ $("table tr").on("click",function () {
  	if(compar == 'Effacer' &&  identifiant != null){
 	if (confirm('Voulez vous effacer la ligne choisie')) {
 
-$.post('SupprimerActivite.php', {
+$.post('supprimerActivite.php', {
 	identifiant : identifiant,
 								},
 								
@@ -279,7 +279,7 @@ $.post('SupprimerActivite.php', {
 
         if (data == "Success") {           
             $("#resultat").html(" ! <p>Vous allez etre rediriger sur la liste des activite</p>");
-            setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 0);
+            setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
         	
             } 
         else {
@@ -303,7 +303,7 @@ $.post('SupprimerActivite.php', {
 //  	 		alert("identifiant "+identifiant);
  	 		verif = localStorage.getItem("cleef");
 //  	 		alert("verif "+ verif);
- 		    window.location.href = 'Update.php';}
+ 		    window.location.href = 'update.php';}
 
 //  	$.post('Update.php', {
 //  		identifiant : identifiant,

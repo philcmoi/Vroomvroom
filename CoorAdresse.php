@@ -154,25 +154,40 @@ $result = mysqli_query($con, $query);
 
 		var elt = results[0].address_components;
 
-
 		ville[nbrevent] = elt[2].long_name;
-		alert(elt[2].long_name);
+		console.log(elt[2].long_name);
 		
 		
 		/* Affichage de l'infowindow sur le marker avec l'adresse récupérée */
 		infowindow.setContent(results[4].formatted_address);
 		infowindow.open(map, marker);
 		google.maps.event.addListener(marker,'click', infoCallback(infowindow, marker));
+
+		google.maps.event.addListener(marker, 'dragstart', function(event) {
+        //message d'alerte affichant la nouvelle position du marqueur
+// 		alert("La nouvelle coordonnÃ©e du marqueur est : "+ event.latLng);
+		//latlng = event.latLng;
+		console.log("dragstart");
+		coor = event.latLng;
+		console.log("coor= " + coor);
+		console.log("markersArray"+markersArray[0].getPosition())
+		if (coor == markersArray[0].getPosition()) {console.log("markersArray 1"); marker = markersArray[0];}
+		else {console.log("markersArray 2");marker = markersArray[1];}
+// 	    inverseCoord(marker,latlng,infowindow);
+		})
+
 		google.maps.event.addListener(marker, 'dragend', function(event) {
         //message d'alerte affichant la nouvelle position du marqueur
-// 				    alert("La nouvelle coordonnÃ©e du marqueur est : "+event.latLng);
-	    latlng = event.latLng;
-	    inverseCoord(marker,latlng,infowindow)
+// 		alert("La nouvelle coordonnÃ©e du marqueur est : "+ event.latLng);
+		latlng = event.latLng;
+	    inverseCoord(marker,latlng,infowindow);
+
+		
 	    });
 				    
 		}
 		} else {
-		alert("Le geocodage a echoue pour la raion suivante : " + status);
+		alert("Le geocodage a echoue pour la raison suivante : " + status);
 				}
 		})
 		}

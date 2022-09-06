@@ -1,17 +1,17 @@
 <?php
-//session_start();
+session_start();
 // include database connection file
-//include('db_config.php');
- 
-//$query = "SELECT * FROM orders ORDER BY order_number desc";
-//$result = mysqli_query($con, $query);
+include('db_config.php');
+
+$query = "SELECT * FROM orders ORDER BY order_number desc";
+$result = mysqli_query($con, $query);
 
 // $test = $_SESSION['logged'];
 
-//var_dump($_SESSION['logged']);
+var_dump($_SESSION['logged']);
 
-//if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
-//{} else {header('Location: index.php');}
+if (isset($_SESSION['logged']) && ( $_SESSION['logged'] == "admin" ))
+{} else {header('Location: index.php');}
 
 // session_destroy();
 ?>
@@ -52,8 +52,6 @@
           }
 </style>
 
-	<title>Demo - jquery-simple-datetimepicker</title>
-
 	<!--Requirement jQuery-->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<!--Load Script and Stylesheet -->
@@ -73,6 +71,8 @@
 		h4 { border-bottom: 1px solid #eeeeee; margin-top: 2rem; margin-left: -1%; padding-left: 1%; padding-bottom: 0.1em; }
 	</style>
 </head>
+
+</head>
  
 <body>
 <form id ="coffre2" action="#" method="post">
@@ -86,7 +86,7 @@
 			$(function(){
 				$('*[name=from_date]').appendDtpicker({
 					"firstDayOfWeek": 1,
-					"futureOnly": true,
+// 					"futureOnly": true,
 					"minuteInterval": 15,
 					"locale": "fr",
 					"dateFormat": "YYYY.MM.DD hh:mm"
@@ -101,7 +101,7 @@
 			$(function(){
 				$('*[name=to_date]').appendDtpicker({
 					"firstDayOfWeek": 1,
-					"futureOnly": true,
+// 					"futureOnly": true,
 					"minuteInterval": 15,
 					"locale": "fr",
 					"dateFormat": "YYYY.MM.DD hh:mm"
@@ -114,22 +114,11 @@
       <input type="text"  id="conducteur" class="form-control" placeholder="Nom du conducteur" required ></br>
 	  <input type="text"  id="lieudepart" class="form-control" placeholder="lieu de depart" required ></br>
 	  <input type="text"  id="lieuarrive" class="form-control" placeholder="lieu  d arrive" required ></br>
-	  <input type="text"  id="participation" class="form-control" placeholder="Entrer la participation propose" required ></br>
-	  <button type="submit" id="envoyer" title="Envoyer" class="btn btn-primary">Valider</button>
-      <button type="reset" id="reset" title="reset" class="btn btn-primary">Reinitialiser</button></div>
-      <button id="deconnexion" class="btn btn-primary" title="deconnexion">Quiter cette fenatre</button>
-      
-     
-     <?php 
-// if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
-// {
-//     echo '
-// <form action="deconnecter.php" method="post">
-// <input type="submit" value="deconnexion" class="btn btn-primary"/>
-// </form>
-// '
-// ;}
- ?>
+	  <input type="text"  id="participation"  placeholder="Entrer la participation propose" required ></br>
+	  <button type="submit" id="envoyer" class="btn btn-primary" title="Envoyer">Valider</button>
+      <button type="reset" id="reset" class="btn btn-primary" title="reset">Reinitialiser</button>
+	  <button id="deconnexion" class="btn btn-primary" title="deconnexion">Quiter cette fenatre</button>
+     </div>
      <br>
      <div id="resultat"></div>
    </div>
@@ -143,62 +132,51 @@
 
 $(document).ready(function () {
 
+
 $("#coffre2").submit(function( event ) {
-	event.preventDefault();
+	  event.preventDefault();
 
 	  var from_date = $('#from_date').val();
 	  var to_date = $('#to_date').val();
-// 	  alert("from_date "+from_date);
-// 	  alert("to_date "+to_date);
-
-
-	  
+	 	  
 	  var date1 = new Date(from_date);
 	  var date2 = new Date(to_date);
 
-	  
-
-// 	  alert("date1 "+date1);
-// 	  alert("date2 "+date2);
-	   // différence des heures
+	  // différence des heures
 	  var time_diff = date2.getTime()-date1.getTime();
-	  
-// 	  alert("difference");
-	  
-// 	  alert("time_diff "+ time_diff);
+		  
 	   // différence de jours
 	  var days_Diff = time_diff / (1000 * 3600 * 24);
 	  
-// 	   alert("days_Diff "+ days_Diff);
 	   
 	  if (days_Diff < 0) {alert("dates invalide");}
 	  else {
-	  
-	var  conducteur = $('#conducteur').val();
-	var  lieudepart = $('#lieudepart').val();
-	var  lieuarrive = $('#lieuarrive').val();
-	var  participation = $('#participation').val();
+	var order_number = localStorage.getItem("cleef"); 
+	var conducteur = $('#conducteur').val();
+	var lieudepart = $('#lieudepart').val();
+	var lieuarrive = $('#lieuarrive').val();
+	var participation = $('#participation').val();
 	var datedepart = $('#from_date').val();
 	var datearrive = $('#to_date').val();
 
-	alert('datedepart '+datedepart);
-	alert('datearrive' +datearrive);
-
 	
-$.post('traitementActivite.php', {
-	conducteur: $('#conducteur').val(),
-	lieudepart: $('#lieudepart').val(),
-	lieuarrive: $('#lieuarrive').val(),
-	participation: $('#participation').val(),
+$.post('changerActivite.php', {
+	order_number : order_number,
+	conducteur : conducteur,
+	lieudepart: lieudepart,
+	lieuarrive: lieuarrive,
+	participation: participation,
 	datedepart: datedepart,
 	datearrive: datearrive
       
   },  
+
+  
   function(data){
   	 
       if(data == "Success"){
            // Le membre est connecté. Ajoutons lui un message dans la page HTML.
-           $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+           $("#resultat").html("<p>La modification a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
            setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
 //            setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
           
@@ -206,8 +184,8 @@ $.post('traitementActivite.php', {
       }
 
       
-else  {		
-           $("#resultat").html("<p>Erreur lors de la connexion...</p>");alert(data);
+else  {
+           $("#resultat").html("<p>mise a jour non effectuee...</p>");alert(data);
       }
 	  },
       'text'
@@ -215,20 +193,11 @@ else  {
 }
 
 });
-// $('#btn_add').click(function () {
-// 	<form id="coffre" action="#" method="post">
-// 	<input type="email"  id="mail" class="form-control" placeholder="Entrer votre email" required autofocus>
-
-
-//     window.location.href = 'ajouterActivite.php';
-   
-// });
 $('#deconnexion').click(function () {
 	
     window.location.href = 'indexdate.php';
    
 });
-
 
 $("#reset").click(function () {$("#resultat").empty();});
 
