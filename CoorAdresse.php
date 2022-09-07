@@ -164,25 +164,17 @@ $result = mysqli_query($con, $query);
 		infowindow.open(map, marker);
 		google.maps.event.addListener(marker,'click', infoCallback(infowindow, marker));
 
-		google.maps.event.addListener(marker, 'dragstart', function(event) {
-        //message d'alerte affichant la nouvelle position du marqueur
-// 		alert("La nouvelle coordonnÃ©e du marqueur est : "+ event.latLng);
-		//latlng = event.latLng;
-// 		console.log("dragstart");
-// 		coor = event.latLng;
-// 		console.log("coor= " + coor);
-		if (coor == markersArray[0].getPosition()) {console.log("markersArray 1"); marker = markersArray[0];}
-		else {console.log("markersArray 2");marker = markersArray[1];}
+// 		google.maps.event.addListener(marker, 'dragstart', function(event) {
+       
+// 		if (coor == markersArray[0].getPosition()) {console.log("markersArray 1"); marker = markersArray[0];}
+// 		else {console.log("markersArray 2");marker = markersArray[1];}
 // 	    inverseCoord(marker,latlng,infowindow);
-		})
+// 		})
 
 		google.maps.event.addListener(marker, 'dragend', function(event) {
-        //message d'alerte affichant la nouvelle position du marqueur
-// 		alert("La nouvelle coordonnÃ©e du marqueur est : "+ event.latLng);
+        
 		latlng = event.latLng;
-// 		console.log("dragend");
-// 		coor = event.latLng;
-// 		console.log("coor= " + coor);
+
 	    inverseCoord(marker,latlng,infowindow);
 
 		
@@ -226,40 +218,77 @@ $result = mysqli_query($con, $query);
 
 		
 		$('#enregistreritineraire').click(function () {				  
-// 			participation = $('#participation').val();
-			    console.log('Avant EnregistrerItineraire nbrevennt = '+nbrevent);
-		if (nbrevent == 2 && calcroute == true) 
-		{console.log('A l interieure de EnregistrerItineraire');
-		console.log('nbrevent = '+nbrevent);
-// 		var depart = ville[1]; 
-// 		var arrive = ville[2];
 
-		depart = new google.maps.LatLng(markersArray[0].getPosition());
-		arrive = new google.maps.LatLng(markersArray[1].getPosition());
+		if (nbrevent == 2 && calcroute == true) 
+		{
+
+		departMarkerlatlng = new google.maps.LatLng(markersArray[0].getPosition());
+		arriveMarkerlatlng = new google.maps.LatLng(markersArray[1].getPosition());
+
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'latLng': departMarkerlatlng}, function(results, status) {
+		/* Si le géocodage inversé a réussi */
+		if (status == google.maps.GeocoderStatus.OK) {
+		if (results[2]) {
 		
-// 		Geocoder gcd = new Geocoder(context, Locale.getDefault());
-// 		List<Address> addresses = gcd.getFromLocation(lat, lng, 1);
-// 		if (addresses.size() > 0) {
-// 		    System.out.println(addresses.get(0).getLocality());
-// 		}
-// 		else {
-// 		   //do your stuff
-// 		}
-		$.post(
-			'EnregistrerItineraire.php',
-			{
-				depart: depart,
-				arrive : arrive
-			},   
-		function(data, status, jqXHR){
-// 		   		alert("Data: " + data );
-		$('#resultat').append("statue : "+status+" data : "+data.responseData);
-		calcroute = false; nbrevent = 0;
-							 		}
-				)
+		var elt = results[0].address_components;
+
+		villedepart = elt[2].long_name;
+		console.log("ville de depart "+elt[2].long_name);
+						}
+													 } 
+																					}
+						)
+		
+		
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'latLng': arriveMarkerlatlng}, function(results, status) {
+		/* Si le géocodage inversé a réussi */
+		if (status == google.maps.GeocoderStatus.OK) {
+		if (results[2]) {
+		
+		var elt = results[0].address_components;
+
+		villearrive = elt[2].long_name;
+		console.log("ville d arrive "+elt[2].long_name);
+		
+						}
+													 } 
+																					}
+						)
+
+		$.post('EnregistrerItineraire.php', {
+		depart: villedepart,
+		arrive: villearrive
+						      
+						  					},  
+		function(data){
+						  	 
+			if(data == "Success") {
+			// Le membre est connecté. Ajoutons lui un message dans la page HTML.
+			$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+			setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
+//						            setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
+						          
+						           
+								   }
+
+						      
+			else  {		
+			$("#resultat").html("<p>Erreur lors de la connexion...</p>");
+				   }
+				},
+			'text'
+			);
+
+		nbrevent = 0; calcroute = false;
 		}
 		})
 				
+		
+		
+		
+		
 		function clearOverlays() {
 		for (var i = 0; i < markersArray.length; i++ ) {
 		this.markersArray[i].setMap(null);
