@@ -143,6 +143,7 @@ $result = mysqli_query($con, $query);
 		}
 		});
 
+		
 				
 		function inverseCoord(marker,latlng,infowindow) {
 		geocoder = new google.maps.Geocoder();
@@ -167,10 +168,9 @@ $result = mysqli_query($con, $query);
         //message d'alerte affichant la nouvelle position du marqueur
 // 		alert("La nouvelle coordonnée du marqueur est : "+ event.latLng);
 		//latlng = event.latLng;
-		console.log("dragstart");
-		coor = event.latLng;
-		console.log("coor= " + coor);
-		console.log("markersArray"+markersArray[0].getPosition())
+// 		console.log("dragstart");
+// 		coor = event.latLng;
+// 		console.log("coor= " + coor);
 		if (coor == markersArray[0].getPosition()) {console.log("markersArray 1"); marker = markersArray[0];}
 		else {console.log("markersArray 2");marker = markersArray[1];}
 // 	    inverseCoord(marker,latlng,infowindow);
@@ -180,6 +180,9 @@ $result = mysqli_query($con, $query);
         //message d'alerte affichant la nouvelle position du marqueur
 // 		alert("La nouvelle coordonnée du marqueur est : "+ event.latLng);
 		latlng = event.latLng;
+// 		console.log("dragend");
+// 		coor = event.latLng;
+// 		console.log("coor= " + coor);
 	    inverseCoord(marker,latlng,infowindow);
 
 		
@@ -192,6 +195,70 @@ $result = mysqli_query($con, $query);
 		})
 		}
 
+
+		function calcRoute()  {
+			
+		directionsService = null;
+		directionsRenderer = null;
+		depart = new google.maps.LatLng(markersArray[0].getPosition());
+		arrive = new google.maps.LatLng(markersArray[1].getPosition());
+			
+		directionsService = new google.maps.DirectionsService();
+		directionsRenderer = new google.maps.DirectionsRenderer();
+		    
+		directionsRenderer.setMap(map);
+		directionsDisplayArray = [];	
+			
+		var request = {
+		    origin: depart,
+		    destination: arrive,
+			travelMode: 'DRIVING'
+			           };
+		directionsService.route(request, function(result, status) {
+		if (status == 'OK') {
+		directionsRenderer.setDirections(result);
+		directionsDisplayArray.push(directionsRenderer);
+		calcroute = true;nbrevennt = 0;
+		alert("succes");
+		} else {alert("echec");}
+		});
+		}
+
+		
+		$('#enregistreritineraire').click(function () {				  
+// 			participation = $('#participation').val();
+			    console.log('Avant EnregistrerItineraire nbrevennt = '+nbrevent);
+		if (nbrevent == 2 && calcroute == true) 
+		{console.log('A l interieure de EnregistrerItineraire');
+		console.log('nbrevent = '+nbrevent);
+// 		var depart = ville[1]; 
+// 		var arrive = ville[2];
+
+		depart = new google.maps.LatLng(markersArray[0].getPosition());
+		arrive = new google.maps.LatLng(markersArray[1].getPosition());
+		
+// 		Geocoder gcd = new Geocoder(context, Locale.getDefault());
+// 		List<Address> addresses = gcd.getFromLocation(lat, lng, 1);
+// 		if (addresses.size() > 0) {
+// 		    System.out.println(addresses.get(0).getLocality());
+// 		}
+// 		else {
+// 		   //do your stuff
+// 		}
+		$.post(
+			'EnregistrerItineraire.php',
+			{
+				depart: depart,
+				arrive : arrive
+			},   
+		function(data, status, jqXHR){
+// 		   		alert("Data: " + data );
+		$('#resultat').append("statue : "+status+" data : "+data.responseData);
+		calcroute = false; nbrevent = 0;
+							 		}
+				)
+		}
+		})
 				
 		function clearOverlays() {
 		for (var i = 0; i < markersArray.length; i++ ) {
@@ -217,33 +284,7 @@ $result = mysqli_query($con, $query);
 	return function() { infowindow.open(map, maker); };
 											  }
 	
-	function calcRoute()  {
 	
-	directionsService = null;
-	directionsRenderer = null;
-	depart = new google.maps.LatLng(markersArray[0].getPosition());
-	arrive = new google.maps.LatLng(markersArray[1].getPosition());
-	
-	directionsService = new google.maps.DirectionsService();
-	directionsRenderer = new google.maps.DirectionsRenderer();
-    
-	directionsRenderer.setMap(map);
-	directionsDisplayArray = [];	
-	
-	var request = {
-        origin: depart,
-        destination: arrive,
-		travelMode: 'DRIVING'
-		           };
-		directionsService.route(request, function(result, status) {
-		    if (status == 'OK') {
-		      directionsRenderer.setDirections(result);
-		      directionsDisplayArray.push(directionsRenderer);
-		      calcroute = true;nbrevennt = 0;
-		      alert("succes");
-		    } else {alert("echec");}
-		  });
-		}
 
 		
 	function effacerItineraire() {
@@ -275,29 +316,7 @@ $result = mysqli_query($con, $query);
 			effacerItineraire();
 		});
 		
-		$('#enregistreritineraire').click(function () {				  
-// 			participation = $('#participation').val();
-			    console.log('Avant EnregistrerItineraire nbrevennt = '+nbrevent);
-			if (nbrevent == 2 && calcroute == true) 
-				{console.log('A l interieure de EnregistrerItineraire');
-				console.log('nbrevent = '+nbrevent);
-				var depart = ville[1]; 
-				var arrive = ville[2];
-
-				$.post(
-					'EnregistrerItineraire.php',
-		   			{
-					depart: depart,
-					arrive : arrive
-		   			},   
-		   		function(data, status, jqXHR){
-// 		   		alert("Data: " + data );
-		   		$('#resultat').append("statue : "+status+" data : "+data.responseData);
-		   		calcroute = false; nbrevent = 0;
-		   		}
-				)
-		}
-		})
+	
 		
 }			
 /* fin du code javascript */
