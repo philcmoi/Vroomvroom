@@ -86,11 +86,14 @@ $result = mysqli_query($con, $query);
 		var directionsDisplayArray = [];
 		var directionsService;
 		var directionsRenderer = [];
-		var depart;
-		var arrive;
+		//var depart;
+		//var arrive;
 		var ville = [];
 		var participation;
 		var calcroute = false;
+		//var villedepart;
+		//var villearrive;
+		var elt;
 
 		function initMap() {
 			
@@ -153,7 +156,7 @@ $result = mysqli_query($con, $query);
 		if (results[2]) {
 		map.setZoom(11);
 
-		var elt = results[0].address_components;
+		elt = results[0].address_components;
 
 		ville[nbrevent] = elt[2].long_name;
 		console.log(elt[2].long_name);
@@ -210,7 +213,8 @@ $result = mysqli_query($con, $query);
 		if (status == 'OK') {
 		directionsRenderer.setDirections(result);
 		directionsDisplayArray.push(directionsRenderer);
-		calcroute = true;nbrevennt = 0;
+		calcroute = true;
+		//nbrevent = 0;
 		alert("succes");
 		} else {alert("echec");}
 		});
@@ -231,10 +235,10 @@ $result = mysqli_query($con, $query);
 		if (status == google.maps.GeocoderStatus.OK) {
 		if (results[2]) {
 		
-		var elt = results[0].address_components;
+		elt = results[0].address_components;
 
 		villedepart = elt[2].long_name;
-		console.log("ville de depart "+villedepart);
+		console.log("ville de depart "+elt[2].long_name);
 						}
 													 } 
 																					}
@@ -247,10 +251,10 @@ $result = mysqli_query($con, $query);
 		if (status == google.maps.GeocoderStatus.OK) {
 		if (results[2]) {
 		
-		var elt = results[0].address_components;
+		elt = results[0].address_components;
 
 		villearrive = elt[2].long_name;
-		console.log("ville d arrive "+villearrive);
+		console.log("ville d arrive "+elt[2].long_name);
 		
 						}
 													 } 
@@ -258,8 +262,8 @@ $result = mysqli_query($con, $query);
 						)
 
 		$.post('EnregistrerItineraire.php', {
-		depart: villedepart,
-		arrive: villearrive
+		departV: villedepart,
+		arriveV: villearrive
 						      
 						  					},  
 		function(data){
@@ -267,7 +271,7 @@ $result = mysqli_query($con, $query);
 			if(data == "Success") {
 			// Le membre est connecté. Ajoutons lui un message dans la page HTML.
 			$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-// 			setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
+			//setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
 //						            setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
 						          
 						           
@@ -298,12 +302,12 @@ $result = mysqli_query($con, $query);
 			  }
 		
 		$('#delete').click(function () {
-		 clearOverlays()
+		 clearOverlays();
 		 nbrevent = 0;
 				})
 
 		$('#deconnexion').click(function () {
-		 clearOverlays()
+		 clearOverlays();
 		 nbrevent = 0;
 		 document.location.href = 'deconnecter.php';
 				})
@@ -327,22 +331,16 @@ $result = mysqli_query($con, $query);
 					
 				}
 
-		clearOverlays()
-				
 		directionsDisplayArray = [];
 		markersArray = [];
 		directionsDisplayArray.length = 0;
 		markersArray.length = 0;
 		nbrevent = 0;
-// 		departMarkerlatlng = null;
-// 		arriveMarkerlatlng = null;
-		
-		
 		alert("fin effacerItineraire");}	
 	
 	
 		$('#caculitineraire').click(function () {
-            markersArray
+            markersArray;
 			calcRoute();
 		
 		})
