@@ -4,7 +4,7 @@ if (isset($_POST['depart'], $_POST['arrive']))
 {
 $depart = htmlentities($_POST['depart']);
 $arrive = htmlentities($_POST['arrive']);
-var_dump($_SESSION['idmembre']);
+// var_dump($_SESSION['idmembre']);
 // $lieudepart = htmlentities('Paris');
 // $lieuarrive = htmlentities('Pekin');
 // if (isset( $_SESSION['idmembre'])) {
@@ -25,8 +25,8 @@ try {
 // VALUES (:idtrajet,:depart,:arrive,:idmembre)";
     
     
-    $sql = "INSERT INTO trajet (depart, arrive)
-VALUES (:depart,:arrive)";
+    $sql = "INSERT INTO trajet (depart, arrive, idmembre)
+VALUES (:depart,:arrive,:idmembre)";
     
     $req = $PDO->prepare($sql);
     
@@ -40,9 +40,9 @@ VALUES (:depart,:arrive)";
         
         "depart" => $depart,
         
-        "arrive" => $arrive
+        "arrive" => $arrive,
         
-//         "idmembre" => NULL
+        "idmembre" => 3
         
     ));
     $PDO->query('SET foreign_key_checks = 1');

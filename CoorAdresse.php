@@ -234,7 +234,7 @@ $result = mysqli_query($con, $query);
 		var elt = results[0].address_components;
 
 		villedepart = elt[2].long_name;
-		console.log("ville de depart "+elt[2].long_name);
+		console.log("ville de depart "+villedepart);
 						}
 													 } 
 																					}
@@ -250,7 +250,7 @@ $result = mysqli_query($con, $query);
 		var elt = results[0].address_components;
 
 		villearrive = elt[2].long_name;
-		console.log("ville d arrive "+elt[2].long_name);
+		console.log("ville d arrive "+villearrive);
 		
 						}
 													 } 
@@ -267,7 +267,7 @@ $result = mysqli_query($con, $query);
 			if(data == "Success") {
 			// Le membre est connecté. Ajoutons lui un message dans la page HTML.
 			$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-			setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
+// 			setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
 //						            setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
 						          
 						           
@@ -327,11 +327,17 @@ $result = mysqli_query($con, $query);
 					
 				}
 
+		clearOverlays()
+				
 		directionsDisplayArray = [];
 		markersArray = [];
 		directionsDisplayArray.length = 0;
 		markersArray.length = 0;
 		nbrevent = 0;
+// 		departMarkerlatlng = null;
+// 		arriveMarkerlatlng = null;
+		
+		
 		alert("fin effacerItineraire");}	
 	
 	
