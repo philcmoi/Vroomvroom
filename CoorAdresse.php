@@ -217,7 +217,7 @@ $result = mysqli_query($con, $query);
 		}
 
 		
-		$('#enregistreritineraire').dblclick(function () {				  
+		$('#enregistreritineraire').click(function () {				  
 
 		if (nbrevent == 2 && calcroute == true) 
 		{
