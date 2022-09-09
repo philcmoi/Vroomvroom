@@ -258,7 +258,7 @@ $result = mysqli_query($con, $query);
 						)
 
 						
-		if (confirm("Voulez vous reindiquer l itineraire") == true) {document.location.href = "CoorAdresse.php"}
+		if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
 		else {
 							
 		$.post('EnregistrerItineraire.php', {
