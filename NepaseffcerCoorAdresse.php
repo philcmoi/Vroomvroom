@@ -93,11 +93,6 @@ $result = mysqli_query($con, $query);
 		var calcroute = false;
 		var villedepart;
 		var villearrive;
-		var latLngArray = [];
-		var count;
-
-
-		
 // 		function initMap() {
 		$(document).ready(function() {	
 		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -230,47 +225,41 @@ $result = mysqli_query($con, $query);
 
 		departMarkerlatlng = new google.maps.LatLng(markersArray[0].getPosition());
 		arriveMarkerlatlng = new google.maps.LatLng(markersArray[1].getPosition());
-		console.log("AVANT latLngArray OK");
-		latLngArray = [departMarkerlatlng , arriveMarkerlatlng ];
-		console.log("latLngArray OK");
-		count = 0;
 
-		geogodage(latLngArray, count);
-		
-		
-
-		nbrevent = 0; calcroute = false;
-		
-		}
-		})
-		
-// 		geocoder.geocode({'latLng': departMarkerlatlng}, function(results, status) {
-				
-		function geogodage(latLngArray, count) {
-		
 		geocoder = new google.maps.Geocoder();
-		geocoder.geocode({'latLng':latLngArray, function(results, status) {
+		geocoder.geocode({'latLng': departMarkerlatlng}, function(results, status) {
 		/* Si le géocodage inversé a réussi */
 		if (status == google.maps.GeocoderStatus.OK) {
 		if (results[2]) {
 		
 		var elt = results[0].address_components;
-		if (count == 0) {
+
 		villedepart = elt[2].long_name;
 		console.log("ville de depart "+villedepart);
-		count = count + 1;
 						}
-		else if (count == 1)  {
+													 } 
+																					}
+						)
+		
+		
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'latLng': arriveMarkerlatlng}, function(results, status) {
+		/* Si le géocodage inversé a réussi */
+		if (status == google.maps.GeocoderStatus.OK) {
+		if (results[2]) {
+		
+		var elt = results[0].address_components;
+
 		villearrive = elt[2].long_name;
 		console.log("ville d arrive "+villearrive);
-		count = 0;
-							  } 
+		
+						}
+													 } 
 																					}
-													}
-																		 }
-		})
+						)
 
-if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
+						
+		if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
 		else {
 							
 
@@ -295,8 +284,11 @@ if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "Coo
 				});
 
 		    }
+
+		nbrevent = 0; calcroute = false;
 		
-				
+		}
+		})
 				
 		function traitement_callback(in_text){
 			   alert(in_text);
@@ -352,6 +344,7 @@ if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "Coo
 	
 	
 		$('#caculitineraire').click(function () {
+//             markersArray;
 			calcRoute();
 		
 		})

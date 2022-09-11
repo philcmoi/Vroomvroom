@@ -1,11 +1,13 @@
 <?php
-
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 if (isset($_POST['depart'], $_POST['arrive']))
 {
 $depart = htmlentities($_POST['depart']);
 $arrive = htmlentities($_POST['arrive']);
 
-try {
+
     
     
     $PDO = new PDO('mysql:host=localhost;dbname=philippe','root','');
@@ -14,6 +16,8 @@ try {
     
     $sql = "INSERT INTO trajet (depart, arrive) VALUES (:depart,:arrive)";
     
+    try {
+        
     $req = $PDO->prepare($sql);
     
     $PDO->query('SET foreign_key_checks = 0');
@@ -22,25 +26,16 @@ try {
     
     $req->execute(array(
         
-//         "idtrajet" =>NULL,
-        
+      
         "depart" => $depart,
         
         "arrive" => $arrive
         
-//         "idmembre" => NULL
         
     ));
     $PDO->query('SET foreign_key_checks = 1');
-//     var_dump($req);
 }
-catch(Exception $e)
-
-{
-    echo '.$e->getMessage().';
-//         die('Erreur : '.$e->getMessage());
-    
+catch(PDOException $e){//Notez PDOException et pas seulement Exception
+    die("Erreur d'insertion :".$e->getMessage());
 }
-echo 'Success';
-// echo 'Echec';
 }
