@@ -261,33 +261,29 @@ $result = mysqli_query($con, $query);
 		if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
 		else {
 							
-		$.post('EnregistrerItineraire.php', {
-		depart: villedepart,
-		arrive: villearrive
-						      
-						  					},  
-		function(data){
-						  	 
-			if(data == "Success") {
-			traitement_callback("hello world"), //fonction de retour
-			// Le membre est connecté. Ajoutons lui un message dans la page HTML.
-			$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-// 			setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
-//						            setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
-						          
-						           
-								   }
 
-						      
-			else  {		
-			$("#resultat").html("<p>Erreur lors de la connexion...</p>");
-				   }
-				},
-			'text'
-			);
+			$.ajax({
+				  type: "POST",
+				  url: "EnregistrerItineraire.php",
+				  data: {
+					depart: villedepart,
+				  	arrive: villearrive
+				  		},
+				  	dataType: "text"
+				  })
+				
+				.done(function() {			
+				$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+    		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));})
+				
+				.fail(function() {$("#resultat").html("<p>Erreur lors de la connexion...</p>");});
+				 
+				 
+						}
+
+
 
 		nbrevent = 0; calcroute = false;
-		}
 		
 		}
 		})
