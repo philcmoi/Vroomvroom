@@ -235,10 +235,9 @@ $result = mysqli_query($con, $query);
 		console.log("latLngArray OK");
 		count = 0;
 
-		geogodage(latLngArray, count);
+		geogodage(latLngArray[departMarkerlatlng,arriveMarkerlatlng], count);
 		
 		
-
 		nbrevent = 0; calcroute = false;
 		
 		}
@@ -249,7 +248,7 @@ $result = mysqli_query($con, $query);
 		function geogodage(latLngArray, count) {
 		
 		geocoder = new google.maps.Geocoder();
-		geocoder.geocode({'latLng':latLngArray, function(results, status) {
+		geocoder.geocode({latLngArray, function(results, status) {
 		/* Si le géocodage inversé a réussi */
 		if (status == google.maps.GeocoderStatus.OK) {
 		if (results[2]) {
@@ -265,7 +264,7 @@ $result = mysqli_query($con, $query);
 		console.log("ville d arrive "+villearrive);
 		count = 0;
 							  } 
-																					}
+						 }
 													}
 																		 }
 		})
@@ -295,8 +294,35 @@ if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "Coo
 				});
 
 		    }
+		}
+
+// if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
+// 		else {
+							
+
+// 			$.ajax({
+// 				  type: "POST",
+// 				  url: "EnregistrerItineraire.php",
+// 				  cache : false,
+// 				  data: {
+// 					depart: villedepart,
+// 				  	arrive: villearrive
+// 				  		},
+// 				  dataType: "text",
+// 				    "success": function (data, textStatus, jqXHR) {
+// 				        console.log("L'appel Ajax est une réussite.");
+// 				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+// 		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
+// 				    },
+// 				    "error": function (jqXHR, textStatus, errorThrown) {
+// 				        console.log("L'appel Ajax est un échec.");
+// 				        $("#resultat").html("<p>Erreur lors de la connexion...</p>");
+// 				    }
+// 				});
+
+// 		    }
 		
-				
+// 		}	
 				
 		function traitement_callback(in_text){
 			   alert(in_text);
