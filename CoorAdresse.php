@@ -234,7 +234,7 @@ $result = mysqli_query($con, $query);
 		var elt = results[0].address_components;
 
 		villedepart = elt[2].long_name;
-		console.log("ville de depart "+elt[2].long_name);
+		console.log("ville de depart "+villedepart);
 						}
 													 } 
 																					}
@@ -250,7 +250,7 @@ $result = mysqli_query($con, $query);
 		var elt = results[0].address_components;
 
 		villearrive = elt[2].long_name;
-		console.log("ville d arrive "+elt[2].long_name);
+		console.log("ville d arrive "+villearrive);
 		
 						}
 													 } 
@@ -269,9 +269,10 @@ $result = mysqli_query($con, $query);
 		function(data){
 						  	 
 			if(data == "Success") {
+			traitement_callback("hello world"), //fonction de retour
 			// Le membre est connecté. Ajoutons lui un message dans la page HTML.
 			$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-			setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
+// 			setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
 //						            setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
 						          
 						           
@@ -291,7 +292,9 @@ $result = mysqli_query($con, $query);
 		}
 		})
 				
-		
+		function traitement_callback(in_text){
+			   alert(in_text);
+			}
 		
 		
 		
@@ -322,23 +325,24 @@ $result = mysqli_query($con, $query);
 	
 
 		
-// 	function effacerItineraire() {
-// 		for (var i = 0; i < directionsDisplayArray.length; i++ ) {
-// 				directionsDisplayArray[i].setMap(null);
-// 				directionsDisplayArray[i].setPanel(null);
+	function effacerItineraire() {
+		for (var i = 0; i < directionsDisplayArray.length; i++ ) {
+				directionsDisplayArray[i].setMap(null);
+				directionsDisplayArray[i].setPanel(null);
 				
-// 				}
-// 		for (var i = 0; i < markersArray.length; i++ ) {
-// 				markersArray[i].setMap(null);
+				}
+		for (var i = 0; i < markersArray.length; i++ ) {
+				markersArray[i].setMap(null);
 					
-// 				}
+				}
 
-// 		directionsDisplayArray = [];
-// 		markersArray = [];
-// 		directionsDisplayArray.length = 0;
-// 		markersArray.length = 0;
-// 		nbrevent = 0;
-// 		alert("fin effacerItineraire");}	
+		directionsDisplayArray = [];
+		markersArray = [];
+		directionsDisplayArray.length = 0;
+		markersArray.length = 0;
+		nbrevent = 0;
+		calcroute = false;
+		alert("fin effacerItineraire");}	
 	
 	
 		$('#caculitineraire').click(function () {
@@ -347,9 +351,9 @@ $result = mysqli_query($con, $query);
 		
 		})
 		
-// 		$('#effaceritineraire').click(function () {				  
-// 			effacerItineraire();
-// 		});
+		$('#effaceritineraire').click(function () {				  
+			effacerItineraire();
+		});
 		
 	
 		
@@ -389,9 +393,9 @@ $result = mysqli_query($con, $query);
       <div class="col-md-2">
         <input type="button" name="enregistreritineraire" id="enregistreritineraire" value="enregistrer l itineraire" class="btn btn-primary" />
       </div>
-<!--       <div class="col-md-2"> -->
-<!--         <input type="button" name="effaceritineraire" id="effaceritineraire" value="Effacer l itineraire" class="btn btn-primary" /> -->
-<!--       </div> -->
+      <div class="col-md-2">
+        <input type="button" name="effaceritineraire" id="effaceritineraire" value="Effacer l itineraire" class="btn btn-primary" />
+      </div>
       <div class="col-md-2">
         <input type="button" name="deconnexion" id="deconnexion" value="deconnexion" class="btn btn-primary" />
       </div>
