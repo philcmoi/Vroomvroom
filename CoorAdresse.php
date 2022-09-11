@@ -92,8 +92,8 @@ $result = mysqli_query($con, $query);
 		var participation;
 		var calcroute = false;
 
-		function initMap() {
-			
+// 		function initMap() {
+		$(document).ready(function() {	
 		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
 		map = new google.maps.Map(document.getElementById("map"), {
 		// Nous plaçons le centre de la carte avec les coordonnées ci-dessus
@@ -353,14 +353,14 @@ $result = mysqli_query($con, $query);
 		
 	
 		
-}			
+})
 /* fin du code javascript */
 			
 			
-			window.onload = function(){
-				// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
-				initMap(); 
-			};
+// 			window.onload = function(){
+// 				// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+// 				initMap(); 
+// 			};
 
 
 		
