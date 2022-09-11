@@ -4,13 +4,6 @@ if (isset($_POST['depart'], $_POST['arrive']))
 {
 $depart = htmlentities($_POST['depart']);
 $arrive = htmlentities($_POST['arrive']);
-// var_dump($_SESSION['idmembre']);
-// $lieudepart = htmlentities('Paris');
-// $lieuarrive = htmlentities('Pekin');
-// if (isset( $_SESSION['idmembre'])) {
-// $idmembre = $_SESSION['idmembre']; }
-// var_dump($idmembre);
-// $idmembre = 500;
 
 try {
     
@@ -19,14 +12,7 @@ try {
     $PDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
     $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
     
-//     INSERT INTO `trajet` (`idtrajet`, `depart`, `arrive`, `idmembre`) VALUES (NULL, 'Paris', 'Shangail', '26');
-    
-//     $sql = "INSERT INTO trajet (idtrajet,depart, arrive, idmembre)
-// VALUES (:idtrajet,:depart,:arrive,:idmembre)";
-    
-    
-    $sql = "INSERT INTO trajet (depart, arrive)
-VALUES (:depart,:arrive)";
+    $sql = "INSERT INTO trajet (depart, arrive) VALUES (:depart,:arrive)";
     
     $req = $PDO->prepare($sql);
     

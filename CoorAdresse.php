@@ -91,7 +91,8 @@ $result = mysqli_query($con, $query);
 		var ville = [];
 		var participation;
 		var calcroute = false;
-
+		var villedepart;
+		var villearrive;
 // 		function initMap() {
 		$(document).ready(function() {	
 		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -265,23 +266,24 @@ $result = mysqli_query($con, $query);
 			$.ajax({
 				  type: "POST",
 				  url: "EnregistrerItineraire.php",
+				  cache : false,
 				  data: {
 					depart: villedepart,
 				  	arrive: villearrive
 				  		},
-				  	dataType: "text"
-				  })
-				
-				.done(function() {			
-				$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-    		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));})
-				
-				.fail(function() {$("#resultat").html("<p>Erreur lors de la connexion...</p>");});
-				 
-				 
-						}
+				  dataType: "text",
+				    "success": function (data, textStatus, jqXHR) {
+				        console.log("L'appel Ajax est une réussite.");
+				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
+				    },
+				    "error": function (jqXHR, textStatus, errorThrown) {
+				        console.log("L'appel Ajax est un échec.");
+				        $("#resultat").html("<p>Erreur lors de la connexion...</p>");
+				    }
+				});
 
-
+		    }
 
 		nbrevent = 0; calcroute = false;
 		
