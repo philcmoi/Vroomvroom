@@ -93,6 +93,11 @@ $result = mysqli_query($con, $query);
 		var calcroute = false;
 		var villedepart;
 		var villearrive;
+		var latLngArray = [];
+		var count;
+
+
+		
 // 		function initMap() {
 		$(document).ready(function() {	
 		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -225,70 +230,100 @@ $result = mysqli_query($con, $query);
 
 		departMarkerlatlng = new google.maps.LatLng(markersArray[0].getPosition());
 		arriveMarkerlatlng = new google.maps.LatLng(markersArray[1].getPosition());
+		console.log("AVANT latLngArray OK");
+		latLngArray = [departMarkerlatlng , arriveMarkerlatlng ];
+		console.log("latLngArray OK");
+		count = 0;
 
-		geocoder = new google.maps.Geocoder();
-		geocoder.geocode({'latLng': departMarkerlatlng}, function(results, status) {
-		/* Si le géocodage inversé a réussi */
-		if (status == google.maps.GeocoderStatus.OK) {
-		if (results[2]) {
+		geogodage(latLngArray[departMarkerlatlng,arriveMarkerlatlng], count);
+		console.log("geogodage a ete appele");
 		
-		var elt = results[0].address_components;
-
-		villedepart = elt[2].long_name;
-		console.log("ville de depart "+villedepart);
-						}
-													 } 
-																					}
-						)
-		
-		
-		geocoder = new google.maps.Geocoder();
-		geocoder.geocode({'latLng': arriveMarkerlatlng}, function(results, status) {
-		/* Si le géocodage inversé a réussi */
-		if (status == google.maps.GeocoderStatus.OK) {
-		if (results[2]) {
-		
-		var elt = results[0].address_components;
-
-		villearrive = elt[2].long_name;
-		console.log("ville d arrive "+villearrive);
-		
-						}
-													 } 
-																					}
-						)
-
-						
-		if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
-		else {
-							
-
-			$.ajax({
-				  type: "POST",
-				  url: "EnregistrerItineraire.php",
-				  cache : false,
-				  data: {
-					depart: villedepart,
-				  	arrive: villearrive
-				  		},
-				  dataType: "text",
-				    "success": function (data, textStatus, jqXHR) {
-				        console.log("L'appel Ajax est une réussite.");
-				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
-				    },
-				    "error": function (jqXHR, textStatus, errorThrown) {
-				        console.log("L'appel Ajax est un échec.");
-				        $("#resultat").html("<p>Erreur lors de la connexion...</p>");
-				    }
-				});
-
-		    }
-
 		nbrevent = 0; calcroute = false;
 		
 		}
 		})
+		
+// 		geocoder.geocode({'latLng': departMarkerlatlng}, function(results, status) {
+				
+	function geogodage(latLngArray, count) {
+  if (confirm("Voulez vous resaisir l itineraire")) {
+    document.location.href = "CoorAdresse.php"
+  } 
+  else {alert("Avant geogoder");
+	geocoder = new google.maps.Geocoder();
+	geocoder.geocode({
+		'latLng': latLngArray,
+		function(results, status) {
+			/* Si le géocodage inversé a réussi */
+			if (status == google.maps.GeocoderStatus.OK) {
+				console.log("results is :",results);
+				if (results[2]) {
+                                        var elt = results[0].address_components;
+// 					if (count == 0) {
+// 						villedepart = elt[2].long_name;
+// 						console.log("ville de depart " + villedepart);
+// 						count = count + 1;
+// 					} else if (count == 1) {
+// 						villearrive = elt[2].long_name;
+// 						console.log("ville d arrive " + villearrive);
+// 						count = 0;
+// 					}
+				  }
+				  if(villedepart&&villearrive){
+					$.ajax({
+						type: "POST",
+						url: "EnregistrerItineraire.php",
+						cache: false,
+						data: {
+							depart: villedepart,
+							arrive: villearrive
+						},
+						dataType: "text",
+						"success": function(data, textStatus, jqXHR) {
+							console.log("L'appel Ajax est une réussite.");
+							$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+							$('#resultat').fadeOut(2000, traitement_callback("hello world"));
+						},
+						"error": function(jqXHR, textStatus, errorThrown) {
+							console.log("L'appel Ajax est un échec.");
+							$("#resultat").html("<p>Erreur lors de la connexion...</p>");
+						}
+					});
+				  }
+				  else {console.log("villedepart&&villearrive ERREURE INEXISTANT");}
+			 }
+		}
+	});
+  }
+}
+
+// if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
+// 		else {
+							
+
+// 			$.ajax({
+// 				  type: "POST",
+// 				  url: "EnregistrerItineraire.php",
+// 				  cache : false,
+// 				  data: {
+// 					depart: villedepart,
+// 				  	arrive: villearrive
+// 				  		},
+// 				  dataType: "text",
+// 				    "success": function (data, textStatus, jqXHR) {
+// 				        console.log("L'appel Ajax est une réussite.");
+// 				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+// 		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
+// 				    },
+// 				    "error": function (jqXHR, textStatus, errorThrown) {
+// 				        console.log("L'appel Ajax est un échec.");
+// 				        $("#resultat").html("<p>Erreur lors de la connexion...</p>");
+// 				    }
+// 				});
+
+// 		    }
+		
+// 		}	
 				
 		function traitement_callback(in_text){
 			   alert(in_text);
@@ -344,7 +379,6 @@ $result = mysqli_query($con, $query);
 	
 	
 		$('#caculitineraire').click(function () {
-//             markersArray;
 			calcRoute();
 		
 		})
