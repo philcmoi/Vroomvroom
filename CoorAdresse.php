@@ -26,7 +26,7 @@ $result = mysqli_query($con, $query);
 <!-- 		<script src="https://maps.google.com/maps/api/js?key=AIzaSyA031jNEP24ibL2gqQpXy-us5hzE_0wkG8" type="text/javascript"></script> -->
 		<script src="javascripts/jquery.js"></script>
 		<script type="text/javascript" src="javascripts/jquery.googlemap.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA031jNEP24ibL2gqQpXy-us5hzE_0wkG8&libraries=geometry&sensor=false"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTw6g0yl_vOw7obuqjMz0xhGLEPWdZo6g&libraries=geometry&sensor=false"></script>
 		<script src="http://openlayers.org/api/OpenLayers.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -86,14 +86,15 @@ $result = mysqli_query($con, $query);
 		var directionsDisplayArray = [];
 		var directionsService;
 		var directionsRenderer = [];
-		var depart;
-		var arrive;
+// 		var depart;
+// 		var arrive;
 		var ville = [];
 		var participation;
 		var calcroute = false;
-
-		function initMap() {
-			
+		var villedepart;
+		var villearrive;
+// 		function initMap() {
+		$(document).ready(function() {	
 		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
 		map = new google.maps.Map(document.getElementById("map"), {
 		// Nous plaçons le centre de la carte avec les coordonnées ci-dessus
@@ -125,7 +126,7 @@ $result = mysqli_query($con, $query);
 		{
 		marqueur = new google.maps.Marker({
 		map: map,
-		draggable : false,
+		draggable : true,
 		position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
 		});
 
@@ -143,6 +144,7 @@ $result = mysqli_query($con, $query);
 		}
 		});
 
+		
 				
 		function inverseCoord(marker,latlng,infowindow) {
 		geocoder = new google.maps.Geocoder();
@@ -154,20 +156,29 @@ $result = mysqli_query($con, $query);
 
 		var elt = results[0].address_components;
 
-
 		ville[nbrevent] = elt[2].long_name;
-		alert(elt[2].long_name);
+		console.log(elt[2].long_name);
 		
 		
 		/* Affichage de l'infowindow sur le marker avec l'adresse récupérée */
 		infowindow.setContent(results[4].formatted_address);
 		infowindow.open(map, marker);
 		google.maps.event.addListener(marker,'click', infoCallback(infowindow, marker));
+
+// 		google.maps.event.addListener(marker, 'dragstart', function(event) {
+       
+// 		if (coor == markersArray[0].getPosition()) {console.log("markersArray 1"); marker = markersArray[0];}
+// 		else {console.log("markersArray 2");marker = markersArray[1];}
+// 	    inverseCoord(marker,latlng,infowindow);
+// 		})
+
 		google.maps.event.addListener(marker, 'dragend', function(event) {
-        //message d'alerte affichant la nouvelle position du marqueur
-// 				    alert("La nouvelle coordonnÃ©e du marqueur est : "+event.latLng);
-	    latlng = event.latLng;
+        
+		latlng = event.latLng;
+
 	    inverseCoord(marker,latlng,infowindow);
+
+		
 	    });
 				    
 		}
@@ -177,7 +188,124 @@ $result = mysqli_query($con, $query);
 		})
 		}
 
+
+		function calcRoute()  {
+			
+		directionsService = null;
+		directionsRenderer = null;
+		depart = new google.maps.LatLng(markersArray[0].getPosition());
+		arrive = new google.maps.LatLng(markersArray[1].getPosition());
+			
+		directionsService = new google.maps.DirectionsService();
+		directionsRenderer = new google.maps.DirectionsRenderer();
+		    
+		directionsRenderer.setMap(map);
+		directionsDisplayArray = [];	
+			
+		var request = {
+		    origin: depart,
+		    destination: arrive,
+			travelMode: 'DRIVING'
+			           };
+		directionsService.route(request, function(result, status) {
+		if (status == 'OK') {
+		directionsRenderer.setDirections(result);
+		directionsDisplayArray.push(directionsRenderer);
+		calcroute = true;nbrevennt = 0;
+		alert("succes");
+		} else {alert("echec");}
+		});
+		}
+
+		
+		$('#enregistreritineraire').click(function () {				  
+
+		if (nbrevent == 2 && calcroute == true) 
+		{
+
+		departMarkerlatlng = new google.maps.LatLng(markersArray[0].getPosition());
+		arriveMarkerlatlng = new google.maps.LatLng(markersArray[1].getPosition());
+
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'latLng': departMarkerlatlng}, function(results, status) {
+		/* Si le géocodage inversé a réussi */
+		if (status == google.maps.GeocoderStatus.OK) {
+		if (results[2]) {
+		
+		var elt = results[0].address_components;
+
+		villedepart = elt[2].long_name;
+		console.log("ville de depart "+villedepart);
+						}
+													 } 
+
+
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'latLng': arriveMarkerlatlng}, function(results, status) {
+		/* Si le géocodage inversé a réussi */
+		if (status == google.maps.GeocoderStatus.OK) {
+		if (results[2]) {
+		
+		var elt = results[0].address_components;
+
+		villearrive = elt[2].long_name;
+		console.log("ville d arrive "+villearrive);
+		
+						}
+													 } 
+
+		if (!confirm("Voulez vous ENREGISTRER DEFINITIVEMENT l itineraire")) {document.location.href = "CoorAdresse.php"}
+		else {
+							
+
+			$.ajax({
+				  type: "POST",
+				  url: "EnregistrerItineraire.php",
+				  cache : false,
+				  data: {
+					depart: villedepart,
+				  	arrive: villearrive
+				  		},
+				  dataType: "text",
+				    "success": function (data, textStatus, jqXHR) {
+				        console.log("L'appel Ajax est une réussite.");
+				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
+				    },
+				    "error": function (jqXHR, textStatus, errorThrown) {
+				        console.log("L'appel Ajax est un échec.");
+				        $("#resultat").html("<p>Erreur lors de la connexion...</p>");
+				    }
+				});
+
+		    }
+
+																					}
+						)
+
+
+
+
+																						}
+						)
+		
+		
+		
+
+						
+		
+
+		nbrevent = 0; calcroute = false;
+		
+		}
+		})
 				
+		function traitement_callback(in_text){
+			   alert(in_text);
+			}
+		
+		
+		
 		function clearOverlays() {
 		for (var i = 0; i < markersArray.length; i++ ) {
 		this.markersArray[i].setMap(null);
@@ -202,33 +330,7 @@ $result = mysqli_query($con, $query);
 	return function() { infowindow.open(map, maker); };
 											  }
 	
-	function calcRoute()  {
 	
-	directionsService = null;
-	directionsRenderer = null;
-	depart = new google.maps.LatLng(markersArray[0].getPosition());
-	arrive = new google.maps.LatLng(markersArray[1].getPosition());
-	
-	directionsService = new google.maps.DirectionsService();
-	directionsRenderer = new google.maps.DirectionsRenderer();
-    
-	directionsRenderer.setMap(map);
-	directionsDisplayArray = [];	
-	
-	var request = {
-        origin: depart,
-        destination: arrive,
-		travelMode: 'DRIVING'
-		           };
-		directionsService.route(request, function(result, status) {
-		    if (status == 'OK') {
-		      directionsRenderer.setDirections(result);
-		      directionsDisplayArray.push(directionsRenderer);
-		      calcroute = true;nbrevennt = 0;
-		      alert("succes");
-		    } else {alert("echec");}
-		  });
-		}
 
 		
 	function effacerItineraire() {
@@ -247,11 +349,12 @@ $result = mysqli_query($con, $query);
 		directionsDisplayArray.length = 0;
 		markersArray.length = 0;
 		nbrevent = 0;
+		calcroute = false;
 		alert("fin effacerItineraire");}	
 	
 	
 		$('#caculitineraire').click(function () {
-            markersArray
+//             markersArray;
 			calcRoute();
 		
 		})
@@ -260,38 +363,16 @@ $result = mysqli_query($con, $query);
 			effacerItineraire();
 		});
 		
-		$('#enregistreritineraire').click(function () {				  
-// 			participation = $('#participation').val();
-			    console.log('Avant EnregistrerItineraire nbrevennt = '+nbrevent);
-			if (nbrevent == 2 && calcroute == true) 
-				{console.log('A l interieure de EnregistrerItineraire');
-				console.log('nbrevent = '+nbrevent);
-				var depart = ville[1]; 
-				var arrive = ville[2];
-
-				$.post(
-					'EnregistrerItineraire.php',
-		   			{
-					depart: depart,
-					arrive : arrive
-		   			},   
-		   		function(data, status, jqXHR){
-// 		   		alert("Data: " + data );
-		   		$('#resultat').append("statue : "+status+" data : "+data.responseData);
-		   		calcroute = false; nbrevent = 0;
-		   		}
-				)
-		}
-		})
+	
 		
-}			
+})
 /* fin du code javascript */
 			
 			
-			window.onload = function(){
-				// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
-				initMap(); 
-			};
+// 			window.onload = function(){
+// 				// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+// 				initMap(); 
+// 			};
 
 
 		
