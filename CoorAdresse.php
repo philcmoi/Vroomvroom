@@ -254,7 +254,7 @@ $result = mysqli_query($con, $query);
 						}
 													 } 
 
-		if (!confirm("Voulez vous ENREGISTRER DEFINITIVEMENT l itineraire")) {document.location.href = "CoorAdresse.php"}
+		if (!confirm("Voulez vous ENREGISTRER DEFINITIVEMENT l itineraire")) {}
 		else {
 							
 
@@ -270,7 +270,9 @@ $result = mysqli_query($con, $query);
 				    "success": function (data, textStatus, jqXHR) {
 				        console.log("L'appel Ajax est une réussite.");
 				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
+				        setTimeout(function() {$('#resultat').fadeOut(2000,traitement_callback("hello world"));document.location.href = 'indexdate.php'}, 3000);
+				        
+// 		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
 				    },
 				    "error": function (jqXHR, textStatus, errorThrown) {
 				        console.log("L'appel Ajax est un échec.");
