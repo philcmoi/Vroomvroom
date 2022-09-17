@@ -26,7 +26,7 @@ $result = mysqli_query($con, $query);
 <!-- 		<script src="https://maps.google.com/maps/api/js?key=AIzaSyA031jNEP24ibL2gqQpXy-us5hzE_0wkG8" type="text/javascript"></script> -->
 		<script src="javascripts/jquery.js"></script>
 		<script type="text/javascript" src="javascripts/jquery.googlemap.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTw6g0yl_vOw7obuqjMz0xhGLEPWdZo6g&libraries=geometry&sensor=false"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA031jNEP24ibL2gqQpXy-us5hzE_0wkG8&libraries=geometry&sensor=false"></script>
 		<script src="http://openlayers.org/api/OpenLayers.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -238,8 +238,10 @@ $result = mysqli_query($con, $query);
 		console.log("ville de depart "+villedepart);
 						}
 													 } 
-
-
+																					}
+						)
+		
+		
 		geocoder = new google.maps.Geocoder();
 		geocoder.geocode({'latLng': arriveMarkerlatlng}, function(results, status) {
 		/* Si le géocodage inversé a réussi */
@@ -253,14 +255,13 @@ $result = mysqli_query($con, $query);
 		
 						}
 													 } 
+																					}
+						)
 
-		if (!confirm("Voulez vous ENREGISTRER DEFINITIVEMENT l itineraire")) {}
+						
+		if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
 		else {
-			participation = $('#participation').val();
-			datedepart = $('#from_date').val();
-			datearrive = $('#to_date').val();
-			
-// 			if (villedepart&&villearive&&participation&&datedepart&&datearrive) {
+							
 
 			$.ajax({
 				  type: "POST",
@@ -268,18 +269,13 @@ $result = mysqli_query($con, $query);
 				  cache : false,
 				  data: {
 					depart: villedepart,
-				  	arrive: villearrive,
-				  	participation : participation,
-				  	datedepart : datedepart,
-		  			datearrive : datearrive
+				  	arrive: villearrive
 				  		},
 				  dataType: "text",
 				    "success": function (data, textStatus, jqXHR) {
 				        console.log("L'appel Ajax est une réussite.");
 				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-				        setTimeout(function() {$('#resultat').fadeOut(2000,traitement_callback("hello world"));document.location.href = 'indexdate.php'}, 3000);
-				        
-// 		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
+		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
 				    },
 				    "error": function (jqXHR, textStatus, errorThrown) {
 				        console.log("L'appel Ajax est un échec.");
@@ -287,27 +283,7 @@ $result = mysqli_query($con, $query);
 				    }
 				});
 
-			
-
-// 		    }
-
-// 			else {alert("Veuilliez saisir tout les champs");}
-		}
-
-																					}
-						)
-
-
-
-
-																						}
-						)
-		
-		
-		
-
-						
-		
+		    }
 
 		nbrevent = 0; calcroute = false;
 		
@@ -315,7 +291,7 @@ $result = mysqli_query($con, $query);
 		})
 				
 		function traitement_callback(in_text){
-			   console.log(in_text);
+			   alert(in_text);
 			}
 		
 		
@@ -334,7 +310,7 @@ $result = mysqli_query($con, $query);
 				})
 
 		$('#deconnexion').click(function () {
-		 clearOverlays();
+		 clearOverlays()
 		 nbrevent = 0;
 		 document.location.href = 'deconnecter.php';
 				})

@@ -5,7 +5,7 @@ session_start();
 // session_name("autrenom")
 
 
-// Détruit toutes les variables de session
+ //Détruit toutes les variables de session
 //$_SESSION = array();
 
 // Si vous voulez détruire complètement la session, effacez également
@@ -19,8 +19,8 @@ session_start();
 //         );
 // }
 
-setcookie("email",$email, time() -365*24*3600*2,'/','localhost',false,true);
-setcookie("token",$token, time() -365*24*3600*2,'/','localhost',false,true);
+// setcookie("email",$email, time() -365*24*3600*2,'/','localhost',false,true);
+// setcookie("token",$token, time() -365*24*3600*2,'/','localhost',false,true);
 // $_SESSION['logged'] = NULL;
 
 // Détruit toutes les variables de session

@@ -34,7 +34,7 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
         header('Location: indexdate.php');
     } else {
         $_SESSION['logged']='bienvenue';
-        header('Location: CoorAdresse.php');}
+        header('Location: indexdate2.php');}
     }
     else {header('Location: index.php?error=1');}
 }
