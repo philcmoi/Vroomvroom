@@ -271,11 +271,16 @@ $result = mysqli_query($con, $query);
 				  	arrive: villearrive,
 				  	participation : participation,
 				  	datedepart : datedepart,
-		  			datearrive : datearrive
+		  			datearrive : datearrive,
+		  			latDepart : departMarkerlatlng.lat(),
+  					longDepart : departMarkerlatlng.lng(),
+  					latArrive : arriveMarkerlatlng.lat(),
+  					longArrive : arriveMarkerlatlng.lng()
 				  		},
 				  dataType: "text",
 				    "success": function (data, textStatus, jqXHR) {
 				        console.log("L'appel Ajax est une réussite.");
+// 				        alert("longArrive " + longArrive);
 				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
 				        setTimeout(function() {$('#resultat').fadeOut(2000,traitement_callback("hello world"));document.location.href = 'indexdate.php'}, 3000);
 				        
@@ -334,7 +339,7 @@ $result = mysqli_query($con, $query);
 				})
 
 		$('#deconnexion').click(function () {
-		 clearOverlays();
+		 clearOverlays()
 		 nbrevent = 0;
 		 document.location.href = 'deconnecter.php';
 				})

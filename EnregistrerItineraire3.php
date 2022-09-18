@@ -2,11 +2,12 @@
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-if (isset($_POST['depart'], $_POST['arrive']))
+if (isset($_POST['depart'], $_POST['arrive'],$_POST['locationDepart'],$_POST['locationArrive']))
 {
 $depart = htmlentities($_POST['depart']);
 $arrive = htmlentities($_POST['arrive']);
-
+$locationDepart = $_POST['locationDepart'];
+$locationArrive = $_POST['locationArrive'];
 
     
     
@@ -14,13 +15,13 @@ $arrive = htmlentities($_POST['arrive']);
     $PDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
     $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
     
-    $sql = "INSERT INTO trajet (depart, arrive) VALUES (:depart,:arrive)";
+    $sql = "INSERT INTO trajet (depart, arrive, locationDepart, locationArrive) VALUES (:depart,:arrive,:locationDepart,:locationArrive)";
     
     try {
         
     $req = $PDO->prepare($sql);
     
-//     $PDO->query('SET foreign_key_checks = 0');
+    $PDO->query('SET foreign_key_checks = 0');
     //do some stuff here
     
     
@@ -29,11 +30,15 @@ $arrive = htmlentities($_POST['arrive']);
       
         "depart" => $depart,
         
-        "arrive" => $arrive
+        "arrive" => $arrive,
+        
+        "locationDepart" => $locationDepart,
+        
+        "locationArrive" => $locationArrive
         
         
     ));
-//     $PDO->query('SET foreign_key_checks = 1');
+    $PDO->query('SET foreign_key_checks = 1');
 }
 catch(PDOException $e){//Notez PDOException et pas seulement Exception
     die("Erreur d'insertion :".$e->getMessage());
@@ -62,16 +67,16 @@ if(isset($_POST["depart"], $_POST["arrive"],$_POST["participation"],$_POST["date
             
             $req = $PDO->prepare($sql);
             
-//             $PDO->query('SET foreign_key_checks = 0');
+            $PDO->query('SET foreign_key_checks = 0');
             //do some stuff here
         
         $sql = "INSERT INTO orders (conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive)
 VALUES (:conducteur,:lieudepart,:lieuarrive,:participation,:datedepart,:datearrive)";
         
         
-//         $req = $PDO->prepare($sql);
+        $req = $PDO->prepare($sql);
         
-//         $PDO->query('SET foreign_key_checks = 0');
+        $PDO->query('SET foreign_key_checks = 0');
         //do some stuff here
         
         
@@ -90,7 +95,7 @@ VALUES (:conducteur,:lieudepart,:lieuarrive,:participation,:datedepart,:datearri
             "datearrive" => $datearrive
             
         ));
-//         $PDO->query('SET foreign_key_checks = 1');
+        $PDO->query('SET foreign_key_checks = 1');
         
         }
         catch(PDOException $e){//Notez PDOException et pas seulement Exception

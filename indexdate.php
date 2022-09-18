@@ -145,8 +145,9 @@ if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
               </tr>
             <?php
             while($row = mysqli_fetch_array($result))
-            { $DateTime = DateTime::createFromFormat('Y-m-d', $row["datedepart"]);
-            $DateTime2 = DateTime::createFromFormat('Y-m-d', $row["datearrive"]);
+            { 
+//             $DateTime = DateTime::createFromFormat('Y-m-d', $row["datedepart"]);
+//             $DateTime2 = DateTime::createFromFormat('Y-m-d', $row["datearrive"]);
 //             $row["debutActivite"] = $DateTime->format('d-m-Y');
 //             $row["finActivite"] = $DateTime2->format('d-m-Y');
 //             $DateTime2 = DateTime::createFromFormat('Y-m-d', $row["end_activity"]);
