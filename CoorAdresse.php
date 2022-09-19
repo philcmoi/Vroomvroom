@@ -260,7 +260,7 @@ $result = mysqli_query($con, $query);
 			datedepart = $('#from_date').val();
 			datearrive = $('#to_date').val();
 			
-// 			if (villedepart&&villearive&&participation&&datedepart&&datearrive) {
+			if (villedepart&&villearrive&&participation&&datedepart&&datearrive) {
 
 			$.ajax({
 				  type: "POST",
@@ -294,9 +294,9 @@ $result = mysqli_query($con, $query);
 
 			
 
-// 		    }
+		    }
 
-// 			else {alert("Veuilliez saisir tout les champs");}
+			else {alert("Veuilliez saisir tout les champs");}
 		}
 
 																					}

@@ -1,100 +1,82 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-if (isset($_POST['depart'], $_POST['arrive']))
-{
-$depart = htmlentities($_POST['depart']);
-$arrive = htmlentities($_POST['arrive']);
+// if(isset($_POST["depart"], $_POST["arrive"],$_POST["participation"],$_POST["datedepart"], $_POST["datearrive"], $_POST["latDepart"], $_POST["longDepart"] , $_POST["latDepart"], $_POST["longArrive"]))
+// { 
 
+$lieuDepart = $_POST["depart"];
+$lieuArrive = $_POST['arrive'];
+$participation = $_POST['participation'];
+//     $lieuDepart = "Paris";
+//     $lieuArrive = "Bordeaux";
+//     $participation = "50.0";
+$datedepart = $_POST['datedepart'];
+$datearrive = $_POST['datearrive'];
+$latDepart = $_POST["latDepart"];
+$longDepart = $_POST["longDepart"];
+$latArrive = $_POST["latArrive"];
+$longArrive = $_POST["longArrive"];
 
-    
+try {
     
     $PDO = new PDO('mysql:host=localhost;dbname=philippe','root','');
     $PDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
     $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
     
-    $sql = "INSERT INTO trajet (depart, arrive) VALUES (:depart,:arrive)";
+    $sql = "INSERT INTO trajet (depart, arrive, latDepart, longDepart, latArrive, longArrive) VALUES (:depart,:arrive,:latDepart, :longDepart, :latArrive, :longArrive)";
     
-    try {
+//     $sql = "INSERT INTO trajet (depart, arrive) VALUES (:depart,:arrive)";
+    
         
     $req = $PDO->prepare($sql);
-    
-//     $PDO->query('SET foreign_key_checks = 0');
-    //do some stuff here
-    
     
     $req->execute(array(
         
       
-        "depart" => $depart,
+        "depart" => $lieuDepart,
         
-        "arrive" => $arrive
+        "arrive" => $lieuArrive,
+        
+         "latDepart" => $latDepart,
+        
+        "longDepart" => $longDepart,
+        
+        "latArrive" => $latArrive,
+        
+        "longArrive" => $longArrive
         
         
     ));
-//     $PDO->query('SET foreign_key_checks = 1');
+
+    $PDO = new PDO('mysql:host=localhost;dbname=philippe','root','');
+    $PDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+    $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
+
+$sql = "INSERT INTO orders (conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive) VALUES (:conducteur,:lieudepart,:lieuarrive,:participation,:datedepart,:datearrive)";
+
+// $sql = "INSERT INTO orders (conducteur, lieudepart, lieuarrive, participation) VALUES (:conducteur,:lieudepart,:lieuarrive,:participation)";
+
+$req = $PDO->prepare($sql);
+
+
+    $req->execute(array(
+        
+        "conducteur" => "anatta",
+        
+        "lieudepart" => $lieuDepart,
+        
+        "lieuarrive" => $lieuArrive,
+        
+        "participation" => $participation,
+        
+        "datedepart" => $datedepart,
+        
+        "datearrive" => $datearrive
+        
+    ));
+    
 }
-catch(PDOException $e){//Notez PDOException et pas seulement Exception
+catch(PDOException $e){
     die("Erreur d'insertion :".$e->getMessage());
 }
-}
-if(isset($_POST["depart"], $_POST["arrive"],$_POST["participation"],$_POST["datedepart"], $_POST["datearrive"] )) 
-{
-    
-    // $order_number = NULL;
-//     $conducteur = htmlentities($_POST['conducteur']);
-//     $conducteur = "Anata";
-    $lieudepart = htmlentities($_POST['depart']);
-    $lieuarrive = htmlentities($_POST['arrive']);
-    $participation = htmlentities($_POST['participation']);
-    $datedepart = $_POST['datedepart'];
-    $datearrive = $_POST['datearrive'];
-    
-    
-        
-        
-        $PDO = new PDO('mysql:host=localhost;dbname=philippe','root','');
-        $PDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
-        $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
-      
-        try {
-            
-            $req = $PDO->prepare($sql);
-            
-//             $PDO->query('SET foreign_key_checks = 0');
-            //do some stuff here
-        
-        $sql = "INSERT INTO orders (conducteur, lieudepart, lieuarrive, participation, datedepart, datearrive)
-VALUES (:conducteur,:lieudepart,:lieuarrive,:participation,:datedepart,:datearrive)";
-        
-        
-//         $req = $PDO->prepare($sql);
-        
-//         $PDO->query('SET foreign_key_checks = 0');
-        //do some stuff here
-        
-        
-        $req->execute(array(
-            
-            "conducteur" => "anatta",
-            
-            "lieudepart" => $lieudepart,
-            
-            "lieuarrive" => $lieuarrive,
-            
-            "participation" => $participation,
-            
-            "datedepart" => $datedepart,
-            
-            "datearrive" => $datearrive
-            
-        ));
-//         $PDO->query('SET foreign_key_checks = 1');
-        
-        }
-        catch(PDOException $e){//Notez PDOException et pas seulement Exception
-            die("Erreur d'insertion :".$e->getMessage());
-        }
-
-}
+// }
+// else {throw new Exception('Erreur ');
+// echo "ERREUR";}
