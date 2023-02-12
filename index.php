@@ -1,9 +1,9 @@
 <?php
 session_start();
-
+include ('db_config.php');
 if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     
-    $mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
+    $mysqli = new mysqli('127.0.0.1', $dbuser, $dbpass, $db);
     
     $token = htmlspecialchars($_COOKIE["token"]);
     
@@ -27,18 +27,18 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
 //     $_SESSION['logged']='bienvenue';
     
     mysqli_close($mysqli);
-    var_dump($email);
+//     var_dump($email);
     $result->close();
-    if ($email =='lhpp.philippe@gmail.com') {
-        $_SESSION['logged']='admin';
-        header('Location: indexdate.php');
-    } else {
-        $_SESSION['logged']='bienvenue';
-        header('Location: CoorAdresse.php');}
-    }
-    else {header('Location: index.php?error=1');}
+//     if ($email =='lhpp.philippe@gmail.com') {
+//         $_SESSION['logged']='admin';
+//         header('Location: indexdate.php');
+//     } else {
+//         $_SESSION['logged']='bienvenue';
+//         header('Location: indexdate2.php');}
+//     }
+//     else {header('Location: index.php?error=1');}
 }
-
+}
 
 ?>  
 
@@ -136,7 +136,8 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
 </br>
 <?php 
 
-  if (isset($_GET['error'])) {$error=htmlspecialchars($_GET['error']);
+  if (isset($_GET['error'])) {
+  $error=htmlspecialchars($_GET['error']);
 
 switch ($error) {
     case 1:
