@@ -23,10 +23,9 @@ $result = mysqli_query($con, $query);
 		<script src="javascripts/jquery.js"></script>		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<!-- 		<script src="https://maps.google.com/maps/api/js?key=AIzaSyA031jNEP24ibL2gqQpXy-us5hzE_0wkG8" type="text/javascript"></script> -->
 		<script src="javascripts/jquery.js"></script>
 		<script type="text/javascript" src="javascripts/jquery.googlemap.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTw6g0yl_vOw7obuqjMz0xhGLEPWdZo6g&libraries=geometry&sensor=false"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA031jNEP24ibL2gqQpXy-us5hzE_0wkG8&libraries=geometry&sensor=false""></script>
 		<script src="http://openlayers.org/api/OpenLayers.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -260,27 +259,22 @@ $result = mysqli_query($con, $query);
 			datedepart = $('#from_date').val();
 			datearrive = $('#to_date').val();
 			
-			if (villedepart&&villearrive&&participation&&datedepart&&datearrive) {
+// 			if (villedepart&&villearive&&participation&&datedepart&&datearrive) {
 
 			$.ajax({
 				  type: "POST",
-				  url: "enregistreretineraire.php",
+				  url: "enregistreritineraire.php",
 				  cache : false,
 				  data: {
 					depart: villedepart,
 				  	arrive: villearrive,
 				  	participation : participation,
 				  	datedepart : datedepart,
-		  			datearrive : datearrive,
-		  			latDepart : departMarkerlatlng.lat(),
-  					longDepart : departMarkerlatlng.lng(),
-  					latArrive : arriveMarkerlatlng.lat(),
-  					longArrive : arriveMarkerlatlng.lng()
+		  			datearrive : datearrive
 				  		},
 				  dataType: "text",
 				    "success": function (data, textStatus, jqXHR) {
 				        console.log("L'appel Ajax est une réussite.");
-// 				        alert("longArrive " + longArrive);
 				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
 				        setTimeout(function() {$('#resultat').fadeOut(2000,traitement_callback("hello world"));document.location.href = 'indexdate.php'}, 3000);
 				        
@@ -294,9 +288,9 @@ $result = mysqli_query($con, $query);
 
 			
 
-		    }
+// 		    }
 
-			else {alert("Veuilliez saisir tout les champs");}
+// 			else {alert("Veuilliez saisir tout les champs");}
 		}
 
 																					}
