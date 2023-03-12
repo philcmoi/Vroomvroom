@@ -25,7 +25,7 @@ $result = mysqli_query($con, $query);
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 		<script src="javascripts/jquery.js"></script>
 		<script type="text/javascript" src="javascripts/jquery.googlemap.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=geometry&sensor=false"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA031jNEP24ibL2gqQpXy-us5hzE_0wkG8&libraries=geometry&sensor=false""></script>
 		<script src="http://openlayers.org/api/OpenLayers.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -90,9 +90,10 @@ $result = mysqli_query($con, $query);
 		var ville = [];
 		var participation;
 		var calcroute = false;
-
-		function initMap() {
-			
+		var villedepart;
+		var villearrive;
+// 		function initMap() {
+		$(document).ready(function() {	
 		// Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
 		map = new google.maps.Map(document.getElementById("map"), {
 		// Nous plaçons le centre de la carte avec les coordonnées ci-dessus
@@ -233,13 +234,11 @@ $result = mysqli_query($con, $query);
 		var elt = results[0].address_components;
 
 		villedepart = elt[2].long_name;
-		console.log("ville de depart "+elt[2].long_name);
+		console.log("ville de depart "+villedepart);
 						}
 													 } 
-																					}
-						)
-		
-		
+
+
 		geocoder = new google.maps.Geocoder();
 		geocoder.geocode({'latLng': arriveMarkerlatlng}, function(results, status) {
 		/* Si le géocodage inversé a réussi */
@@ -249,48 +248,74 @@ $result = mysqli_query($con, $query);
 		var elt = results[0].address_components;
 
 		villearrive = elt[2].long_name;
-		console.log("ville d arrive "+elt[2].long_name);
+		console.log("ville d arrive "+villearrive);
 		
 						}
 													 } 
+
+		if (!confirm("Voulez vous ENREGISTRER DEFINITIVEMENT l itineraire")) {}
+		else {
+			participation = $('#participation').val();
+			datedepart = $('#from_date').val();
+			datearrive = $('#to_date').val();
+			
+// 			if (villedepart&&villearive&&participation&&datedepart&&datearrive) {
+
+			$.ajax({
+				  type: "POST",
+				  url: "enregistreritineraire.php",
+				  cache : false,
+				  data: {
+					depart: villedepart,
+				  	arrive: villearrive,
+				  	participation : participation,
+				  	datedepart : datedepart,
+		  			datearrive : datearrive
+				  		},
+				  dataType: "text",
+				    "success": function (data, textStatus, jqXHR) {
+				        console.log("L'appel Ajax est une réussite.");
+				        $("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
+				        setTimeout(function() {$('#resultat').fadeOut(2000,traitement_callback("hello world"));document.location.href = 'indexdate.php'}, 3000);
+				        
+// 		     		    $('#resultat').fadeOut(2000,traitement_callback("hello world"));
+				    },
+				    "error": function (jqXHR, textStatus, errorThrown) {
+				        console.log("L'appel Ajax est un échec.");
+				        $("#resultat").html("<p>Erreur lors de la connexion...</p>");
+				    }
+				});
+
+			
+
+// 		    }
+
+// 			else {alert("Veuilliez saisir tout les champs");}
+		}
+
 																					}
 						)
 
-						
-		if (confirm("Voulez vous resaisir l itineraire")) {document.location.href = "CoorAdresse.php"}
-		else {
-							
-		$.post('EnregistrerItineraire.php', {
-		depart: villedepart,
-		arrive: villearrive
-						      
-						  					},  
-		function(data){
-						  	 
-			if(data == "Success") {
-			// Le membre est connecté. Ajoutons lui un message dans la page HTML.
-			$("#resultat").html("<p>L ajout a ete effectuer avec succes ! </p><br><p>Vous allez etre rediriger sur la liste des activite");
-			setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
-//						            setTimeout(function(){ document.location.href = 'indexdate.php'; }, 2000);
-						          
-						           
-								   }
 
-						      
-			else  {		
-			$("#resultat").html("<p>Erreur lors de la connexion...</p>");
-				   }
-				},
-			'text'
-			);
+
+
+																						}
+						)
+		
+		
+		
+
+						
+		
 
 		nbrevent = 0; calcroute = false;
-		}
 		
 		}
 		})
 				
-		
+		function traitement_callback(in_text){
+			   console.log(in_text);
+			}
 		
 		
 		
@@ -321,23 +346,24 @@ $result = mysqli_query($con, $query);
 	
 
 		
-// 	function effacerItineraire() {
-// 		for (var i = 0; i < directionsDisplayArray.length; i++ ) {
-// 				directionsDisplayArray[i].setMap(null);
-// 				directionsDisplayArray[i].setPanel(null);
+	function effacerItineraire() {
+		for (var i = 0; i < directionsDisplayArray.length; i++ ) {
+				directionsDisplayArray[i].setMap(null);
+				directionsDisplayArray[i].setPanel(null);
 				
-// 				}
-// 		for (var i = 0; i < markersArray.length; i++ ) {
-// 				markersArray[i].setMap(null);
+				}
+		for (var i = 0; i < markersArray.length; i++ ) {
+				markersArray[i].setMap(null);
 					
-// 				}
+				}
 
-// 		directionsDisplayArray = [];
-// 		markersArray = [];
-// 		directionsDisplayArray.length = 0;
-// 		markersArray.length = 0;
-// 		nbrevent = 0;
-// 		alert("fin effacerItineraire");}	
+		directionsDisplayArray = [];
+		markersArray = [];
+		directionsDisplayArray.length = 0;
+		markersArray.length = 0;
+		nbrevent = 0;
+		calcroute = false;
+		alert("fin effacerItineraire");}	
 	
 	
 		$('#caculitineraire').click(function () {
@@ -346,20 +372,20 @@ $result = mysqli_query($con, $query);
 		
 		})
 		
-// 		$('#effaceritineraire').click(function () {				  
-// 			effacerItineraire();
-// 		});
+		$('#effaceritineraire').click(function () {				  
+			effacerItineraire();
+		});
 		
 	
 		
-}			
+})
 /* fin du code javascript */
 			
 			
-			window.onload = function(){
-				// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
-				initMap(); 
-			};
+// 			window.onload = function(){
+// 				// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+// 				initMap(); 
+// 			};
 
 
 		
@@ -388,9 +414,9 @@ $result = mysqli_query($con, $query);
       <div class="col-md-2">
         <input type="button" name="enregistreritineraire" id="enregistreritineraire" value="enregistrer l itineraire" class="btn btn-primary" />
       </div>
-<!--       <div class="col-md-2"> -->
-<!--         <input type="button" name="effaceritineraire" id="effaceritineraire" value="Effacer l itineraire" class="btn btn-primary" /> -->
-<!--       </div> -->
+      <div class="col-md-2">
+        <input type="button" name="effaceritineraire" id="effaceritineraire" value="Effacer l itineraire" class="btn btn-primary" />
+      </div>
       <div class="col-md-2">
         <input type="button" name="deconnexion" id="deconnexion" value="deconnexion" class="btn btn-primary" />
       </div>

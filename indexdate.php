@@ -138,8 +138,8 @@ if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
     <th width="20%">Lieu de Depart</th>
     <th width="20%">Lieu de d arrive</th>
     <th width="5%">Participation</th>
-    <th width="10%">Date de depart</th>
     <th width="10%">Date d arrive</th>
+    <th width="10%">Date de depart</th>
     <th width="5%">Effacer</th>
     <th width="5%">Mise a jour</th>
               </tr>
@@ -240,7 +240,7 @@ var days_Diff = time_diff / (1000 * 3600 * 24);
 
 
 $('#btn_add').click(function () {
-    window.location.href = 'ajouterActivite.php';
+    window.location.href = 'ajouteractivite.php';
    
 });
 
@@ -272,7 +272,7 @@ $("table tr").on("click",function () {
  	if(compar == 'Effacer' &&  identifiant != null){
 	if (confirm('Voulez vous effacer la ligne choisie')) {
 
-$.post('supprimerActivite.php', {
+$.post('supprimeractivite.php', {
 	identifiant : identifiant,
 								},
 								

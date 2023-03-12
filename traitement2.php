@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+include ('db_config.php');
 
 
 $email = htmlspecialchars( $_POST["email"]) ;
@@ -26,7 +27,7 @@ $_SESSION["logged"] = 'traitement2';
 
 
 
-$mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
+$mysqli = new mysqli('127.0.0.1', $dbuser, $dbpass, $db);
 
 
 

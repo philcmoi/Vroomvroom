@@ -1,9 +1,9 @@
 <?php
 session_start();
-
+include ('db_config.php');
 if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     
-    $mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
+    $mysqli = new mysqli('127.0.0.1', $dbuser, $dbpass, $db);
     
     $token = htmlspecialchars($_COOKIE["token"]);
     
