@@ -1,184 +1,272 @@
-<?php
-session_start();
-
-if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
-    
-    $mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
-    
-    $token = htmlspecialchars($_COOKIE["token"]);
-    
-    $email = htmlspecialchars($_COOKIE["email"]);
-    
-    $sql = "SELECT email, password, token FROM membre WHERE email = '".$email."' and token = '".$token."' ";
-    
-    if (!$result = $mysqli->query($sql)) {
-        
-        
-    }
-    
-    if ($result->num_rows === 0) {
-        
-        
-    }
-    
-    if ($data = mysqli_fetch_array($result))
-    { $pass = $data['password'];
-    
-//     $_SESSION['logged']='bienvenue';
-    
-    mysqli_close($mysqli);
-    var_dump($email);
-    $result->close();
-    if ($email =='lhpp.philippe@gmail.com') {
-        $_SESSION['logged']='admin';
-        header('Location: indexdate.php');
-    } else {
-        $_SESSION['logged']='bienvenue';
-        header('Location: CoorAdresse.php');}
-    }
-    else {header('Location: index.php?error=1');}
-}
-
-
-?>  
-
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.101.0">
-    <title>Signin Template · Bootstrap v5.2</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
-
-    
-
-    
-
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
-  </head>
-  <body class="text-center">
-    
-<main class="form-signin w-100 m-auto">
-  <form class="form-signin" action="traitement.php" method="post" >
-    <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Stylish Portfolio - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Simple line icons-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#page-top">Start Bootstrap</a></li>
+                <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
+                <li class="sidebar-nav-item"><a href="#about">About</a></li>
+                <li class="sidebar-nav-item"><a href="#services">Services</a></li>
+                <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
+                <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- Header-->
+        <header class="masthead d-flex align-items-center">
+            <div class="container px-4 px-lg-5 text-center">
+                <h1 class="mb-1">Stylish Portfolio</h1>
+                <h3 class="mb-5"><em>A Free Bootstrap Theme by Start Bootstrap</em></h3>
+                <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="content-section bg-light" id="about">
+            <div class="container px-4 px-lg-5 text-center">
+<!--                 <div class="row gx-4 gx-lg-5 justify-content-center"> -->
+<!--                     <div class="col-lg-10"> -->
+<!--                         <h2>Stylish Portfolio is the perfect theme for your next project!</h2> -->
+<!--                         <p class="lead mb-5"> -->
+<!--                             This theme features a flexible, UX friendly sidebar menu and stock photos from our friends at -->
+<!--                             <a href="https://unsplash.com/">Unsplash</a> -->
+<!--                             ! -->
+<!--                         </p> -->
+<!--                         <a class="btn btn-dark btn-xl" href="#services">What We Offer</a> -->
+<!--                     </div> -->
+<!--                     <form  action="traitement2.php" method="post" > -->
+<div id="about">
+          <form class="form-signin" action="traitementaccueil.php" method="post"  >
+<!--     <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+    <h1 class="h3 mb-3 fw-normal">Enregistrez vous</h1>
 
     <div class="form-floating">
-  <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" autofocus>
-<!--       <label for="floatingInput">Email address</label> -->
+  <input type="email" name="email" id="floatingInput" class="form-control" required >
+      <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-  <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" >
-<!--       <label for="floatingPassword">Password</label> -->
+  <input type="text" name="pseudo" id="pseudo" class="form-control"  required>
+      <label for="floatingPassword">pseudo</label>
     </div>
+    <div class="form-floating">
+  <input type="password" name="password" id="floatingPassword" class="form-control"  required>
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating">
+  <input type="password" name="password2" id="floatingPassword2" class="form-control"  required>
+      <label for="floatingPassword">Password de verication</label>
+    </div>
+    </br>
+<button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" onclick="window.location.replace('index.php')" name="rememberme" value="Annuler" /> <!-- Bouton d'annulation -->
+    
+    
 </br>
 <?php 
 
-  if (isset($_GET['error'])) {$error=htmlspecialchars($_GET['error']);
+   if (isset($_GET['erreure']))   
+   {$error=htmlspecialchars($_GET['erreure']);
 
 switch ($error) {
+   
     case 1:
 
-        echo " Donnees incorrectes ";
+        echo " email existant ";
         break;
+            
         
     case 2:
-
-        echo " Donnees incorrectes";
+        
+        echo " pseudo existant ";
         break;
         
     case 3:
+        
+        echo " mots de passe non identiques ";
+        break;
+        
+        
+    case 4:
         echo "vous avez ete deconnecte";
         break;
         
-    case 4:
+    case 5:
         echo "New record created successfully";
         break;
+        
+        
+        
+        
               }
-
-  ;}
+}
 ?>
-      
+<!--   <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p> -->
+   
+</form>      
+                
+                
+                </div>
+            </div>
+        </section>
+
   
-    <button class="w-100 btn btn-lg btn-primary" type="submit">S'identifier</button>
-    </br>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" name="rememberme" > Se souvenir de moi
-      </label>
-      </br> 
-    </div>  
-    <a href="enregistrement.php" title="S enregistrer" target="_blank" rel="noopener noreferrer">S enregistrer</a>
-
-        <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
-	
-  
-  </form>
-</main>
 
 
-    
-  </body>
+        <!-- Services-->
+        <section class="content-section bg-primary text-white text-center" id="services">
+            <div class="container px-4 px-lg-5">
+                <div class="content-section-heading">
+                    <h3 class="text-secondary mb-0">Services</h3>
+                    <h2 class="mb-5">What We Offer</h2>
+                </div>
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-screen-smartphone"></i></span>
+                        <h4><strong>Responsive</strong></h4>
+                        <p class="text-faded mb-0">Looks great on any screen size!</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-pencil"></i></span>
+                        <h4><strong>Redesigned</strong></h4>
+                        <p class="text-faded mb-0">Freshly redesigned for Bootstrap 5.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-like"></i></span>
+                        <h4><strong>Favorited</strong></h4>
+                        <p class="text-faded mb-0">
+                            Millions of users
+                            <i class="fas fa-heart"></i>
+                            Start Bootstrap!
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-mustache"></i></span>
+                        <h4><strong>Question</strong></h4>
+                        <p class="text-faded mb-0">I mustache you a question...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Callout-->
+        <section class="callout">
+            <div class="container px-4 px-lg-5 text-center">
+                <h2 class="mx-auto mb-5">
+                    Welcome to
+                    <em>your</em>
+                    next website!
+                </h2>
+                <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/theme/stylish-portfolio/">Download Now!</a>
+            </div>
+        </section>
+        <!-- Portfolio-->
+        <section class="content-section" id="portfolio">
+            <div class="container px-4 px-lg-5">
+                <div class="content-section-heading text-center">
+                    <h3 class="text-secondary mb-0">Portfolio</h3>
+                    <h2 class="mb-5">Recent Projects</h2>
+                </div>
+                <div class="row gx-0">
+                    <div class="col-lg-6">
+                        <a class="portfolio-item" href="#!">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <div class="h2">Stationary</div>
+                                    <p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio-1.jpg" alt="..." />
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a class="portfolio-item" href="#!">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <div class="h2">Ice Cream</div>
+                                    <p class="mb-0">A dark blue background with a colored pencil, a clip, and a tiny ice cream cone!</p>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio-2.jpg" alt="..." />
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a class="portfolio-item" href="#!">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <div class="h2">Strawberries</div>
+                                    <p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio-3.jpg" alt="..." />
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a class="portfolio-item" href="#!">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <div class="h2">Workspace</div>
+                                    <p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio-4.jpg" alt="..." />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Call to Action-->
+        <section class="content-section bg-primary text-white">
+            <div class="container px-4 px-lg-5 text-center">
+                <h2 class="mb-4">The buttons below are impossible to resist...</h2>
+                <a class="btn btn-xl btn-light me-4" href="#!">Click Me!</a>
+                <a class="btn btn-xl btn-dark" href="#!">Look at Me!</a>
+            </div>
+        </section>
+        <!-- Map-->
+        <div class="map" id="contact">
+            <iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
+            <br />
+            <small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a></small>
+        </div>
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container px-4 px-lg-5">
+                <ul class="list-inline mb-5">
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white mr-3" href="#!"><i class="icon-social-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white mr-3" href="#!"><i class="icon-social-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white" href="#!"><i class="icon-social-github"></i></a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-0">Copyright &copy; Your Website 2022</p>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
 </html>

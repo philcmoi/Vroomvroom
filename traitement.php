@@ -2,7 +2,7 @@
 // setcookie("email",$email, time() + 365*24*3600,'/','localhost',false,true);
 // setcookie("token",$token, time() + 365*24*3600,'/','localhost',false,true);
 
-
+include('db_config.php');
 $email = htmlspecialchars( $_POST['email']) ;
 $password = htmlspecialchars( $_POST['password']);
   
@@ -11,9 +11,13 @@ $password = htmlspecialchars( $_POST['password']);
     $_SESSION['password'] = $password;
     $_SESSION['logged'] = 'bienvenue';
             
-    $mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
+//     $mysqli = new mysqli('127.0.0.1', 'u909244959_philippe', 'l@99339RWFH5465', 'u909244959_wroomwroom');
 
-   
+//     $mysqli = new mysqli('127.0.0.1', 'u909244959_philippe', 'l@99339RWFH5465', 'u909244959_wroomwroom');
+    echo "avant new sqli";
+    $mysqli = new mysqli('127.0.0.1', $dbuser, $dbpass, $db);
+    
+    echo "apres sqli";
     
    //On créé la requête
 //    $req="SELECT login, password FROM jeux_video WHERE login =.'.$var.'. AND password =.'.$password.'";
@@ -73,7 +77,7 @@ $password = htmlspecialchars( $_POST['password']);
             }
             else {
                 $_SESSION['logged'] ='bienvenue';
-                header('Location: CoorAdresse.php');} ;
+                header('Location: cooradresse.php');} ;
       } else {header('Location: index.php?error=1');};
   }
 

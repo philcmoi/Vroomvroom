@@ -42,36 +42,36 @@ $sql2 = "INSERT INTO membre (idmembre, email, pseudo,token,password)
 VALUES (NULL,'$email', '$pseudo','$token','$pass')";
 
 $result = $mysqli->query($sql);
-    
-    /* Détermine le nombre de lignes du jeu de résultats */
-    $row_cnt = $result->num_rows;
-    
-    $result1 = $mysqli->query($sql1);
-    $row_cnt1 = $result1->num_rows;
-    
-    if ($row_cnt != 0) {header('Location: enregistrement.php?erreure=1');
+
+/* Détermine le nombre de lignes du jeu de résultats */
+$row_cnt = $result->num_rows;
+
+$result1 = $mysqli->query($sql1);
+$row_cnt1 = $result1->num_rows;
+
+if ($row_cnt != 0) {header('Location: index.php?erreure=1');
 
 
-    }
-    elseif ($row_cnt1 != 0) {header('Location: enregistrement.php?erreure=2');}
+}
+elseif ($row_cnt1 != 0) {header('Location: index.php?erreure=2');}
 
-    elseif ($password != $password2)
-    {header('Location: enregistrement.php?erreure=3');}
-    else {
+elseif ($password != $password2)
+{header('Location: enregistrement.php?erreure=3');}
+else {
     $mysqli->query("INSERT INTO membre (idmembre, email, pseudo,token,password)
 VALUES (NULL,'$email', '$pseudo','$token','$pass')");
-        
+    
     header('Location: index.php?error=4');  }
     
- 
     
     
-        
+    
+    
     $mysqli->close();
-
-
+    
+    
     
     /* Ferme le jeu de résultats */
     $result->close();
     $result1->close();
-?>
+    ?>

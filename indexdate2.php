@@ -111,9 +111,9 @@ $result = mysqli_query($con, $query);
       <div class="col-md-2">
         <input type="button" name="search" id="btn_search" value="Search" class="btn btn-primary" />
       </div>
-      <div class="col-md-2">
-        <input type="button" name="add" id="btn_add" value="Add" class="btn btn-primary" />
-      </div>
+<!--       <div class="col-md-2"> -->
+<!--         <input type="button" name="add" id="btn_add" value="Add" class="btn btn-primary" /> -->
+<!--       </div> -->
 <?php 
 if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
 {
@@ -138,16 +138,15 @@ if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
     <th width="20%">Lieu de Depart</th>
     <th width="20%">Lieu de d arrive</th>
     <th width="5%">Participation</th>
-    <th width="10%">Date d arrive</th>
     <th width="10%">Date de depart</th>
-    <th width="5%">Effacer</th>
-    <th width="5%">Mise a jour</th>
+    <th width="10%">Date d arrive</th>
+<!--     <th width="5%">Effacer</th> -->
+<!--     <th width="5%">Mise a jour</th> -->
               </tr>
             <?php
             while($row = mysqli_fetch_array($result))
-            { 
-//             $DateTime = DateTime::createFromFormat('Y-m-d', $row["datedepart"]);
-//             $DateTime2 = DateTime::createFromFormat('Y-m-d', $row["datearrive"]);
+            { $DateTime = DateTime::createFromFormat('Y-m-d', $row["datedepart"]);
+            $DateTime2 = DateTime::createFromFormat('Y-m-d', $row["datearrive"]);
 //             $row["debutActivite"] = $DateTime->format('d-m-Y');
 //             $row["finActivite"] = $DateTime2->format('d-m-Y');
 //             $DateTime2 = DateTime::createFromFormat('Y-m-d', $row["end_activity"]);
@@ -166,8 +165,6 @@ if (!empty($_COOKIE["token"]) || !empty($_COOKIE["email"]))
                   <td><?php echo numfmt_format_currency($fmt, $row["participation"], "EUR")."\n"; ?></td>
                   <td><?php echo date_format($date1, 'd/m/Y H:i'); ?></td>
                   <td><?php echo date_format($date2, 'd/m/Y H:i'); ?></td>
-                  <td><?php echo "Effacer"; ?></td>
-                  <td><?php echo "Mise a jour"; ?></td>
               </tr>
             <?php
             }
@@ -193,141 +190,50 @@ $(document).ready(function () {
 
 	     return [day, month, year].join('-');
 	 }
-	
-$('#btn_search').click(function () {
-
-var from_date = $('#from_date').val();
-var to_date = $('#to_date').val();
-
-// fromdatechanged = formatDate(from_date);
-// todatechanged = formatDate(to_date);
-
-// $('#from_date').val(fromdatechanged);
-// $('#to_date').val(todatechanged);
 
 
+	$('#btn_search').click(function () {
 
-var date1 = new Date(from_date);
-var date2 = new Date(to_date);
+		var from_date = $('#from_date').val();
+		var to_date = $('#to_date').val();
+
+		// fromdatechanged = formatDate(from_date);
+		// todatechanged = formatDate(to_date);
+
+		// $('#from_date').val(fromdatechanged);
+		// $('#to_date').val(todatechanged);
 
 
 
- // différence des heures
-var time_diff = date2.getTime()-date1.getTime();
-
-// alert("difference");
-
-// alert("time_diff "+ time_diff);
- // différence de jours
-var days_Diff = time_diff / (1000 * 3600 * 24);
-
- alert("days_Diff "+ days_Diff);
-
-	   if (days_Diff < 0) {alert("dates invalide");}
-	   	  else {
-
-	   		$.post('action.php',
-	   			    {
-	   			datedepart: from_date,
-	   			datearrive: to_date
-	   			    }, function(data) {
-	   			        $('#purchase_order').html(data);
-	   			});
-
-	   	  }
-});
+		var date1 = new Date(from_date);
+		var date2 = new Date(to_date);
 
 
 
-$('#btn_add').click(function () {
-    window.location.href = 'ajouteractivite.php';
-   
-});
+		 // différence des heures
+		var time_diff = date2.getTime()-date1.getTime();
 
-// if (confirm('Some message')) {
-//     alert('Thanks for confirming');
-// } else {
-//     alert('Why did you press cancel? You should have confirmed');
-// }
+		// alert("difference");
 
+		// alert("time_diff "+ time_diff);
+		 // différence de jours
+		var days_Diff = time_diff / (1000 * 3600 * 24);
 
+		 alert("days_Diff "+ days_Diff);
 
-$("table tr").on("click",function () {
+			   if (days_Diff < 0) {alert("dates invalide");}
+			   	  else {
 
+			   		$.post('action.php',
+			   			    {
+			   			datedepart: from_date,
+			   			datearrive: to_date
+			   			    }, function(data) {
+			   			        $('#purchase_order').html(data);
+			   			});
 
-	var identifiant = $(this).find('td:first').html();
+			   	  }
+		});
+ 	})
 
-// 	alert ("$(this).find('td:first').html()  "+identifiant);
-	
-// 	alert(identifiant);
-
-	var clickedCell=$(event.target);
-
-//     alert("clickedCell "+clickedCell.text());
-
-		
- 	var compar = clickedCell.text();
-//  	alert(compar+ ' ok');
-
- 	if(compar == 'Effacer' &&  identifiant != null){
-	if (confirm('Voulez vous effacer la ligne choisie')) {
-
-$.post('supprimeractivite.php', {
-	identifiant : identifiant,
-								},
-								
-    function(data){
-
-        if (data == "Success") {           
-            $("#resultat").html(" ! <p>Vous allez etre rediriger sur la liste des activite</p>");
-            setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
-        	
-            } 
-        else {
-            $("#resultat").html("<p>Erreur lors de la connexion...</p>");
-    	    }
-	        },
-	        'text'
-	        );
-	}
-	else {};
-}
-
- 	if(compar == 'Mise a jour'){
- 		localStorage.setItem("cleef",identifiant);
-// 	 		alert("identifiant "+identifiant);
-// 	 		verif = localStorage.getItem("cleef");
-// 	 		alert("verif "+ verif);
-	 		if (identifiant != null) {
- 		if (confirm('Voulez vous modifier les donnees de la ligne choisie')) {
- 	 		localStorage.setItem("cleef",identifiant);
-//  	 		alert("identifiant "+identifiant);
- 	 		verif = localStorage.getItem("cleef");
-//  	 		alert("verif "+ verif);
- 		    window.location.href = 'update.php';}
-
-//  	$.post('Update.php', {
-//  		identifiant : identifiant,
-//  									},
- 									
-//  	    function(data){
-
-//  	        if (data == "Success") {           
-//  	            $("#resultat").html(" ! <p>Vous allez etre rediriger sur la liste des activite</p>");
-//  	            setTimeout(function() {$('#resultat').fadeOut();document.location.href = 'indexdate.php'}, 3000);
- 	        	
-//  	            } 
-//  	        else {
-//  	            $("#resultat").html("<p>Erreur lors de la connexion...</p>");
-//  	    	    }
-//  		        },
-//  		        'text'
-//  		        );
- 		}
-//  		else {};
- 	}
- 	
-});
-
-})
 </script>
