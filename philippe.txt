@@ -1,0 +1,86 @@
+===Base de données philippe
+
+== Structure de la table membre
+
+|------
+|Colonne|Type|Null|Valeur par défaut
+|------
+|//**idmembre**//|int|Non|
+|email|varchar(100)|Non|
+|pseudo|varchar(100)|Non|
+|token|varchar(10000)|Non|
+|password|varchar(10000)|Non|
+|role|varchar(25)|Non|visiteur
+== Déchargement des données de la table membre
+
+|12|lhpp.philippe@gmail.com|wfh|164038145|$2y$10$1s0C2N6yIVF6twkuPyElMuxwjbDYFMyu0gDiykXwG/6w3iTWG63uy|visiteur
+|13|wongfeyhong45@gmail.com|wfh45|254776898|$2y$10$aSwWWTDoVKUnnEa08SjA2u7ZtiIl.Ut5ZNRCkak1xMzqRARl46nKq|visiteur
+|16|wongfeyhong1@gmail.com|wfh1|238381825|$2y$10$AyiJSPZUUVM4EW7Apq7VfeLmwIxUjPf12wmWm/6Y.iWUTTPZoSGvG|visiteur
+|17|wfhphilippe@gmail.com|wfhphilippe|1886015738|$2y$10$V/1Kau1kqXhHLoSoyEGTc.vkYxiDgM88.1aAPfUq/XU9cKLw3ejre|visiteur
+|18|lhpp.philippe2@gmail.com|mp|718516018|$2y$10$PKKsAvIL9CfE5de79Awh0e7koyATmSdV8jBqBwI6uZJ00.v0zXXwi|visiteur
+== Structure de la table orders
+
+|------
+|Colonne|Type|Null|Valeur par défaut
+|------
+|//**order_number**//|int|Non|
+|conducteur|varchar(100)|Oui|NULL
+|lieudepart|varchar(500)|Oui|NULL
+|lieuarrive|varchar(255)|Oui|NULL
+|participation|double|Oui|NULL
+|datedepart|datetime|Oui|NULL
+|datearrive|datetime|Oui|NULL
+|membre_idmembre|int|Non|
+== Déchargement des données de la table orders
+
+|19|elan retrouve|Paris|Bordeaux|50|2022-12-16 19:12:00|2022-12-16 19:12:00|0
+|20|philippe|Paris|Bordeaux|50|2022-12-08 19:31:00|2022-12-08 19:31:00|0
+|21|philippe|Paris|Pekin|500|2022-12-08 19:45:00|2022-12-08 19:45:00|0
+|22|elan retrouve et moi|Paris|Pekin|500|2022-12-16 19:06:00|2022-12-16 19:06:00|0
+|23|elan retrouve et moi|Paris|Pekin|500|2022-12-16 19:13:00|2022-12-16 19:13:00|0
+|24|DECONNECTE|Paris|Bordeaux|50|2023-02-11 19:25:00|2023-02-11 19:25:00|0
+|26|DECONNECTE|Paris|Paris|0|2023-02-13 15:52:00|2023-02-13 15:52:00|0
+|27|elan retrouve|Paris|Bordeaux|50|2023-02-19 08:29:00|2023-02-27 08:29:00|0
+|28|elan retrouve|Paris|Bordeaux|50|2023-02-22 18:25:00|2023-02-22 18:25:00|0
+|31|elan retrouve|Paris|Pekin|500|2023-03-12 08:03:00|2023-03-12 08:03:00|0
+== Structure de la table prospects
+
+|------
+|Colonne|Type|Null|Valeur par défaut
+|------
+|//**idprospects**//|int|Non|
+|nom|varchar(50)|Non|
+|email|varchar(50)|Non|
+|numtel|varchar(20)|Non|
+== Déchargement des données de la table prospects
+
+== Structure de la table trajet
+
+|------
+|Colonne|Type|Null|Valeur par défaut
+|------
+|//**idtrajet**//|int|Non|
+|depart|varchar(255)|Oui|NULL
+|arrive|varchar(255)|Oui|NULL
+|latDepart|float|Oui|NULL
+|longDepart|float|Oui|NULL
+|latArrive|float|Oui|NULL
+|longArrive|float|Oui|NULL
+|//**orders_order_number**//|int|Non|
+== Déchargement des données de la table trajet
+
+|11|Paris|Suresnes|48.8326|2.31365|48.8616|2.20585|0
+|12|Paris|Rueil-Malmaison|48.8286|2.32315|48.8661|2.19818|0
+|13|Clamart|Paris|48.8078|2.26971|48.8503|2.3164|0
+|14|Paris|DÃ©partement de Paris|48.829|2.32625|48.8819|2.31389|0
+== Structure de la table visiteur
+
+|------
+|Colonne|Type|Null|Valeur par défaut
+|------
+|//**idvisiteur_visiteur**//|bigint|Non|
+|Nom_visiteur|varchar(50)|Oui|NULL
+|prenom_visiteur|varchar(50)|Oui|NULL
+|email_visiteur|varchar(50)|Oui|NULL
+== Déchargement des données de la table visiteur
+
