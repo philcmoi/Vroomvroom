@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="description" content="Plusieurs dispositifs diminuent le montant de votre impôt à payer : déduction, réduction d&#39;impôt et crédit d&#39;impôt." />
+        <meta name="author" content="Philippe L" />
         <title>Payer moins d'impots</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -22,7 +22,7 @@
         <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
         <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="#page-top">Start Bootstrap</a></li>
+                <li class="sidebar-brand"><a href="#page-top"></a></li>
                 <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
                 <li class="sidebar-nav-item"><a href="#about">About</a></li>
                 <li class="sidebar-nav-item"><a href="#services">Services</a></li>
@@ -36,7 +36,7 @@
                 <h1 class="mb-1">PREVOYANCE</h1>
                 <h1 class="mb-1">PATRIMOINE</h1>
                 
-                <h3 class="mb-5"><em>Conseils en defiscalisation de l'impot sur le revenue</em></h3>
+                <h3 class="mb-5" ><em style="color:white;">Conseils en defiscalisation de l'impot sur le revenue</em></h3>
                 <a class="btn btn-primary btn-xl" href="#about">En Savoir Plus</a>
             </div>
         </header>
@@ -146,7 +146,7 @@ switch ($error) {
                     </div>
                     <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                         <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-pencil"></i></span>
-                        <h4><strong>Etude de votre situation ficale</strong></h4>
+                        <h4><strong>Etude de votre situation fiscale</strong></h4>
                         <p class="text-faded mb-0">
                         </p>
                     </div>
@@ -182,74 +182,73 @@ switch ($error) {
             </div>
         </section>
         <!-- Portfolio-->
-<!--         <section class="content-section" id="portfolio"> -->
-<!--             <div class="container px-4 px-lg-5"> -->
-<!--                 <div class="content-section-heading text-center"> -->
-<!--                     <h3 class="text-secondary mb-0">Portfolio</h3> -->
-<!--                     <h2 class="mb-5">Projet recent</h2> -->
-<!--                 </div> -->
-<!--                 <div class="row gx-0"> -->
-<!--                     <div class="col-lg-6"> -->
-<!--                         <a class="portfolio-item" href="#!"> -->
-<!--                             <div class="caption"> -->
-<!--                                 <div class="caption-content"> -->
-<!--                                     <div class="h2"></div> -->
-<!--                                     <p class="mb-0"></p> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             <img class="img-fluid" src="assets/img/portfolio-1.jpg" alt="..." /> -->
-<!--                         </a> -->
-<!--                     </div> -->
-<!--                     <div class="col-lg-6"> -->
-<!--                         <a class="portfolio-item" href="#!"> -->
-<!--                             <div class="caption"> -->
-<!--                                 <div class="caption-content"> -->
-<!--                                     <div class="h2"></div> -->
-<!--                                     <p class="mb-0"></p> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             <img class="img-fluid" src="assets/img/portfolio-2.jpg" alt="..." /> -->
-<!--                         </a> -->
-<!--                     </div> -->
-<!--                     <div class="col-lg-6"> -->
-<!--                         <a class="portfolio-item" href="#!"> -->
-<!--                             <div class="caption"> -->
-<!--                                 <div class="caption-content"> -->
-<!--                                     <div class="h2"></div> -->
-<!--                                     <p class="mb-0"></p> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             <img class="img-fluid" src="assets/img/portfolio-3.jpg" alt="..." /> -->
-<!--                         </a> -->
-<!--                     </div> -->
-<!--                     <div class="col-lg-6"> -->
-<!--                         <a class="portfolio-item" href="#!"> -->
-<!--                             <div class="caption"> -->
-<!--                                 <div class="caption-content"> -->
-<!--                                     <div class="h2">Workspace</div> -->
-<!--                                     <p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             <img class="img-fluid" src="assets/img/portfolio-4.jpg" alt="..." /> -->
-<!--                         </a> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </section> -->
+        <section class="content-section" id="portfolio">
+            <div class="container px-4 px-lg-5">
+                <div class="content-section-heading text-center">
+                    <h3 class="text-secondary mb-0">Portfolio</h3>
+                    <h2 class="mb-5">Projet recent</h2>
+                </div>
+                <div class="row gx-0">
+                    <div class="col-lg-6">
+                        <a class="portfolio-item" href="#!">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <div class="h2"></div>
+                                    <p class="mb-0"></p>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio-1.jpg" alt="..." />
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a class="portfolio-item" href="#!">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <div class="h2"></div>
+                                    <p class="mb-0"></p>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio-2.jpg" alt="..." />
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a class="portfolio-item" href="#!">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <div class="h2"></div>
+                                    <p class="mb-0"></p>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio-3.jpg" alt="..." />
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a class="portfolio-item" href="#!">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <div class="h2">Espace de travail</div>
+                                    <p class="mb-0">Un espace de travail jaune avec des ciseaux, des crayons et d'autres objets.</p>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio-4.jpg" alt="..." />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Call to Action-->
-<!--         <section class="content-section bg-primary text-white"> -->
-<!--             <div class="container px-4 px-lg-5 text-center"> -->
-<!--                 <h2 class="mb-4">The buttons below are impossible to resist...</h2> -->
-<!--                 <a class="btn btn-xl btn-light me-4" href="#!">Click Me!</a> -->
-<!--                 <a class="btn btn-xl btn-dark" href="#!">Look at Me!</a> -->
-<!--             </div> -->
-<!--         </section> -->
+        <section class="content-section bg-primary text-white">
+            <div class="container px-4 px-lg-5 text-center">
+                <h2 class="mb-4">Impossible de resister aux boutons ci-dessous...</h2>
+                <a class="btn btn-xl btn-light me-4" href="#!">Cliquez sur moi!</a>
+                <a class="btn btn-xl btn-dark" href="#!">Regardez-moi!</a>
+            </div>
+        </section>
         <!-- Map-->
-<!--         <div class="map" id="contact"> -->
-<!--             <iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe> -->
-<!--             <br /> -->
-<!--             <small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a></small> -->
-<!--         </div> -->
+        <div class="map" id="contact">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5250.684366339986!2d2.26684!3d48.851685!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67b3cef342aef%3A0x32543438aecb08b3!2sLocale%20professionnel!5e0!3m2!1sfr!2sfr!4v1678893530307!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<!--         <small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a></small> -->
+        </div>
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container px-4 px-lg-5">
