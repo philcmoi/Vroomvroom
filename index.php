@@ -84,6 +84,7 @@
 
    if (isset($_GET['erreure']))   
    {$error=htmlspecialchars($_GET['erreure']);
+ 
 
 switch ($error) {
    
