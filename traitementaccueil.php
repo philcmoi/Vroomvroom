@@ -53,7 +53,7 @@ if ($row_cnt != 0) {header('Location: index.php?erreure=1&#about');
 
 
 }
-elseif ($row_cnt1 != 0) {header('Location: index.php#about?erreure=2#about');}
+elseif ($row_cnt1 != 0) {header('Location: index.php?erreure=2#about');}
 
 elseif ($password != $password2)
 {header('Location: index.php?erreure=3#about');}
@@ -61,7 +61,7 @@ else {
     $mysqli->query("INSERT INTO membre (idmembre, email, pseudo,token,password)
 VALUES (NULL,'$email', '$pseudo','$token','$pass')");
     
-    header('Location: index.php#about??error=4#about');  }
+    header('Location: index.php??error=4#about');  }
     
     
     
