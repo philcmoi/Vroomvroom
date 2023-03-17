@@ -61,7 +61,7 @@ else {
     $mysqli->query("INSERT INTO membre (idmembre, email, pseudo,token,password)
 VALUES (NULL,'$email', '$pseudo','$token','$pass')");
     
-    header('Location: index.php??erreure=4#about');  }
+    header('Location: index.php?erreure=5#about');  }
     
     
     

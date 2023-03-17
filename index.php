@@ -110,7 +110,7 @@ switch ($error) {
         break;
         
     case 5:
-        echo "New record created successfully";
+        echo "Vous avez ete enregistres avec succes";
         break;
         
         
