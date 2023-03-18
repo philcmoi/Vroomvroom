@@ -36,7 +36,7 @@
                 <h1 class="mb-1">PREVOYANCE</h1>
                 <h1 class="mb-1">PATRIMOINE</h1>
                 
-                <h3 class="mb-5" ><em style="color:white;">Conseils en defiscalisation de l'impot sur le revenue</em></h3>
+                <h3 class="mb-5" ><em style="color:white;">Conseils en </em><em style="color:black;">defiscalisation<</em><em style="color:white;"> de l'impot sur le revenue</em></h3>
                 <a class="btn btn-primary btn-xl" href="#about">En Savoir Plus</a>
             </div>
         </header>
@@ -177,8 +177,10 @@ switch ($error) {
                     compte!
                 </h2>
 <!--            <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/theme/stylish-portfolio/">Download Now!</a> -->
-            	<a class="btn btn-primary btn-xl" href="http://voitureentete.fr/enregistrement.php">Se Connecter</a>
-<!--            <a class="btn btn-primary btn-xl" href="http://localhost/enregistrement.php">Se Connecter</a> -->
+            	
+            	<a class="btn btn-primary btn-xl" href="http://voitureentete.fr/index2.php">Se Connecter</a>
+<!--            
+<a class="btn btn-primary btn-xl" href="http://localhost/enregistrement.php">Se Connecter</a> -->
             	
             </div>
         </section>
