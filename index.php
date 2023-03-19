@@ -23,10 +23,10 @@
         <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="#page-top"></a></li>
-                <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
-                <li class="sidebar-nav-item"><a href="#about">About</a></li>
+                <li class="sidebar-nav-item"><a href="#page-top">Accueil</a></li>
+                <li class="sidebar-nav-item"><a href="#about">A propos</a></li>
                 <li class="sidebar-nav-item"><a href="#services">Services</a></li>
-                <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
+                <li class="sidebar-nav-item"><a href="#portfolio">Portefeuille</a></li>
                 <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -36,7 +36,7 @@
                 <h1 class="mb-1">PREVOYANCE</h1>
                 <h1 class="mb-1">PATRIMOINE</h1>
                 
-                <h3 class="mb-5" ><em style="color:white;">Conseils en </em><em style="color:black;">defiscalisation<</em><em style="color:white;"> de l'impot sur le revenue</em></h3>
+                <h3 class="mb-5" ><em style="color:white;">Conseils en </em><em style="color:black;">d&eacute;fiscalisation</em><em style="color:white;"> de l'impot sur le revenue</em></h3>
                 <a class="btn btn-primary btn-xl" href="#about">En Savoir Plus</a>
             </div>
         </header>
@@ -55,9 +55,27 @@
 <!--                     </div> -->
 <!--                     <form  action="traitement2.php" method="post" > -->
 	<div id="about">
+	
+	   	 <h1 class="h5 mb-3 fw-normal" style="color:green;" >Souscrire &agrave; une compl&eacute;mentaire sant&eacute;.</h1>
+		 <h1 class="h5 mb-3 fw-normal" style="color:green;" >Pr&eacute;voir un patrimoine pour la veillessse.</h1>
+		 <h1 class="h5 mb-3 fw-normal" style="color:green;" >Prot&eacute;ger les siens lors d'un d&eacute;c&eacute;.</h1>
+	
+	
+    	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >D&eacute;duction, r&eacute;duction d'impot, cr&eacute;dit d'impot : quelles diff&eacute;rences ?</h1>
+    	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >Immobilier Investir dans le neuf, le dispositif Pinel, vous donne droit &agrave; des r&eacute;ductions d'impots.</h1>
+    	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >B&eacute;nificier d'un credit d'impot sur les d&eacute;penses pour l'aide de la personne.</h1>
+    	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >Plus Value Exoner&eacute;e d'impots en Assurance Vie.</h1>
+    	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >Et d'autres d&eacute;ductions d'impots</h1>
+    	 
+	<img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57">
           <form class="form-signin" action="traitementaccueil.php" method="post"  >
 <!--     <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-    	 <h1 class="h3 mb-3 fw-normal">Enregistrez vous</h1>
+    	 
+    	 
+<!--     	 <br><br><br> -->
+    	     
+    	 
+    	 <h1 class="h3 mb-3 fw-normal">Enregistrez vous. Nous vous contacterons prochainement.</h1>
 
     <div class="form-floating">
   	<input type="email" name="email" id="floatingInput" class="form-control" required >
@@ -69,11 +87,11 @@
     </div>
     <div class="form-floating">
   	<input type="password" name="password" id="floatingPassword" class="form-control"  required>
-      <label for="floatingPassword">Password</label>
+      <label for="floatingPassword">Mot De Passe</label>
     </div>
     <div class="form-floating">
   	<input type="password" name="password2" id="floatingPassword2" class="form-control"  required>
-      <label for="floatingPassword">Password de verication</label>
+      <label for="floatingPassword">Mot De Passe de verication</label>
     </div>
     </br>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>
@@ -178,7 +196,7 @@ switch ($error) {
                 </h2>
 <!--            <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/theme/stylish-portfolio/">Download Now!</a> -->
             	
-            	<a class="btn btn-primary btn-xl" href="http://voitureentete.fr/index2.php">Se Connecter</a>
+            	<a class="btn btn-primary btn-xl" href="http://localhost/Vroomvroom/index2.php">Se Connecter</a>
 <!--            
 <a class="btn btn-primary btn-xl" href="http://localhost/enregistrement.php">Se Connecter</a> -->
             	
