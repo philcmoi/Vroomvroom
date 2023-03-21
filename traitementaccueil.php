@@ -49,19 +49,19 @@ $row_cnt = $result->num_rows;
 $result1 = $mysqli->query($sql1);
 $row_cnt1 = $result1->num_rows;
 
-if ($row_cnt != 0) {header('Location: index.php?erreure=1');
+if ($row_cnt != 0) {header('Location: index.php?erreure=1&#about');
 
 
 }
-elseif ($row_cnt1 != 0) {header('Location: index.php?erreure=2');}
+elseif ($row_cnt1 != 0) {header('Location: index.php?erreure=2#about');}
 
 elseif ($password != $password2)
-{header('Location: enregistrement.php?erreure=3');}
+{header('Location: index.php?erreure=3#about');}
 else {
     $mysqli->query("INSERT INTO membre (idmembre, email, pseudo,token,password)
 VALUES (NULL,'$email', '$pseudo','$token','$pass')");
     
-    header('Location: index.php?error=4');  }
+    header('Location: index.php?erreure=5#about');  }
     
     
     
