@@ -38,8 +38,8 @@ if(isset($_POST["datedepart"], $_POST["datearrive"])) {
     <th width="15%">lieuarrive</th>
     <th width="15%">participation</th>
 
-    <th width="10%">date d arrive</th>
     <th width="10%">date de depart</th>
+    <th width="10%">date d arrive</th>
     <th width="5%">Effacer</th>
     <th width="5%">Mise a jour</th>
     </tr>';
@@ -66,8 +66,8 @@ if(isset($_POST["datedepart"], $_POST["datearrive"])) {
             <td>'.$row["lieudepart"].'</td>
             <td>'.$row["lieuarrive"].'</td>
             <td>'.numfmt_format_currency($fmt, $row["participation"], "EUR")."\n".'</td>
-            <td>';$datearrive;'</td>
             <td>'.$datedepart.'</td>
+            <td>'.$datearrive.'</td>
             <td width="5%">Effacer</td>
             <td width="5%">Mise a jour</td>
             </tr>';
