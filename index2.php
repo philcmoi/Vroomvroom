@@ -122,7 +122,9 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form class="form-signin" action="seconnecter.php" method="post" >
+<script type="text/javascript"> masque=true;</script>
+  <form class="form-signin" action="seconnecter.php" name="form" method="post" >
+  
     <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Veuillez vous connecter</h1>
 
@@ -130,9 +132,12 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
   <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" autofocus>
 <!--       <label for="floatingInput">Email address</label> -->
     </div>
+    
     <div class="form-floating">
-  <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" >
-<!--       <label for="floatingPassword">Password</label> -->
+    <div class="input">
+  	<input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" >
+  	<img alt="oeil" src="design/blinded.png" id = "oeil" onClick="changer()";/>
+    </div>
     </div>
 </br>
 <?php 
@@ -167,7 +172,7 @@ switch ($error) {
     <button class="w-100 btn btn-lg btn-primary" type="submit">S'identifier</button>
     </br></br>
     
-    <input type="button" class="w-100 btn btn-lg btn-primary" onclick="window.location.replace('enregistrement.php')" style="color:red;"  name="enregistrement" value="S'enregistrer" /> <!-- Bouton d'annulation -->
+    <input type="button" class="w-100 btn btn-lg btn-primary" onclick="window.location.replace('enregistrement.php')" style="color:black;"  name="enregistrement" value="S'enregistrer" /> <!-- Bouton d'annulation -->
     </br></br>
     <input type="button" onclick="window.location.replace('index.php')" name="rememberme" value="Annuler" /> <!-- Bouton d'annulation -->
     
@@ -186,7 +191,19 @@ switch ($error) {
   </form>
 </main>
 
+<script type="text/javascript">
 
+function changer() {
+if (masque) {document.getElementById("floatingPassword").setAttribute("type","text");
+			document.getElementById("oeil").src="design/eye.png";
+			masque = false;
+		   	 }
+	 else {document.getElementById("floatingPassword").setAttribute("type","password");
+		   document.getElementById("oeil").src="design/blinded.png";
+		   masque = true;
+	;}
+}
+</script>
     
   </body>
 </html>
