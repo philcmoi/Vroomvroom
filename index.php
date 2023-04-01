@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="Plusieurs dispositifs diminuent le montant de votre impôt à payer : déduction, réduction d&#39;impôt et crédit d&#39;impôt." />
         <meta name="author" content="Philippe L" />
-        <title>Payer moins d'impots</title>
+        <title>Payer moins d'impots et financer votre &eacute;pargne</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -24,10 +24,14 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="#page-top"></a></li>
                 <li class="sidebar-nav-item"><a href="#page-top">Accueil</a></li>
-                <li class="sidebar-nav-item"><a href="#about">A propos</a></li>
+                <li class="sidebar-nav-item"><a href="#about">En Savoir Plus</a></li>
                 <li class="sidebar-nav-item"><a href="#services">Services</a></li>
+                <li class="sidebar-nav-item"><a href="http://localhost/Vroomvroom/index2.php">Connexion, Enregistrement</a></li>
+<!--                 <li class="sidebar-nav-item"><a href="http://voitureentete.fr/index2.php">Se Connnecter, S'Enregistrer</a></li> -->
                 <li class="sidebar-nav-item"><a href="#portfolio">Portefeuille</a></li>
-                <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
+                <li class="sidebar-nav-item"><a href="#carte">Carte</a></li>
+                <li class="sidebar-nav-item"><a href="#cgu">CGU</a></li>
+                
             </ul>
         </nav>
         <!-- Header-->
@@ -43,60 +47,50 @@
         <!-- About-->
         <section class="content-section bg-light" id="about">
             <div class="container px-4 px-lg-5 text-center">
-<!--                 <div class="row gx-4 gx-lg-5 justify-content-center"> -->
-<!--                     <div class="col-lg-10"> -->
-<!--                         <h2>Stylish Portfolio is the perfect theme for your next project!</h2> -->
-<!--                         <p class="lead mb-5"> -->
-<!--                             This theme features a flexible, UX friendly sidebar menu and stock photos from our friends at -->
-<!--                             <a href="https://unsplash.com/">Unsplash</a> -->
-<!--                             ! -->
-<!--                         </p> -->
-<!--                         <a class="btn btn-dark btn-xl" href="#services">What We Offer</a> -->
-<!--                     </div> -->
-<!--                     <form  action="traitement2.php" method="post" > -->
+
 	<div id="about">
 	
-	   	 <h1 class="h5 mb-3 fw-normal" style="color:green;" >Souscrire &agrave; une compl&eacute;mentaire sant&eacute;.</h1>
-		 <h1 class="h5 mb-3 fw-normal" style="color:green;" >Pr&eacute;voir un patrimoine pour la veillessse.</h1>
-		 <h1 class="h5 mb-3 fw-normal" style="color:green;" >Prot&eacute;ger les siens lors d'un d&eacute;c&eacute;.</h1>
+	   	 <h1 class="h5 mb-3 fw-normal" style="color:green;" >Souscrire &agrave; une compl&eacute;mentaire sant&eacute;.
+		 Pr&eacute;voir un patrimoine pour la veillessse.
+		 Prot&eacute;ger les siens lors d'un d&eacute;c&eacute;.</h1>
 	
 	
-    	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >D&eacute;duction, r&eacute;duction d'impot, cr&eacute;dit d'impot : quelles diff&eacute;rences ?</h1>
+    	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >Quelles diff&eacute;rences entre D&eacute;duction, r&eacute;duction d'impot, cr&eacute;dit d'impot ?</h1>
     	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >Immobilier Investir dans le neuf, le dispositif Pinel, vous donne droit &agrave; des r&eacute;ductions d'impots.</h1>
     	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >B&eacute;nificier d'un credit d'impot sur les d&eacute;penses pour l'aide de la personne.</h1>
-    	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >Plus Value Exoner&eacute;e d'impots en Assurance Vie.</h1>
     	 <h1 class="h5 mb-3 fw-normal" style="color:blue;" >Et d'autres d&eacute;ductions d'impots</h1>
     	 
-	<img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57">
-          <form class="form-signin" action="traitementaccueil.php" method="post"  >
-<!--     <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-    	 
-    	 
-<!--     	 <br><br><br> -->
-    	     
-    	 
-    	 <h1 class="h3 mb-3 fw-normal">Enregistrez vous. Nous vous contacterons prochainement.</h1>
+<!-- 	<img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57"> -->
 
-    <div class="form-floating">
-  	<input type="email" name="email" id="floatingInput" class="form-control" required >
-    <label for="floatingInput">Email address</label>
+
+
+	
+    <form class="form-signin" action="traitementvisiteur.php" method="post"  >
+    <h1 class="h3 mb-3 fw-normal">Renseignez vous. Nous vous Informerons prochainement.</h1>
+	<br><br><br>
+	<div class="form-floating">
+  	<input type="text" name="Nom_visiteur" id="floatingInput" class="form-control" required >
+    <label for="floatingInput">Nom</label>
     </div>
     <div class="form-floating">
-  	<input type="text" name="pseudo" id="pseudo" class="form-control"  required>
-    <label for="floatingPassword">pseudo</label>
+  	<input type="email" name="Email_visiteur" id="floatingInput" class="form-control" required >
+    <label for="floatingInput">Adresse Email</label>
     </div>
+<!--     <div class="form-floating"> -->
+<!--   	<input type="text" name="Numtel_visiteur" id="pseudo" class="form-control"  > -->
+<!--     <label for="floatingPassword">Numero De T&eacute;l&eacute;phone</label> -->
+<!--     </div> -->
     <div class="form-floating">
-  	<input type="password" name="password" id="floatingPassword" class="form-control"  required>
-      <label for="floatingPassword">Mot De Passe</label>
+    <textarea name="Demande_visiteur" rows="12" cols="115" placeholder="Demande" required></textarea>
     </div>
-    <div class="form-floating">
-  	<input type="password" name="password2" id="floatingPassword2" class="form-control"  required>
-      <label for="floatingPassword">Mot De Passe de verication</label>
-    </div>
+
     </br>
-	<button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Envoi</button>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" onclick="window.location.replace('index.php')" name="rememberme" value="Annuler" /> <!-- Bouton d'annulation -->
+	
+	<div id="formulaire"></div>
+
 </br>
 <?php 
 
@@ -108,30 +102,20 @@ switch ($error) {
    
     case 1:
 
-        echo " email existant ";
+        echo " erreure ";
         break;
             
         
     case 2:
         
-        echo " pseudo existant ";
+        echo "Votre demande serat trait&eacute; le plus rapidement possible";
         break;
         
+    
     case 3:
         
-        echo " mots de passe non identiques ";
+        echo "Vous avez &eacute;t&eacute; enregistr&eacute;s avec succes";
         break;
-        
-        
-    case 4:
-        echo "vous avez ete deconnecte";
-        break;
-        
-    case 5:
-        echo "Vous avez ete enregistres avec succes";
-        break;
-        
-        
         
         
               }
@@ -197,6 +181,7 @@ switch ($error) {
 <!--            <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/theme/stylish-portfolio/">Download Now!</a> -->
             	
             	<a class="btn btn-primary btn-xl" href="http://localhost/Vroomvroom/index2.php">Se Connecter</a>
+<!--             	<a class="btn btn-primary btn-xl" href="http://voitureentete.fr/index2.php">Se Connecter</a> -->
 <!--            
 <a class="btn btn-primary btn-xl" href="http://localhost/enregistrement.php">Se Connecter</a> -->
             	
@@ -206,16 +191,16 @@ switch ($error) {
         <section class="content-section" id="portfolio">
             <div class="container px-4 px-lg-5">
                 <div class="content-section-heading text-center">
-                    <h3 class="text-secondary mb-0">Portfolio</h3>
-                    <h2 class="mb-5">Projet recent</h2>
+                    <h3 class="text-secondary mb-0">portefeuille</h3>
+                    <h2 class="mb-5">Projets recents</h2>
                 </div>
                 <div class="row gx-0">
                     <div class="col-lg-6">
                         <a class="portfolio-item" href="#!">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <div class="h2"></div>
-                                    <p class="mb-0"></p>
+                                    <div class="h1">Assurance Vie.</div>
+                                    <p class="mb-0">Financer votre &eacute;pargne par les &eacute;conomies faites sur la r&eacute;duction de l'impot sur le revenue.</p>
                                 </div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio-1.jpg" alt="..." />
@@ -225,35 +210,35 @@ switch ($error) {
                         <a class="portfolio-item" href="#!">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <div class="h2"></div>
-                                    <p class="mb-0"></p>
+                                    <div class="h1">Compl&eacute;mentaire Sant&eacute;.</div>
+                                    <p class="mb-0">Trouver le juste milieu pour la continuit&eacute; de votre sant&eacute;.</p>
                                 </div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio-2.jpg" alt="..." />
                         </a>
                     </div>
-                    <div class="col-lg-6">
-                        <a class="portfolio-item" href="#!">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <div class="h2"></div>
-                                    <p class="mb-0"></p>
-                                </div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio-3.jpg" alt="..." />
-                        </a>
-                    </div>
-                    <div class="col-lg-6">
-                        <a class="portfolio-item" href="#!">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <div class="h2">Espace de travail</div>
-                                    <p class="mb-0">Un espace de travail jaune avec des ciseaux, des crayons et d'autres objets.</p>
-                                </div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio-4.jpg" alt="..." />
-                        </a>
-                    </div>
+<!--                     <div class="col-lg-6"> -->
+<!--                         <a class="portfolio-item" href="#!"> -->
+<!--                             <div class="caption"> -->
+<!--                                 <div class="caption-content"> -->
+<!--                                     <div class="h2">Protection Sociale pour les Ind&eacute;pendants</div> -->
+<!--                                     <p class="mb-0">Entrepreneurs financer votre couverture sociale</p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <img class="img-fluid" src="assets/img/portfolio-3.jpg" alt="..." /> -->
+<!--                         </a> -->
+<!--                     </div> -->
+<!--                     <div class="col-lg-6"> -->
+<!--                         <a class="portfolio-item" href="#!"> -->
+<!--                             <div class="caption"> -->
+<!--                                 <div class="caption-content"> -->
+<!--                                     <div class="h2"></div> -->
+<!--                                     <p class="mb-0"></p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <img class="img-fluid" src="assets/img/portfolio-4.jpg" alt="..." /> -->
+<!--                         </a> -->
+<!--                     </div> -->
                 </div>
             </div>
         </section>
@@ -266,10 +251,23 @@ switch ($error) {
             </div>
         </section>
         <!-- Map-->
-        <div class="map" id="contact">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5250.684366339986!2d2.26684!3d48.851685!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67b3cef342aef%3A0x32543438aecb08b3!2sLocale%20professionnel!5e0!3m2!1sfr!2sfr!4v1678893530307!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map" id="carte">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.3026561207726!2d2.265680714853991!3d48.85243880908116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67aae79655351%3A0xefc32145eb9faf09!2s1%20Rue%20Jasmin%2C%2075016%20Paris!5e0!3m2!1sfr!2sfr!4v1679390228203!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <!--         <small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a></small> -->
         </div>
+        
+        <br/></br></br></br></br><br/></br></br></br></br><br/></br></br>
+
+        <h1 class="h3 mb-3 fw-normal" id="cgu">
+        
+        
+        
+        
+        
+        
+        
+        </h1>
+        
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container px-4 px-lg-5">

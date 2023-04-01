@@ -14,15 +14,15 @@ $password = htmlspecialchars( $_POST['password']);
 //     $mysqli = new mysqli('127.0.0.1', 'u909244959_philippe', 'l@99339RWFH5465', 'u909244959_wroomwroom');
 
 //     $mysqli = new mysqli('127.0.0.1', 'u909244959_philippe', 'l@99339RWFH5465', 'u909244959_wroomwroom');
-    echo "avant new sqli";
+//     echo "avant new sqli";
     $mysqli = new mysqli('127.0.0.1', $dbuser, $dbpass, $db);
     
-    echo "apres sqli";
+//     echo "apres sqli";
     
    //On créé la requête
 //    $req="SELECT login, password FROM jeux_video WHERE login =.'.$var.'. AND password =.'.$password.'";
 
-    $sql = "SELECT email, idmembre, token, password , pseudo FROM membre WHERE email = '".$email."'";
+    $sql = "SELECT email, idmembre, token, password , pseudo FROM membre WHERE email = '$email'";
     
 //     $sql = "SELECT email. token FROM membre WHERE email = '".$email."'";
     /* Requête "Select" retourne un jeu de résultats */

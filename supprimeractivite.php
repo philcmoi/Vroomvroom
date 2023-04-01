@@ -5,7 +5,7 @@
 //      $order_number = 8;
      
     
-    $req = "DELETE FROM `orders` WHERE `orders`.`order_number` = '$order_number'";
+    $req = "DELETE FROM orders WHERE order_number = '$order_number'";
     $mysqli = new mysqli('127.0.0.1', 'root', '', 'philippe');
     
     

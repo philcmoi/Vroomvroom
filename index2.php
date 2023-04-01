@@ -51,7 +51,7 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.101.0">
-    <title>Signin Template · Bootstrap v5.2</title>
+    <title>Identification</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
@@ -122,17 +122,22 @@ if (!empty($_COOKIE["token"]) AND !empty($_COOKIE["email"])) {
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form class="form-signin" action="seconnecter.php" method="post" >
+<script type="text/javascript"> masque=true;</script>
+  <form class="form-signin" action="seconnecter.php" name="form" method="post" >
+  
     <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal">Veuillez vous connecter</h1>
 
     <div class="form-floating">
   <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Entrer votre email" autofocus>
 <!--       <label for="floatingInput">Email address</label> -->
     </div>
+    
     <div class="form-floating">
-  <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" >
-<!--       <label for="floatingPassword">Password</label> -->
+    <div class="input">
+  	<input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" >
+  	<img alt="oeil" src="design/blinded.png" id = "oeil" onClick="changer()";/>
+    </div>
     </div>
 </br>
 <?php 
@@ -165,7 +170,10 @@ switch ($error) {
       
   
     <button class="w-100 btn btn-lg btn-primary" type="submit">S'identifier</button>
-    </br>
+    </br></br>
+    
+    <input type="button" class="w-100 btn btn-lg btn-primary" onclick="window.location.replace('enregistrement.php')" style="color:black;"  name="enregistrement" value="S'enregistrer" /> <!-- Bouton d'annulation -->
+    </br></br>
     <input type="button" onclick="window.location.replace('index.php')" name="rememberme" value="Annuler" /> <!-- Bouton d'annulation -->
     
     <div class="checkbox mb-3">
@@ -174,15 +182,28 @@ switch ($error) {
       </label>
       </br> 
     </div>  
-    <a href="enregistrement.php" title="S enregistrer" target="_blank" rel="noopener noreferrer">S enregistrer</a>
-
+<!--     <a href="enregistrement.php" title="S enregistrer" target="_blank" rel="noopener noreferrer">S enregistrer</a> -->
+ 
+    
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
 	
   
   </form>
 </main>
 
+<script type="text/javascript">
 
+function changer() {
+if (masque) {document.getElementById("floatingPassword").setAttribute("type","text");
+			document.getElementById("oeil").src="design/eye.png";
+			masque = false;
+		   	 }
+	 else {document.getElementById("floatingPassword").setAttribute("type","password");
+		   document.getElementById("oeil").src="design/blinded.png";
+		   masque = true;
+	;}
+}
+</script>
     
   </body>
 </html>

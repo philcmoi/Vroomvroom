@@ -9,7 +9,9 @@ $dbuser = "root";
 $dbpass = "";
 $db ="philippe";
 	
-$con = mysqli_connect($dbhost, $dbuser, $dbpass , $db) or die($con);
+// $con = mysqli_connect($dbhost, $dbuser, $dbpass , $db) or die($con);
 	
+$con = new mysqli($dbhost,$dbuser,$dbpass,$db);
+
 // 	mysqli_set_charset($con, "utf8");
 ?>

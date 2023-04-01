@@ -22,7 +22,7 @@ echo "apres sqli";
 //On créé la requête
 //    $req="SELECT login, password FROM jeux_video WHERE login =.'.$var.'. AND password =.'.$password.'";
 
-$sql = "SELECT email, idmembre, token, password , pseudo FROM membre WHERE email = '".$email."'";
+$sql = "SELECT email, idmembre, token, password , pseudo FROM membre WHERE email = '$email'";
 
 //     $sql = "SELECT email. token FROM membre WHERE email = '".$email."'";
 /* Requête "Select" retourne un jeu de résultats */

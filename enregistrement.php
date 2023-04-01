@@ -77,6 +77,9 @@
     
 <main class="form-signin w-100 m-auto">
   <form class="form-signin" action="traitement2.php" method="post" >
+    <script type="text/javascript">
+	masques = true;
+    </script>
     <img class="mb-4" src="design/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Enregistrez vous</h1>
 
@@ -92,10 +95,11 @@
   <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" required>
       <label for="floatingPassword">Password</label>
     </div>
-    <div class="form-floating">
+  <div class="form-floating">
   <input type="password" name="password2" id="floatingPassword2" class="form-control" placeholder="Password" required>
       <label for="floatingPassword">Password de verication</label>
     </div>
+    <img alt="oeil" src="design/blinded.png" id="oeil" onClick="changer()";/>
     </br>
 <button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -144,7 +148,23 @@ switch ($error) {
   <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
    
 </form>
-       
+ </main>
+ <script type="text/javascript">
+ function changer() {
+	 if (masques) {
+		 		document.getElementById("floatingPassword").setAttribute("type","text");
+		 		document.getElementById("floatingPassword2").setAttribute("type","text");
+	 			document.getElementById("oeil").src="design/eye.png";
+	 			masques = false;
+	 		   	 }
+	 	 else {document.getElementById("floatingPassword").setAttribute("type","password");
+	 		   document.getElementById("floatingPassword2").setAttribute("type","password");
+		   	   document.getElementById("oeil").src="design/blinded.png";
+	 		   masques = true;
+	 	;}
+	 }
+ </script>
+ </body>      
     
     
     

@@ -34,9 +34,9 @@ $mysqli = new mysqli('127.0.0.1', $dbuser, $dbpass, $db);
 $token = rand();
 
 
-$sql = "SELECT email FROM membre WHERE email = '".$email."'";
+$sql = "SELECT email FROM membre WHERE email = '$email'";
 
-$sql1 = "SELECT pseudo FROM membre WHERE pseudo = '".$pseudo."'";
+$sql1 = "SELECT pseudo FROM membre WHERE pseudo = '$pseudo'";
 
 $sql2 = "INSERT INTO membre (idmembre, email, pseudo,token,password)
 VALUES (NULL,'$email', '$pseudo','$token','$pass')";
@@ -61,7 +61,7 @@ $result = $mysqli->query($sql);
     $mysqli->query("INSERT INTO membre (idmembre, email, pseudo,token,password)
 VALUES (NULL,'$email', '$pseudo','$token','$pass')");
         
-    header('Location: index.php?error=4');  }
+    header('Location: index.php?erreure=3#formulaire');  }
     
  
     
